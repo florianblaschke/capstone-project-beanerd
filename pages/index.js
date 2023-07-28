@@ -1,9 +1,8 @@
 import Head from "next/head";
-import { Roboto } from "next/font/google";
+import { styled } from "styled-components";
 import RoastCard from "@/components/RoastCard";
 import useSWR from "swr";
 
-const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
@@ -18,14 +17,26 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {data.map((roast) => (
-        <RoastCard
-          key={roast._id}
-          name={roast.name}
-          roaster={roast.roaster}
-          score={roast.score}
-        />
-      ))}
+      <StyUl>
+        {data.map((roast) => (
+          <StyLi key={roast._id}>
+            <RoastCard
+              id={roast._id}
+              name={roast.name}
+              roaster={roast.roaster}
+              score={roast.score}
+            />
+          </StyLi>
+        ))}
+      </StyUl>
     </>
   );
 }
+
+const StyUl = styled.ul`
+  list-style: none;
+`;
+
+const StyLi = styled.li`
+  margin: 12px 0px 12px 0px;
+`;
