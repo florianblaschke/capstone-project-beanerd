@@ -10,10 +10,4 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
   }
-
-  @font-face{
-    font-family: "Roboto";
-    src: "https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap";
-    font-style: normal;
-  }
 `;
