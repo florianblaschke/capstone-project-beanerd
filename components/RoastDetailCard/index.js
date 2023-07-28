@@ -16,6 +16,7 @@ export default function RoastDetailCard({
   return (
     <StyDiv>
       <StyImage
+        priority={true}
         src={defaultPic}
         width={""}
         height={""}

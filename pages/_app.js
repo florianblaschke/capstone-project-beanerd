@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Beanerd</title>
       </Head>
-      <main class={roboto.className}>
+      <main className={roboto.className}>
         <Component {...pageProps} />
       </main>
     </>

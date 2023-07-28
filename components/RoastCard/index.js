@@ -8,12 +8,13 @@ export default function RoastCard({ name, roaster, score, id }) {
     <StyLink href={`/${id}`}>
       <StyDiv>
         <StyImage
+          priority={true}
           src={defaultPic}
-          width={123}
-          height={160}
+          width={""}
+          height={""}
           alt="Coffee-Package"
         ></StyImage>
-        <StyDivText class={roboto.className}>
+        <StyDivText>
           <StyHTwo>{name}</StyHTwo>
           <StyP>{roaster}</StyP>
           <StyRating>
