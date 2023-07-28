@@ -1,6 +1,7 @@
 import defaultPic from "@/public/default.jpg";
 import { styled } from "styled-components";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function RoastDetailCard({
   name,
@@ -11,6 +12,7 @@ export default function RoastDetailCard({
   provenance,
   score,
 }) {
+  const router = useRouter();
   return (
     <StyDiv>
       <StyImage
@@ -43,6 +45,7 @@ export default function RoastDetailCard({
           {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
         </StyNumberRating>
       </StyDivText>
+      <StyButton onClick={() => router.push("/")}>Zurück</StyButton>
     </StyDiv>
   );
 }
@@ -97,4 +100,13 @@ const StyImage = styled(Image)`
   height: 240px;
   object-fit: cover;
   object-position: 80% 80%;
+`;
+
+const StyButton = styled.button`
+  width: 33%;
+  border-radius: 4px;
+  background-color: white;
+  border: solid black 0.5px;
+  box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 `;
