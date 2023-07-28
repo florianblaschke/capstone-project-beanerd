@@ -1,10 +1,7 @@
 import Image from "next/image";
 import { styled } from "styled-components";
-import { Roboto } from "next/font/google";
 import defaultPic from "@/public/default.jpg";
 import Link from "next/link";
-
-const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 export default function RoastCard({ name, roaster, score, id }) {
   return (
