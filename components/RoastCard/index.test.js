@@ -4,16 +4,14 @@ import RoastCard from "./index";
 
 const exampleArray = [
   {
+    id: 1,
     name: "Fazenda Matão",
     roaster: "Good Karma",
     score: [50, 100],
   },
+  { id: 2, name: "Günter", roaster: "Günter Coffee Roasters", score: [90] },
   {
-    name: "Günter",
-    roaster: "Günter Coffee Roasters",
-    score: [90],
-  },
-  {
+    id: 3,
     name: "Mexico Finca Santa Anita",
     roaster: "CULTD- Coffee Unlimited",
     score: [],
@@ -46,6 +44,7 @@ test("renders all roasts", () => {
   render(
     exampleArray.map((roast) => (
       <RoastCard
+        key={roast.id}
         name={roast.name}
         roaster={roast.roaster}
         score={roast.score}
