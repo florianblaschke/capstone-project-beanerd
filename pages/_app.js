@@ -1,12 +1,6 @@
 import GlobalStyle from "@/styles";
 import Head from "next/head";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700"],
-  fallback: ["system-ui"],
-});
+import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,9 +9,9 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Beanerd</title>
       </Head>
-      <main className={roboto.className}>
+      <Layout>
         <Component {...pageProps} />
-      </main>
+      </Layout>
     </>
   );
 }
