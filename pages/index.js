@@ -1,25 +1,42 @@
 import Head from "next/head";
-import styled from "styled-components";
-import { Inter } from "next/font/google";
+import { styled } from "styled-components";
+import RoastCard from "@/components/RoastCard";
+import useSWR from "swr";
 
-const inter = Inter({ subsets: ["latin"] });
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
+  const { data, isLoading } = useSWR("api/roasts", fetcher);
+
+  if (isLoading) return <h1>... is Loading</h1>;
   return (
     <>
       <Head>
-        <title>Capstone Project</title>
-        <meta name="description" content="Penguin Capstone Project" />
+        <title>BeaNerd</title>
+        <meta name="description" content="Florian Capstone Project" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={inter.className}>
-        <Heading>🐧Penguin Capstone Template🐧</Heading>
-      </main>
+      <StyUl>
+        {data.map((roast) => (
+          <StyLi key={roast._id}>
+            <RoastCard
+              id={roast._id}
+              name={roast.name}
+              roaster={roast.roaster}
+              score={roast.score}
+            />
+          </StyLi>
+        ))}
+      </StyUl>
     </>
   );
 }
 
-const Heading = styled.h1`
-  text-align: center;
+const StyUl = styled.ul`
+  list-style: none;
+`;
+
+const StyLi = styled.li`
+  margin: 12px 0px 12px 0px;
 `;
