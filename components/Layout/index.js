@@ -1,10 +1,10 @@
 import Navigation from "./navigation";
 
-export default function Layout({ children, className }) {
+export default function Layout({ children }) {
   return (
     <>
-      <main className={className}>{children}</main>
-      <Navigation className={className} />
+      <main>{children}</main>
+      <Navigation />
     </>
   );
 }
