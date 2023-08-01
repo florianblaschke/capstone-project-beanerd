@@ -1,13 +1,12 @@
 import { styled } from "styled-components";
 import { useState } from "react";
-import { StyButton } from "../RoastDetailCard";
 
 export default function Form({ onSubmit }) {
   const [arabica, setArabica] = useState(0);
   const [robusta, setRobusta] = useState(0);
 
   function showRatio(event) {
-    let ara = event.target.value;
+    let ara = Number(event.target.value);
     let rob = 100 - ara;
 
     setArabica(ara);
@@ -17,9 +16,9 @@ export default function Form({ onSubmit }) {
   return (
     <StyForm onSubmit={onSubmit}>
       <StyLabel htmlFor="name">Name:</StyLabel>
-      <StyInput type="text" min="1" max="24" id="name" name="name" />
+      <StyInput type="text" id="name" name="name" />
       <StyLabel htmlFor="roaster">Röster:</StyLabel>
-      <StyInput type="text" min="1" max="32" id="roaster" name="roaster" />
+      <StyInput type="text" id="roaster" name="roaster" />
       <StySliderLabel htmlFor="arabica">
         Arabica {arabica} / {robusta} Robusta
       </StySliderLabel>
@@ -32,20 +31,16 @@ export default function Form({ onSubmit }) {
         id="arabica"
         name="arabica"
       />
-      <StyLabel htmlFor="level">Röstgrad:</StyLabel>
-      <StySelect id="level" name="level">
-        <option value="light">light</option>
-        <option value="medium">medium</option>
-        <option value="dark">dark</option>
-      </StySelect>
-      <StyLabel htmlFor="provenance">Herkunft:</StyLabel>
-      <StyInput
-        type="text"
-        min="6"
-        max="24"
-        id="provenance"
-        name="provenance"
-      />
+      <StyDiv>
+        <StyLabelTwo htmlFor="provenance">Herkunft:</StyLabelTwo>
+        <StyLabel htmlFor="level">Röstgrad:</StyLabel>
+        <StyInputTwo type="text" id="provenance" name="provenance" />
+        <StySelect id="level" name="level">
+          <option value="light">light</option>
+          <option value="medium">medium</option>
+          <option value="dark">dark</option>
+        </StySelect>
+      </StyDiv>
       <StyButton>Speichern</StyButton>
     </StyForm>
   );
@@ -55,6 +50,7 @@ const StyForm = styled.form`
   display: flex;
   flex-flow: column wrap;
   align-content: center;
+  align-items: center;
   padding: 20px;
   height: 100vh;
 `;
@@ -81,20 +77,59 @@ const StySelect = styled.select`
   border-radius: 8px;
   border: 0.5px solid #000;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  width: 284px;
-  height: 30px;
+  margin: 8px;
+  width: 80%;
+  background-color: white;
+  text-align: center;
 `;
 
 const StySliderLabel = styled.label`
   font-size: 12px;
   font-weight: 400;
-  width: 80vw;
   height: 14px;
-  margin: 8px;
+  margin: 8.5px;
+  align-self: center;
 `;
 
 const StySlider = styled.input`
   width: 60vw;
   margin: 8px;
   align-self: center;
+`;
+
+const StyLabelTwo = styled.label`
+  font-size: 12px;
+  font-weight: 400;
+  width: ;
+  height: 14px;
+  margin: 8px;
+`;
+
+const StyInputTwo = styled.input`
+  border-radius: 8px;
+  border: 0.5px solid #000;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 80%;
+  height: 30px;
+  margin: 8px;
+`;
+
+const StyDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.2fr 0.2fr;
+  justify-items: center;
+`;
+
+const StyButton = styled.button`
+  align-self: center;
+  margin: 24px;
+  padding: 8px;
+  width: 33%;
+  border-radius: 4px;
+  background-color: white;
+  border: solid black 0.5px;
+  box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 `;
