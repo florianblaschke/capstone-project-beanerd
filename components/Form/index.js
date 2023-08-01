@@ -39,7 +39,7 @@ export default function Form({ onSubmit }) {
       </select>
       <label htmlFor="provenance">Herkunft:</label>
       <input type="text" id="provenance" name="provenance" />
-      <button>Hinzufügen</button>
+      <button>Speichern</button>
     </StyForm>
   );
 }
