@@ -1,5 +1,4 @@
 import {
-  StyForm,
   StyLabel,
   StyInput,
   StySliderLabel,
@@ -10,7 +9,9 @@ import {
   StyLabelTwo,
   StyButton,
 } from "../Form";
+
 import { useState } from "react";
+import styled from "styled-components";
 
 export default function EditForm({
   onSubmit,
@@ -40,7 +41,7 @@ export default function EditForm({
         type="text"
         id="name"
         name="name"
-        placeholder={name}
+        defaultValue={name}
       />
       <StyLabel htmlFor="roaster">Röster:</StyLabel>
       <StyInput
@@ -48,12 +49,13 @@ export default function EditForm({
         type="text"
         id="roaster"
         name="roaster"
-        placeholder={roaster}
+        defaultValue={roaster}
       />
       <StySliderLabel htmlFor="arabica">
         Arabica {arabicaRatio} / {robustaRatio} Robusta
       </StySliderLabel>
       <StySlider
+        defaultValue={arabicaRatio}
         onChange={showRatio}
         type="range"
         min="0"
@@ -70,7 +72,7 @@ export default function EditForm({
           type="text"
           id="provenance"
           name="provenance"
-          placeholder={provenance}
+          defaultValue={provenance}
         />
         <StySelect defaultValue={level} id="level" name="level">
           <option value="light">light</option>
@@ -82,3 +84,12 @@ export default function EditForm({
     </StyForm>
   );
 }
+
+const StyForm = styled.form`
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  align-items: center;
+  padding: 20px;
+  height: auto;
+`;

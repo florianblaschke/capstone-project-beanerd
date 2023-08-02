@@ -2,10 +2,10 @@ import defaultPic from "@/public/default.jpg";
 import styled from "styled-components";
 import Image from "next/image";
 import EditForm from "../EditForm";
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function RoastDetailCard({
+  onSubmit,
   name,
   roaster,
   arabica,
@@ -13,13 +13,10 @@ export default function RoastDetailCard({
   level,
   provenance,
   score,
+  edit,
+  setMode,
 }) {
-  const [edit, setEdit] = useState(true);
   const router = useRouter();
-
-  function setMode() {
-    setEdit(!edit);
-  }
 
   return (
     <StyDiv>
@@ -58,6 +55,7 @@ export default function RoastDetailCard({
       )}
       {edit && (
         <EditForm
+          onSubmit={onSubmit}
           name={name}
           roaster={roaster}
           provenance={provenance}
@@ -69,7 +67,9 @@ export default function RoastDetailCard({
       <StyButtonDiv>
         <StyButton onClick={() => router.push("/")}>Zurück</StyButton>
         {edit && <StyButton>Löschen</StyButton>}
-        <StyButton onClick={setMode}>Bearbeiten</StyButton>
+        <StyButton onClick={setMode}>
+          {edit ? "Abbrechen" : "Bearbeiten"}
+        </StyButton>
       </StyButtonDiv>
     </StyDiv>
   );
