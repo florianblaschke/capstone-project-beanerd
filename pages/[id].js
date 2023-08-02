@@ -43,10 +43,21 @@ export default function Detail() {
     }
   }
 
+  async function handleDeleteRoast() {
+    const res = await fetch(`api/roasts/${id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      router.push("/");
+    }
+  }
+
   return (
     <RoastDetailCard
       edit={edit}
       setMode={setMode}
+      onDelete={handleDeleteRoast}
       onSubmit={handleEditRoast}
       name={data.name}
       roaster={data.roaster}
