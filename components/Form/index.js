@@ -45,7 +45,7 @@ export default function Form({ onSubmit }) {
         <StyLabelTwo htmlFor="provenance">Herkunft:</StyLabelTwo>
         <StyLabel htmlFor="level">Röstgrad:</StyLabel>
         <StyInputTwo
-          pattern="^[a-zA-Z\s-]+$"
+          pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
           type="text"
           id="provenance"
           name="provenance"
