@@ -15,4 +15,21 @@ export default async function handler(req, res) {
 
     return res.status(200).json(allRoasts);
   }
+
+  if (req.method === "POST") {
+    const newRoast = req.body;
+
+    const existingRoast = await Roast.findOne(newRoast);
+
+    if (existingRoast) {
+      return res.status(400).json({ error: "Roast already exists" });
+    }
+
+    try {
+      await Roast.create(newRoast);
+      return res.status(201).json({ message: "New roast created" });
+    } catch (error) {
+      return res.status(418).json({ error: error.message });
+    }
+  }
 }

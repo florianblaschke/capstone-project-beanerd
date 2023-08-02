@@ -103,7 +103,7 @@ const StyImage = styled(Image)`
   object-position: 80% 80%;
 `;
 
-const StyButton = styled.button`
+export const StyButton = styled.button`
   width: 33%;
   border-radius: 4px;
   background-color: white;
