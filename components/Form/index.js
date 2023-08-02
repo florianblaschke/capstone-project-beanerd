@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 import { useState } from "react";
 
 export default function Form({ onSubmit }) {
-  const [arabica, setArabica] = useState(0);
-  const [robusta, setRobusta] = useState(0);
+  const [arabica, setArabica] = useState(50);
+  const [robusta, setRobusta] = useState(50);
 
   function showRatio(event) {
     let ara = Number(event.target.value);
@@ -16,9 +16,19 @@ export default function Form({ onSubmit }) {
   return (
     <StyForm onSubmit={onSubmit}>
       <StyLabel htmlFor="name">Name:</StyLabel>
-      <StyInput type="text" id="name" name="name" />
+      <StyInput
+        pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
+        type="text"
+        id="name"
+        name="name"
+      />
       <StyLabel htmlFor="roaster">Röster:</StyLabel>
-      <StyInput type="text" id="roaster" name="roaster" />
+      <StyInput
+        pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
+        type="text"
+        id="roaster"
+        name="roaster"
+      />
       <StySliderLabel htmlFor="arabica">
         Arabica {arabica} / {robusta} Robusta
       </StySliderLabel>
@@ -34,7 +44,12 @@ export default function Form({ onSubmit }) {
       <StyDiv>
         <StyLabelTwo htmlFor="provenance">Herkunft:</StyLabelTwo>
         <StyLabel htmlFor="level">Röstgrad:</StyLabel>
-        <StyInputTwo type="text" id="provenance" name="provenance" />
+        <StyInputTwo
+          pattern="^[a-zA-Z\s-]+$"
+          type="text"
+          id="provenance"
+          name="provenance"
+        />
         <StySelect id="level" name="level">
           <option value="light">light</option>
           <option value="medium">medium</option>

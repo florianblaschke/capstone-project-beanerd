@@ -24,6 +24,7 @@ export default async function handler(req, res) {
     if (existingRoast) {
       return res.status(400).json({ error: "Roast already exists" });
     }
+
     try {
       await Roast.create(newRoast);
       return res.status(201).json({ message: "New roast created" });

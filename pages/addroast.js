@@ -17,9 +17,11 @@ export default function AddRoast() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    console.log(res);
     if (res.status === 400) {
       alert("This coffee already exists");
+    }
+    if (res.status === 418) {
+      alert("You can't submit empty fields and/or just numbers.");
     }
     if (res.ok) {
       router.push("/");
