@@ -1,5 +1,5 @@
 import defaultPic from "@/public/default.jpg";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
