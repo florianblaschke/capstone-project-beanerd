@@ -12,10 +12,9 @@ export default function Navigation({ className }) {
 
 const StyFooter = styled.footer`
   display: flex;
-  flex-flow: row no-wrap;
   justify-content: space-evenly;
   position: sticky;
-  bottom: 0;
+  bottom: 0px;
   height: 6vh;
   background-color: white;
 `;

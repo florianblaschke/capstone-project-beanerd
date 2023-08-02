@@ -11,6 +11,5 @@ export default function Layout({ children, className }) {
 }
 
 const StyMain = styled.main`
-  height: 100vh;
   margin-bottom: 24px;
 `;
