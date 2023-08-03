@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { useState } from "react";
 
 export default function Form({ onSubmit }) {
@@ -17,17 +17,19 @@ export default function Form({ onSubmit }) {
     <StyForm onSubmit={onSubmit}>
       <StyLabel htmlFor="name">Name:</StyLabel>
       <StyInput
-        pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
+        pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
         type="text"
         id="name"
         name="name"
+        title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
       <StyLabel htmlFor="roaster">Röster:</StyLabel>
       <StyInput
-        pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
+        pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
         type="text"
         id="roaster"
         name="roaster"
+        title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
       <StySliderLabel htmlFor="arabica">
         Arabica {arabica} / {robusta} Robusta
@@ -45,10 +47,11 @@ export default function Form({ onSubmit }) {
         <StyLabelTwo htmlFor="provenance">Herkunft:</StyLabelTwo>
         <StyLabel htmlFor="level">Röstgrad:</StyLabel>
         <StyInputTwo
-          pattern="^[a-zA-Z\s-]+$"
+          pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
           type="text"
           id="provenance"
           name="provenance"
+          title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
         />
         <StySelect id="level" name="level">
           <option value="light">light</option>
@@ -61,7 +64,7 @@ export default function Form({ onSubmit }) {
   );
 }
 
-const StyForm = styled.form`
+export const StyForm = styled.form`
   display: flex;
   flex-flow: column wrap;
   align-content: center;
@@ -70,7 +73,7 @@ const StyForm = styled.form`
   height: 100vh;
 `;
 
-const StyLabel = styled.label`
+export const StyLabel = styled.label`
   font-size: 12px;
   font-weight: 400;
   width: 63px;
@@ -78,7 +81,7 @@ const StyLabel = styled.label`
   margin: 8px;
 `;
 
-const StyInput = styled.input`
+export const StyInput = styled.input`
   border-radius: 8px;
   border: 0.5px solid #000;
   background: #fff;
@@ -88,7 +91,7 @@ const StyInput = styled.input`
   margin: 8px;
 `;
 
-const StySelect = styled.select`
+export const StySelect = styled.select`
   border-radius: 8px;
   border: 0.5px solid #000;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -98,7 +101,7 @@ const StySelect = styled.select`
   text-align: center;
 `;
 
-const StySliderLabel = styled.label`
+export const StySliderLabel = styled.label`
   font-size: 12px;
   font-weight: 400;
   height: 14px;
@@ -106,13 +109,13 @@ const StySliderLabel = styled.label`
   align-self: center;
 `;
 
-const StySlider = styled.input`
+export const StySlider = styled.input`
   width: 60vw;
   margin: 8px;
   align-self: center;
 `;
 
-const StyLabelTwo = styled.label`
+export const StyLabelTwo = styled.label`
   font-size: 12px;
   font-weight: 400;
   width: ;
@@ -120,7 +123,7 @@ const StyLabelTwo = styled.label`
   margin: 8px;
 `;
 
-const StyInputTwo = styled.input`
+export const StyInputTwo = styled.input`
   border-radius: 8px;
   border: 0.5px solid #000;
   background: #fff;
@@ -130,14 +133,14 @@ const StyInputTwo = styled.input`
   margin: 8px;
 `;
 
-const StyDiv = styled.div`
+export const StyDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.2fr 0.2fr;
   justify-items: center;
 `;
 
-const StyButton = styled.button`
+export const StyButton = styled.button`
   align-self: center;
   margin: 24px;
   padding: 8px;

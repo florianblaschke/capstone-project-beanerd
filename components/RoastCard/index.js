@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import defaultPic from "@/public/default.jpg";
 import Link from "next/link";
 

@@ -1,9 +1,11 @@
 import defaultPic from "@/public/default.jpg";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Image from "next/image";
+import EditForm from "../EditForm";
 import { useRouter } from "next/router";
 
 export default function RoastDetailCard({
+  onSubmit,
   name,
   roaster,
   arabica,
@@ -11,8 +13,12 @@ export default function RoastDetailCard({
   level,
   provenance,
   score,
+  edit,
+  setEdit,
+  onDelete,
 }) {
   const router = useRouter();
+
   return (
     <StyDiv>
       <StyImage
@@ -22,31 +28,50 @@ export default function RoastDetailCard({
         height={""}
         alt="Coffee-Package"
       ></StyImage>
-      <StyDivText>
-        <StyHTwo>{name}</StyHTwo>
-        <StyP>{roaster}</StyP>
-        <StyHTwo>Arabica / Robusta</StyHTwo>
-        <StyP>
-          {arabica} / {robusta}
-        </StyP>
-        <StyHTwo>Röstgrad</StyHTwo>
-        <StyP>{level}</StyP>
-        <StyHTwo>Herkunft</StyHTwo>
-        <StyP>{provenance}</StyP>
-        <StyRating>
-          Bewertung:{" "}
-          {score.length > 0
-            ? Math.floor(
-                score.reduce((acc, curr) => acc + curr, 0) / score.length
-              )
-            : 0}
-          /100
-        </StyRating>
-        <StyNumberRating>
-          {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-        </StyNumberRating>
-      </StyDivText>
-      <StyButton onClick={() => router.push("/")}>Zurück</StyButton>
+      {!edit && (
+        <StyDivText>
+          <StyHTwo>{name}</StyHTwo>
+          <StyP>{roaster}</StyP>
+          <StyHTwo>Arabica / Robusta</StyHTwo>
+          <StyP>
+            {arabica} / {robusta}
+          </StyP>
+          <StyHTwo>Röstgrad</StyHTwo>
+          <StyP>{level}</StyP>
+          <StyHTwo>Herkunft</StyHTwo>
+          <StyP>{provenance}</StyP>
+          <StyRating>
+            Bewertung:{" "}
+            {score.length > 0
+              ? Math.floor(
+                  score.reduce((acc, curr) => acc + curr, 0) / score.length
+                )
+              : 0}
+            /100
+          </StyRating>
+          <StyNumberRating>
+            {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+          </StyNumberRating>
+        </StyDivText>
+      )}
+      {edit && (
+        <EditForm
+          onSubmit={onSubmit}
+          name={name}
+          roaster={roaster}
+          provenance={provenance}
+          arabica={arabica}
+          robusta={robusta}
+          level={level}
+        />
+      )}
+      <StyButtonDiv>
+        <StyButton onClick={() => router.push("/")}>Zurück</StyButton>
+        {edit && <StyButton onClick={onDelete}>Löschen</StyButton>}
+        <StyButton onClick={() => setEdit(!edit)}>
+          {edit ? "Abbrechen" : "Bearbeiten"}
+        </StyButton>
+      </StyButtonDiv>
     </StyDiv>
   );
 }
@@ -58,7 +83,14 @@ const StyDiv = styled.div`
   justify-content: center;
   width: 100%;
   border-radius: 8px;
-  box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
+`;
+
+const StyButtonDiv = styled.div`
+  display: flex;
+  flex-flow: row no-wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
 `;
 const StyDivText = styled.section`
   padding: 12px;
