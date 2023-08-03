@@ -42,6 +42,7 @@ export default function EditForm({
         id="name"
         name="name"
         defaultValue={name}
+        title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
       <StyLabel htmlFor="roaster">Röster:</StyLabel>
       <StyInput
@@ -50,6 +51,7 @@ export default function EditForm({
         id="roaster"
         name="roaster"
         defaultValue={roaster}
+        title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
       <StySliderLabel htmlFor="arabica">
         Arabica {arabicaRatio} / {robustaRatio} Robusta
@@ -73,6 +75,7 @@ export default function EditForm({
           id="provenance"
           name="provenance"
           defaultValue={provenance}
+          title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
         />
         <StySelect defaultValue={level} id="level" name="level">
           <option value="light">light</option>

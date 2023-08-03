@@ -21,6 +21,7 @@ export default function Form({ onSubmit }) {
         type="text"
         id="name"
         name="name"
+        title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
       <StyLabel htmlFor="roaster">Röster:</StyLabel>
       <StyInput
@@ -28,6 +29,7 @@ export default function Form({ onSubmit }) {
         type="text"
         id="roaster"
         name="roaster"
+        title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
       <StySliderLabel htmlFor="arabica">
         Arabica {arabica} / {robusta} Robusta
@@ -49,6 +51,7 @@ export default function Form({ onSubmit }) {
           type="text"
           id="provenance"
           name="provenance"
+          title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
         />
         <StySelect id="level" name="level">
           <option value="light">light</option>
