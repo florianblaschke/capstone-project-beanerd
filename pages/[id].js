@@ -12,10 +12,6 @@ export default function Detail() {
 
   if (isLoading) return <h1>... is Loading</h1>;
 
-  function setMode() {
-    setEdit(!edit);
-  }
-
   async function handleEditRoast(event) {
     event.preventDefault();
 
@@ -39,7 +35,7 @@ export default function Detail() {
 
     if (res.ok) {
       mutate();
-      setMode();
+      setEdit(!edit);
     }
   }
 
@@ -56,7 +52,7 @@ export default function Detail() {
   return (
     <RoastDetailCard
       edit={edit}
-      setMode={setMode}
+      setEdit={setEdit}
       onDelete={handleDeleteRoast}
       onSubmit={handleEditRoast}
       name={data.name}
