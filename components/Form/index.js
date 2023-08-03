@@ -17,14 +17,14 @@ export default function Form({ onSubmit }) {
     <StyForm onSubmit={onSubmit}>
       <StyLabel htmlFor="name">Name:</StyLabel>
       <StyInput
-        pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
+        pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
         type="text"
         id="name"
         name="name"
       />
       <StyLabel htmlFor="roaster">Röster:</StyLabel>
       <StyInput
-        pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
+        pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
         type="text"
         id="roaster"
         name="roaster"
@@ -45,7 +45,7 @@ export default function Form({ onSubmit }) {
         <StyLabelTwo htmlFor="provenance">Herkunft:</StyLabelTwo>
         <StyLabel htmlFor="level">Röstgrad:</StyLabel>
         <StyInputTwo
-          pattern="^(?=.*[a-zA-Z])[a-zA-Z\d\s]+$"
+          pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
           type="text"
           id="provenance"
           name="provenance"
