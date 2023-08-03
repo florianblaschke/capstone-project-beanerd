@@ -6,6 +6,7 @@ export default function Navigation({ className }) {
     <StyFooter className={className}>
       <StyLink href={"/"}>Startseite</StyLink>
       <StyLink href={"/addroast"}>Kaffee hinzufügen</StyLink>
+      <StyLink href={"/profile"}>Profil</StyLink>
     </StyFooter>
   );
 }
@@ -24,7 +25,7 @@ const StyLink = styled(Link)`
   justify-content: center;
   align-items: center;
   border: solid black 0.5px;
-  width: 50%;
+  width: 100%;
   height: 100%;
   text-decoration: none;
   color: black;
