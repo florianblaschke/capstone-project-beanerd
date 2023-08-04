@@ -1,13 +1,18 @@
+import { StyButton, StyLabel, StyInput } from "../Form";
+import { StyFormLogin } from ".";
+
 export default function CreateAccount() {
   return (
-    <form onSubmit={() => console.log("This will make you a part of BEANERD!")}>
-      <label htmlFor="name">Name:</label>
-      <input id="name" name="name" required />
-      <label htmlFor="password">Passwort:</label>
-      <input id="password" name="password" type="password" />
-      <label htmlFor="confirm">Passwort bestätigen:</label>
-      <input id="confirm" name="confirm" type="password" />
-      <button>Profil erstellen</button>
-    </form>
+    <StyFormLogin
+      onSubmit={() => console.log("This will make you a part of BEANERD!")}
+    >
+      <StyLabel htmlFor="name">Name:</StyLabel>
+      <StyInput id="name" name="name" required />
+      <StyLabel htmlFor="password">Passwort:</StyLabel>
+      <StyInput id="password" name="password" type="password" />
+      <StyLabel htmlFor="confirm">Passwort bestätigen:</StyLabel>
+      <StyInput id="confirm" name="confirm" type="password" />
+      <StyButton>Profil erstellen</StyButton>
+    </StyFormLogin>
   );
 }
