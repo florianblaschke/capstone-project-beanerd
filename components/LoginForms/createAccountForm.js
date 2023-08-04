@@ -1,11 +1,9 @@
 import { StyButton, StyLabel, StyInput } from "../Form";
 import { StyFormLogin } from ".";
 
-export default function CreateAccount() {
+export default function CreateAccount({ onSubmit }) {
   return (
-    <StyFormLogin
-      onSubmit={() => console.log("This will make you a part of BEANERD!")}
-    >
+    <StyFormLogin onSubmit={onSubmit}>
       <StyLabel htmlFor="name">Name:</StyLabel>
       <StyInput id="name" name="name" required />
       <StyLabel htmlFor="password">Passwort:</StyLabel>

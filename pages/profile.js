@@ -5,6 +5,36 @@ import Login from "@/components/LoginForms";
 
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);
+
+  async function createAccount(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    const { password, confirm } = data;
+    if (password !== confirm) {
+      return alert("Passwörter stimmen nicht überein!");
+    }
+
+    const res = await fetch("api/auth/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (res.status === 418) {
+      return alert("Sry, dieser Name ist leider schon vergeben!");
+    }
+    if (res.status === 400) {
+      return alert("Huups, da ist uns wohl der Tamper auf den Fuß gefallen...");
+    }
+    if (res.ok) {
+      setFormSelect(!formSelect);
+      alert("Benutzer erfolgreich angelegt!");
+    }
+  }
+
   return (
     <>
       {!formSelect && (
@@ -20,7 +50,7 @@ export default function Profile() {
       )}
       {formSelect && (
         <StyDiv>
-          <CreateAccount />
+          <CreateAccount onSubmit={createAccount} />
           <StySection>
             Hier kannst du dir dein Profil erstellen! Bitte merke dir deinen
             Benutzernamen und Passwort gut!
