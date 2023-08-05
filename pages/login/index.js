@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import styled from "styled-components";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
@@ -8,6 +8,11 @@ import Login from "@/components/LoginForms";
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);
   const router = useRouter();
+  const { status } = useSession();
+
+  if (status === "authenticated") {
+    router.push("/login/profile");
+  }
 
   async function onLogin(event) {
     event.preventDefault();
@@ -22,7 +27,6 @@ export default function Profile() {
       callbackUrl: "/login/profile",
     });
 
-    console.log(res);
     if (!res.ok) {
       return alert("Benutzername oder Passwort falsch!");
     }

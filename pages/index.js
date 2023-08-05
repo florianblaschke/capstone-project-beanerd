@@ -7,7 +7,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
   const { data, isLoading } = useSWR("api/roasts", fetcher);
-
   if (isLoading) return <h1>... is Loading</h1>;
   return (
     <>
