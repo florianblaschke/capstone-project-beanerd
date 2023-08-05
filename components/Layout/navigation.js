@@ -6,7 +6,7 @@ export default function Navigation({ className }) {
     <StyFooter className={className}>
       <StyLink href={"/"}>Startseite</StyLink>
       <StyLink href={"/addroast"}>Kaffee hinzufügen</StyLink>
-      <StyLink href={"/profile"}>Profil</StyLink>
+      <StyLink href={"/login"}>Profil</StyLink>
     </StyFooter>
   );
 }

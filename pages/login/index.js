@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import styled from "styled-components";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
 
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);
-  const { data: session } = useSession();
+  const router = useRouter();
 
   async function onLogin(event) {
     event.preventDefault();
@@ -18,11 +19,15 @@ export default function Profile() {
       redirect: false,
       name: data.name,
       password: data.password,
-      callbackUrl: "/",
+      callbackUrl: "/login/profile",
     });
+
+    console.log(res);
     if (!res.ok) {
       return alert("Benutzername oder Passwort falsch!");
     }
+
+    router.push(res.url);
   }
 
   async function createAccount(event) {
@@ -53,14 +58,6 @@ export default function Profile() {
       alert("Benutzer erfolgreich angelegt!");
     }
   }
-
-  if (session)
-    return (
-      <h1>
-        Your are now logged in!
-        <button onClick={() => signOut()}>Ausloggen</button>
-      </h1>
-    );
 
   return (
     <>
