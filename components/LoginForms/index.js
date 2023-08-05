@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { StyButton, StyLabel, StyInput } from "../Form";
 
-export default function Login() {
+export default function Login({ onSubmit }) {
   return (
-    <StyFormLogin onSubmit={() => console.log("This will make you a BEANERD!")}>
+    <StyFormLogin onSubmit={onSubmit}>
       <StyLabel htmlFor="name">Name:</StyLabel>
       <StyInput id="name" name="name" required />
       <StyLabel htmlFor="password">Passwort:</StyLabel>

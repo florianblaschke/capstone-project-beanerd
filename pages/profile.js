@@ -1,10 +1,29 @@
 import { useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import styled from "styled-components";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
 
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);
+  const { data: session } = useSession();
+
+  async function onLogin(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    const res = await signIn("credentials", {
+      redirect: false,
+      name: data.name,
+      password: data.password,
+      callbackUrl: "/",
+    });
+    if (!res.ok) {
+      return alert("Benutzername oder Passwort falsch!");
+    }
+  }
 
   async function createAccount(event) {
     event.preventDefault();
@@ -35,11 +54,19 @@ export default function Profile() {
     }
   }
 
+  if (session)
+    return (
+      <h1>
+        Your are now logged in!
+        <button onClick={() => signOut()}>Ausloggen</button>
+      </h1>
+    );
+
   return (
     <>
       {!formSelect && (
         <StyDiv>
-          <Login />
+          <Login onSubmit={onLogin} />
           <StySection>
             Bitte melde dich an, um auf dein Profil zuzugreifen!
             <StyButtonBorderless onClick={() => setFormSelect(!formSelect)}>
