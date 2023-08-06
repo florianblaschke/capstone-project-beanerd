@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import RoastDetailCard from "@/components/RoastDetailCard";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Detail() {
+  const { data: session } = useSession();
   const router = useRouter();
   const [edit, setEdit] = useState(false);
   const { id } = router.query;
@@ -62,6 +64,7 @@ export default function Detail() {
       level={data.level}
       provenance={data.provenance}
       score={data.score}
+      session={session}
     />
   );
 }
