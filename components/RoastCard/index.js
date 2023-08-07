@@ -34,7 +34,7 @@ export default function RoastCard({ name, roaster, score, id }) {
     </StyLink>
   );
 }
-const StyDiv = styled.div`
+export const StyDiv = styled.div`
   display: flex;
   flex-flow: row no wrap;
   justify-content: center;
@@ -44,7 +44,7 @@ const StyDiv = styled.div`
   border: 0.5px solid #000;
   box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
 `;
-const StyDivText = styled.section`
+export const StyDivText = styled.section`
   padding: 12px;
   display: flex;
   width: 66%;
@@ -54,32 +54,32 @@ const StyDivText = styled.section`
   font-weight: 300;
 `;
 
-const StyHTwo = styled.h2`
+export const StyHTwo = styled.h2`
   font-size: 12px;
   font-weight: 400;
   margin: 24px 0px -10px 0px;
   text-align: center;
 `;
-const StyP = styled.p`
+export const StyP = styled.p`
   font-size: 12px;
   font-weight: 200;
   text-align: center;
 `;
 
-const StyRating = styled.p`
+export const StyRating = styled.p`
   font-size: 12px;
   font-size: 100;
   margin: 40px 0px 5px 0px;
   text-align: center;
 `;
 
-const StyNumberRating = styled.p`
+export const StyNumberRating = styled.p`
   font-size: 8px;
   font-size: 100;
   margin: 0px 0px 24px 0px;
 `;
 
-const StyImage = styled(Image)`
+export const StyImage = styled(Image)`
   border-radius: 8px 0px 0px 8px;
   height: auto;
   width: auto;

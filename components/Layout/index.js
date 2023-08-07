@@ -12,4 +12,6 @@ export default function Layout({ children, className }) {
 
 const StyMain = styled.main`
   margin-bottom: 24px;
+  height: inherit;
+  position: relative;
 `;

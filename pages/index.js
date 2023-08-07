@@ -7,7 +7,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
   const { data, isLoading } = useSWR("api/roasts", fetcher);
-
   if (isLoading) return <h1>... is Loading</h1>;
   return (
     <>
@@ -33,10 +32,10 @@ export default function Home() {
   );
 }
 
-const StyUl = styled.ul`
+export const StyUl = styled.ul`
   list-style: none;
 `;
 
-const StyLi = styled.li`
+export const StyLi = styled.li`
   margin: 12px 0px 12px 0px;
 `;

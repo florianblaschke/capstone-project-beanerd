@@ -16,6 +16,8 @@ export default function RoastDetailCard({
   edit,
   setEdit,
   onDelete,
+  session,
+  onFavorite,
 }) {
   const router = useRouter();
 
@@ -68,6 +70,7 @@ export default function RoastDetailCard({
       <StyButtonDiv>
         <StyButton onClick={() => router.push("/")}>Zurück</StyButton>
         {edit && <StyButton onClick={onDelete}>Löschen</StyButton>}
+        {session && <StyButton onClick={onFavorite}>Favorisieren</StyButton>}
         <StyButton onClick={() => setEdit(!edit)}>
           {edit ? "Abbrechen" : "Bearbeiten"}
         </StyButton>
