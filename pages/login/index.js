@@ -71,7 +71,7 @@ export default function Profile() {
           <StySection>
             Bitte melde dich an, um auf dein Profil zuzugreifen!
             <StyButtonBorderless onClick={() => setFormSelect(!formSelect)}>
-              Noch kein Profil? Hier geht's zur Registrierung!
+              Noch kein Profil? Hier geht es zur Registrierung!
             </StyButtonBorderless>
           </StySection>
         </StyDiv>

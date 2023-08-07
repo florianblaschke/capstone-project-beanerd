@@ -8,7 +8,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function ProfilePage() {
   const { data, isLoading } = useSWR("/api/user", fetcher);
 
-  console.log(data);
   if (isLoading) return <h1>Loading</h1>;
 
   return (
