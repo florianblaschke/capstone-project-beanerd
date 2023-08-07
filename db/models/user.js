@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
+import "./roast";
 
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
   name: { type: String, required: true },
   password: { type: String, required: true },
-  favorites: [],
+  roasts: { type: [Schema.Types.ObjectId], ref: "Roast" },
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

@@ -32,10 +32,10 @@ export default function Home() {
   );
 }
 
-const StyUl = styled.ul`
+export const StyUl = styled.ul`
   list-style: none;
 `;
 
-const StyLi = styled.li`
+export const StyLi = styled.li`
   margin: 12px 0px 12px 0px;
 `;
