@@ -20,7 +20,6 @@ export default function ProfilePage() {
     if (!res.ok) {
       return alert("Da ist was schiefgelaufen!");
     }
-
     mutate();
   }
 

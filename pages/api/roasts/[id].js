@@ -33,13 +33,4 @@ export default async function handler(req, res) {
 
     return res.status(201).json({ message: "Update successfull!" });
   }
-
-  if (req.method === "DELETE") {
-    try {
-      await Roast.findByIdAndDelete(id);
-      return res.status(201).json({ message: "Roast deleted" });
-    } catch (error) {
-      return res.status(400).json({ error: error.message });
-    }
-  }
 }
