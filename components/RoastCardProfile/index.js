@@ -1,4 +1,5 @@
 import defaultPic from "@/public/default.jpg";
+import styled from "styled-components";
 import {
   StyDiv,
   StyImage,
@@ -9,7 +10,7 @@ import {
   StyNumberRating,
 } from "../RoastCard";
 
-export default function RoastCardProfile({ name, roaster, score }) {
+export default function RoastCardProfile({ name, roaster, score, onDelete }) {
   return (
     <StyDiv>
       <StyImage
@@ -35,6 +36,18 @@ export default function RoastCardProfile({ name, roaster, score }) {
           {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
         </StyNumberRating>
       </StyDivText>
+      <StyDelete onClick={onDelete}>Löschen</StyDelete>
     </StyDiv>
   );
 }
+
+const StyDelete = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: white;
+  border: none;
+  height: 8%;
+  font-weight: 400;
+  font-size: 10px;
+`;

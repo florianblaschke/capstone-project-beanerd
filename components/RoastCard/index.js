@@ -35,6 +35,7 @@ export default function RoastCard({ name, roaster, score, id }) {
   );
 }
 export const StyDiv = styled.div`
+  position: relative;
   display: flex;
   flex-flow: row no wrap;
   justify-content: center;
