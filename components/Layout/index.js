@@ -2,7 +2,7 @@ import Navigation from "./navigation";
 import styled from "styled-components";
 import { useSession } from "next-auth/react";
 
-export default function Layout({ children, className, session }) {
+export default function Layout({ children, className }) {
   const { data: sessionData } = useSession();
   return (
     <>

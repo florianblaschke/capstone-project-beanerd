@@ -92,7 +92,7 @@ export default function Profile() {
   );
 }
 
-const StyDiv = styled.div`
+export const StyDiv = styled.div`
   height: 100vh;
 `;
 const StySection = styled.section`
