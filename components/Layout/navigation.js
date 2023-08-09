@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { styled } from "styled-components";
 
-export default function Navigation({ className }) {
+export default function Navigation({ className, session }) {
   return (
     <StyFooter className={className}>
       <StyLink href={"/"}>Startseite</StyLink>
       <StyLink href={"/addroast"}>Kaffee hinzufügen</StyLink>
-      <StyLink href={"/login"}>Profil</StyLink>
+      <StyLink href={"/login"}>{session ? "Favoriten" : "Profil"}</StyLink>
     </StyFooter>
   );
 }

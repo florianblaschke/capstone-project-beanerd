@@ -25,7 +25,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <h1>You are now logged in {data.name}!</h1>
+      <h2>You are now logged in {data.name}!</h2>
       <button onClick={() => signOut()}>Ausloggen</button>
       <StyUl>
         {data.roasts.map((roast) => (
