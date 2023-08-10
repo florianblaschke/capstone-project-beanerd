@@ -43,6 +43,21 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: error.message });
       }
     }
+
+    if (req.method === "PATCH") {
+      const id = req.body;
+      const currentUser = await User.findOne(user);
+
+      if (!currentUser) {
+        return res.status(401).json({ message: "You are not authorized!" });
+      }
+      const roastToDelete = await currentUser.roasts.findIndex(
+        (favId) => favId.toString() === id
+      );
+      await currentUser.roasts.splice(roastToDelete, 1);
+      await currentUser.save();
+      return res.status(201).json({ message: "Success!" });
+    }
   } else {
     res.status(401).json({ message: "You are not authorized!" });
   }

@@ -1,11 +1,13 @@
 import Navigation from "./navigation";
 import styled from "styled-components";
+import { useSession } from "next-auth/react";
 
 export default function Layout({ children, className }) {
+  const { data: sessionData } = useSession();
   return (
     <>
       <StyMain className={className}>{children}</StyMain>
-      <Navigation className={className} />
+      <Navigation session={sessionData} className={className} />
     </>
   );
 }

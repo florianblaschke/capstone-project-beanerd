@@ -41,15 +41,6 @@ export default function Detail() {
     }
   }
 
-  async function handleDeleteRoast() {
-    const res = await fetch(`api/roasts/${id}`, {
-      method: "DELETE",
-    });
-
-    if (res.ok) {
-      router.push("/");
-    }
-  }
   async function addToFavorites() {
     const res = await fetch("/api/user", {
       method: "POST",
@@ -76,7 +67,6 @@ export default function Detail() {
     <RoastDetailCard
       edit={edit}
       setEdit={setEdit}
-      onDelete={handleDeleteRoast}
       onSubmit={handleEditRoast}
       onFavorite={addToFavorites}
       name={data.name}
