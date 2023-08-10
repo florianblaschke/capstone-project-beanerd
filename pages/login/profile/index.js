@@ -1,6 +1,6 @@
 import { signOut, getSession } from "next-auth/react";
-import { StyUl, StyLi } from "..";
-import { StyDiv } from ".";
+import { StyUl, StyLi } from "../..";
+import { StyDiv } from "..";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 

@@ -77,7 +77,7 @@ export default function RoastDetailCard({
   );
 }
 
-const StyDiv = styled.div`
+export const StyDiv = styled.div`
   padding: 2px;
   display: flex;
   flex-flow: column wrap;
@@ -86,14 +86,14 @@ const StyDiv = styled.div`
   border-radius: 8px;
 `;
 
-const StyButtonDiv = styled.div`
+export const StyButtonDiv = styled.div`
   display: flex;
   flex-flow: row no-wrap;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
 `;
-const StyDivText = styled.section`
+export const StyDivText = styled.section`
   padding: 12px;
   display: flex;
   width: 100%;
@@ -103,32 +103,32 @@ const StyDivText = styled.section`
   font-weight: 300;
 `;
 
-const StyHTwo = styled.h2`
+export const StyHTwo = styled.h2`
   font-size: 12px;
   font-weight: 400;
   margin: 24px 0px -10px 0px;
   text-align: center;
 `;
-const StyP = styled.p`
+export const StyP = styled.p`
   font-size: 12px;
   font-weight: 200;
   text-align: center;
 `;
 
-const StyRating = styled.p`
+export const StyRating = styled.p`
   font-size: 12px;
   font-size: 100;
   margin: 40px 0px 5px 0px;
   text-align: center;
 `;
 
-const StyNumberRating = styled.p`
+export const StyNumberRating = styled.p`
   font-size: 8px;
   font-size: 100;
   margin: 0px 0px 24px 0px;
 `;
 
-const StyImage = styled(Image)`
+export const StyImage = styled(Image)`
   border-radius: 8px 8px 0px 0px;
   width: 100%;
   height: 240px;

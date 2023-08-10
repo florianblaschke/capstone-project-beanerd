@@ -86,7 +86,7 @@ export const StyImage = styled(Image)`
   width: auto;
 `;
 
-const StyLink = styled(Link)`
+export const StyLink = styled(Link)`
   text-decoration: none;
   color: black;
 `;
