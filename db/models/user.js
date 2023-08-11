@@ -9,6 +9,17 @@ const userSchema = new Schema({
   roasts: { type: [Schema.Types.ObjectId], ref: "Roast" },
 });
 
+const methodsSchema = new Schema({
+  methods: {
+    method: { type: String },
+    coffee: { type: String },
+    water: { type: String },
+  },
+});
+
 const User = mongoose.models.User || mongoose.model("User", userSchema);
+
+export const Method =
+  mongoose.models.Method || mongoose.model("Method", methodsSchema);
 
 export default User;

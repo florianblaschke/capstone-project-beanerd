@@ -23,7 +23,7 @@ export default function ProfilePage() {
     }
     mutate();
   }
-
+  console.log(data);
   return (
     <>
       <h2>You are now logged in {data.name}!</h2>

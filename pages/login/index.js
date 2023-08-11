@@ -93,7 +93,7 @@ export default function Profile() {
 }
 
 export const StyDiv = styled.div`
-  height: 100vh;
+  height: inherit;
 `;
 const StySection = styled.section`
   display: flex;
@@ -103,6 +103,7 @@ const StySection = styled.section`
   font-size: 14px;
   font-weight: 400;
   padding: 16px;
+  height: 50vh;
 `;
 
 const StyButtonBorderless = styled.section`

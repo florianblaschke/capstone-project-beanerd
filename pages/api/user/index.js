@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const { user } = session;
     if (req.method === "GET") {
       const currentUser = await User.findOne(user).populate("roasts");
-
+      console.log("current", currentUser);
       if (!currentUser) {
         return res.status(404).json({ error: "Something bad happened" });
       }

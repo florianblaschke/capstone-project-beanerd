@@ -1,5 +1,6 @@
 import defaultPic from "@/public/default.jpg";
-import { useRouter } from "next/router";
+import styled from "styled-components";
+import { useState } from "react";
 import {
   StyDiv,
   StyImage,
@@ -11,6 +12,7 @@ import {
   StyButtonDiv,
   StyButton,
 } from "../RoastDetailCard";
+import { StyLabel } from "../Form";
 
 export default function RoastDetailCardProfile({
   name,
@@ -20,9 +22,19 @@ export default function RoastDetailCardProfile({
   level,
   provenance,
   score,
+  edit,
+  setEdit,
+  rateEdit,
+  setRateEdit,
+  submitRating,
 }) {
-  const router = useRouter();
-  console.log(router);
+  const [rating, setRating] = useState(50);
+
+  function showRating(event) {
+    let value = event.target.value;
+
+    setRating(value);
+  }
   return (
     <StyDiv>
       <StyImage
@@ -43,24 +55,52 @@ export default function RoastDetailCardProfile({
         <StyP>{level}</StyP>
         <StyHTwo>Herkunft</StyHTwo>
         <StyP>{provenance}</StyP>
-        <StyRating>
-          Bewertung:{" "}
-          {score.length > 0
-            ? Math.floor(
-                score.reduce((acc, curr) => acc + curr, 0) / score.length
-              )
-            : 0}
-          /100
-        </StyRating>
+        {!rateEdit && (
+          <StyRating>
+            Bewertung:{" "}
+            {score.length > 0
+              ? Math.floor(
+                  score.reduce((acc, curr) => acc + curr, 0) / score.length
+                )
+              : 0}
+            /100
+          </StyRating>
+        )}
+        {rateEdit && (
+          <>
+            <form onSubmit={submitRating}>
+              <StyLabel>Deine Bewertung: {rating}</StyLabel>
+              <StyInputRating
+                onChange={showRating}
+                type="range"
+                min="0"
+                max="100"
+                id="score"
+                name="score"
+              />
+              <StyButton>Abgeben</StyButton>
+            </form>
+          </>
+        )}
         <StyNumberRating>
           {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
         </StyNumberRating>
       </StyDivText>
       <StyButtonDiv>
-        <StyButton onClick={() => router.push("/login/profile")}>
-          Zurück
+        <StyButton onClick={setEdit}>
+          {edit ? "Abbrechen" : "Brührezept hinzufügen"}
+        </StyButton>
+        <StyButton onClick={setRateEdit}>
+          {rateEdit ? "Abbrechen" : "Bewertung abgeben"}
         </StyButton>
       </StyButtonDiv>
     </StyDiv>
   );
 }
+
+const StyInputRating = styled.input`
+  font-size: 12px;
+  font-size: 100;
+  margin: 40px 0px 5px 0px;
+  text-align: center;
+`;
