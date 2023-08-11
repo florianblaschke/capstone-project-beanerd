@@ -24,7 +24,6 @@ export default async function handler(req, res) {
 
     if (req.method === "GET") {
       const favoriteRoasts = await currentUser.roasts;
-      console.log("favRoasts", favoriteRoasts);
       const pickedRoast = await favoriteRoasts.find(
         (roast) => roast._id.toString() === id
       );

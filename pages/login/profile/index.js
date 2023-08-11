@@ -1,6 +1,6 @@
 import { signOut, getSession } from "next-auth/react";
 import { StyUl, StyLi } from "../..";
-import { StyDiv } from "..";
+import styled from "styled-components";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
@@ -23,7 +23,6 @@ export default function ProfilePage() {
     }
     mutate();
   }
-  console.log(data);
   return (
     <>
       <h2>You are now logged in {data.name}!</h2>
@@ -59,3 +58,7 @@ export async function getServerSideProps({ req }) {
   }
   return { props: { session } };
 }
+
+const StyDiv = styled.div`
+  height: 80vh;
+`;
