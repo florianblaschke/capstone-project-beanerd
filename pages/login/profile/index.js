@@ -28,7 +28,7 @@ export default function ProfilePage() {
       <h2>You are now logged in {data.name}!</h2>
       <button onClick={() => signOut()}>Ausloggen</button>
       <StyDiv>
-        <StyUl>
+        <StyUlTwo>
           {data.roasts.map((roast) => (
             <StyLi key={roast._id}>
               <RoastCardProfile
@@ -40,7 +40,7 @@ export default function ProfilePage() {
               />
             </StyLi>
           ))}
-        </StyUl>
+        </StyUlTwo>
       </StyDiv>
     </>
   );
@@ -60,5 +60,9 @@ export async function getServerSideProps({ req }) {
 }
 
 const StyDiv = styled.div`
+  height: inherit;
+`;
+
+const StyUlTwo = styled(StyUl)`
   height: 80vh;
 `;

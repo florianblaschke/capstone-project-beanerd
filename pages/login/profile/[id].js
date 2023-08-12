@@ -20,8 +20,7 @@ export default function DetailProfile() {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-
-    console.log(data);
+    data.roastIdForMethod = id;
 
     const res = await fetch(`/api/user/${id}`, {
       method: "POST",
@@ -34,6 +33,7 @@ export default function DetailProfile() {
     }
 
     mutate();
+    setEdit(!edit);
   }
 
   function submitRating(event) {
