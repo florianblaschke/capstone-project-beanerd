@@ -1,7 +1,10 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import styled from "styled-components";
+import { StyUl, StyLi } from "@/pages";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
+import BrewMethod from "@/components/Methods";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -15,6 +18,9 @@ export default function DetailProfile() {
 
   if (isLoading) return <h1>Loading</h1>;
 
+  console.log(data);
+
+  console.log(data.relatedMethods.length);
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -55,6 +61,29 @@ export default function DetailProfile() {
         submitRating={submitRating}
       />
       {edit && <BrewMethodsForm onSubmit={addBrewMethod} />}
+      {data.relatedMethods.length > 0 ? (
+        <StyUlMethod>
+          {data.relatedMethods.map((method) => (
+            <StyLi key={method._id}>
+              <BrewMethod
+                method={method.method}
+                coffee={method.coffee}
+                water={method.water}
+                time={method.time}
+                grind={method.grind}
+              />
+            </StyLi>
+          ))}
+        </StyUlMethod>
+      ) : (
+        "Du hast noch keine Brühmethode für diesen Kaffee!"
+      )}
     </>
   );
 }
+
+const StyUlMethod = styled.ul`
+  list-style: none;
+  padding: 12px;
+  margin: 0px;
+`;

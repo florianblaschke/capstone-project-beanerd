@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import RoastCard from "@/components/RoastCard";
 import useSWR from "swr";
 

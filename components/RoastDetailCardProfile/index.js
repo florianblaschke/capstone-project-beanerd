@@ -101,7 +101,6 @@ export default function RoastDetailCardProfile({
 
 const StyInputRating = styled.input`
   font-size: 12px;
-  font-size: 100;
   margin: 40px 0px 5px 0px;
   text-align: center;
 `;
