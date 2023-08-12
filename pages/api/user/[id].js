@@ -15,19 +15,24 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: "No connection to database!" });
     }
 
-    const currentUser = await User.findOne(user).populate("roasts");
+    const currentUser = await User.findOne(user)
+      .populate("roasts")
+      .populate("methods");
 
     if (!currentUser) {
       return res.status(401).json({ message: "You are not authorized!" });
     }
 
     if (req.method === "GET") {
+      const relatedMethods = await currentUser.methods.filter((relId) =>
+        relId.roastIdForMethod === id ? true : false
+      );
       const favoriteRoasts = await currentUser.roasts;
       const pickedRoast = await favoriteRoasts.find(
         (roast) => roast._id.toString() === id
       );
-
-      return res.status(201).json(pickedRoast);
+      const data = { relatedMethods, pickedRoast };
+      return res.status(201).json(data);
     }
 
     if (req.method === "POST") {

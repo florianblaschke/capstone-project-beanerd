@@ -17,7 +17,6 @@ export default function DetailProfile() {
 
   async function addBrewMethod(event) {
     event.preventDefault();
-
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     data.roastIdForMethod = id;
@@ -39,17 +38,16 @@ export default function DetailProfile() {
   function submitRating(event) {
     event.preventDefault();
   }
-
   return (
     <>
       <RoastDetailCardProfile
-        name={data.name}
-        roaster={data.roaster}
-        arabica={data.arabica}
-        robusta={data.robusta}
-        level={data.level}
-        provenance={data.provenance}
-        score={data.score}
+        name={data.pickedRoast.name}
+        roaster={data.pickedRoast.roaster}
+        arabica={data.pickedRoast.arabica}
+        robusta={data.pickedRoast.robusta}
+        level={data.pickedRoast.level}
+        provenance={data.pickedRoast.provenance}
+        score={data.pickedRoast.score}
         edit={edit}
         setEdit={() => setEdit(!edit)}
         rateEdit={rateEdit}

@@ -32,7 +32,6 @@ export default function RoastDetailCardProfile({
 
   function showRating(event) {
     let value = event.target.value;
-
     setRating(value);
   }
   return (
@@ -56,15 +55,20 @@ export default function RoastDetailCardProfile({
         <StyHTwo>Herkunft</StyHTwo>
         <StyP>{provenance}</StyP>
         {!rateEdit && (
-          <StyRating>
-            Bewertung:{" "}
-            {score.length > 0
-              ? Math.floor(
-                  score.reduce((acc, curr) => acc + curr, 0) / score.length
-                )
-              : 0}
-            /100
-          </StyRating>
+          <>
+            <StyRating>
+              Bewertung:{" "}
+              {score.length > 0
+                ? Math.floor(
+                    score.reduce((acc, curr) => acc + curr, 0) / score.length
+                  )
+                : 0}
+              /100
+            </StyRating>
+            <StyNumberRating>
+              {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+            </StyNumberRating>
+          </>
         )}
         {rateEdit && (
           <>
@@ -82,9 +86,6 @@ export default function RoastDetailCardProfile({
             </form>
           </>
         )}
-        <StyNumberRating>
-          {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-        </StyNumberRating>
       </StyDivText>
       <StyButtonDiv>
         <StyButton onClick={setEdit}>
