@@ -4,7 +4,6 @@ import defaultPic from "@/public/default.jpg";
 import Link from "next/link";
 
 export default function RoastCard({ name, roaster, score, id }) {
-  console.log("score", score);
   return (
     <StyLink href={`/${id}`}>
       <StyDiv>

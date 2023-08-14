@@ -22,6 +22,7 @@ export default function ProfilePage() {
     }
     mutate();
   }
+
   return (
     <>
       <h2>You are now logged in {data.name}!</h2>
@@ -35,7 +36,7 @@ export default function ProfilePage() {
                 onDelete={() => handleDelete(roast._id)}
                 name={roast.name}
                 roaster={roast.roaster}
-                score={roast.score}
+                score={roast.score.map((rating) => rating.rating)}
               />
             </StyLi>
           ))}

@@ -85,7 +85,7 @@ export default function Profile() {
       {formSelect && (
         <StyDiv>
           <StyImage
-            priority={true}
+            priority={false}
             src={logo}
             width={300}
             height={200}

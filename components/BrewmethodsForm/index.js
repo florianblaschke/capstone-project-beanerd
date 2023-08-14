@@ -30,7 +30,7 @@ export default function BrewMethodsForm({ onSubmit }) {
       </div>
 
       <StyLabelTwo htmlFor="time">Brühzeit</StyLabelTwo>
-      <StyGridInput placeholder="Sekunden" id="time" name="time" ty />
+      <StyGridInput placeholder="Sekunden" id="time" name="time" />
 
       <StyLabel htmlFor="grind">Mahlgrad</StyLabel>
       <StySelect id="grind" name="grind">

@@ -1,4 +1,5 @@
 import User from "@/db/models/user";
+import Roast from "@/db/models/roast";
 import dbConnect from "@/db/connect";
 import { getServerSession } from "next-auth/next";
 
@@ -10,7 +11,11 @@ export default async function handler(req, res) {
 
     const { user } = session;
     if (req.method === "GET") {
-      const currentUser = await User.findOne(user).populate("roasts");
+      const currentUser = await User.findOne(user).populate({
+        path: "roasts",
+        populate: { path: "score" },
+      });
+
       if (!currentUser) {
         return res.status(404).json({ error: "Something bad happened" });
       }
