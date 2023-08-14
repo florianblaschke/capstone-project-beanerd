@@ -22,7 +22,7 @@ export default function RoastCardProfile({
     <StyDiv>
       <StyLinkProfile href={`/login/profile/${id}`}>
         <StyImage
-          priority={true}
+          priority={false}
           src={defaultPic}
           width={""}
           height={""}
