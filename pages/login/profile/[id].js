@@ -17,7 +17,6 @@ export default function DetailProfile() {
   const { data, isLoading, mutate } = useSWR(`/api/user/${id}`, fetcher);
 
   if (isLoading) return <h1>Loading</h1>;
-
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);

@@ -30,10 +30,10 @@ export default async function handler(req, res) {
         relId.roastIdForMethod === id ? true : false
       );
       const favoriteRoasts = await currentUser.roasts;
-
-      const pickedRoast = await favoriteRoasts
-        .find((roast) => roast._id.toString() === id)
-        .populate("score");
+      const pickedRoast = await favoriteRoasts.find(
+        (roast) => roast._id.toString() === id
+      );
+      await pickedRoast.populate("score");
       const data = { relatedMethods, pickedRoast };
       return res.status(201).json(data);
     }
