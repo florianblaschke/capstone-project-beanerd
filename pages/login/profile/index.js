@@ -10,7 +10,6 @@ export default function ProfilePage() {
   const { data, isLoading, mutate } = useSWR("/api/user", fetcher);
 
   if (isLoading) return <h1>Loading</h1>;
-
   async function handleDelete(id) {
     const res = await fetch("/api/user", {
       method: "PATCH",

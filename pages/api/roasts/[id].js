@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "No connection to database!" });
 
   if (req.method === "GET") {
-    const singleRoast = await Roast.findById(id);
+    const singleRoast = await Roast.findById(id).populate("score");
 
     if (!singleRoast) {
       return res.status(404).json({ error: "We did not find any coffee …" });

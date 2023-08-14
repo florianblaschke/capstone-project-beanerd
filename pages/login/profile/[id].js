@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import { StyUl, StyLi } from "@/pages";
+import { StyLi } from "@/pages";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
@@ -18,9 +18,6 @@ export default function DetailProfile() {
 
   if (isLoading) return <h1>Loading</h1>;
 
-  console.log(data);
-
-  console.log(data.relatedMethods.length);
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -33,6 +30,9 @@ export default function DetailProfile() {
       body: JSON.stringify(data),
     });
 
+    if (res.status === 418) {
+      return alert("I am watching you, Ernst!");
+    }
     if (!res.ok) {
       return alert("Mist! Kaffee über die Füße gekippt!");
     }
@@ -41,8 +41,31 @@ export default function DetailProfile() {
     setEdit(!edit);
   }
 
-  function submitRating(event) {
+  async function submitRating(event) {
     event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    const res = await fetch(`/api/user/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      return alert("Dein Rating passt uns nicht! Eine Zahl von 0 - 100!");
+    }
+    if (res.status === 202) {
+      setRateEdit(!rateEdit);
+      mutate();
+      return alert("Dein Rating wurde erfolgreich angepasst!");
+    }
+    if (res.status === 201) {
+      setRateEdit(!rateEdit);
+      mutate();
+      return;
+    }
   }
   return (
     <>
@@ -53,7 +76,7 @@ export default function DetailProfile() {
         robusta={data.pickedRoast.robusta}
         level={data.pickedRoast.level}
         provenance={data.pickedRoast.provenance}
-        score={data.pickedRoast.score}
+        score={data.pickedRoast.score.map((rating) => rating.rating)}
         edit={edit}
         setEdit={() => setEdit(!edit)}
         rateEdit={rateEdit}

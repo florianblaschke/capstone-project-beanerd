@@ -73,14 +73,14 @@ export default function RoastDetailCardProfile({
         {rateEdit && (
           <>
             <form onSubmit={submitRating}>
-              <StyLabel>Deine Bewertung: {rating}</StyLabel>
+              <StyLabel htmlFor="rating">Deine Bewertung: {rating}</StyLabel>
               <StyInputRating
                 onChange={showRating}
                 type="range"
                 min="0"
                 max="100"
-                id="score"
-                name="score"
+                id="rating"
+                name="rating"
               />
               <StyButton>Abgeben</StyButton>
             </form>

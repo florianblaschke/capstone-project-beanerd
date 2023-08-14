@@ -23,7 +23,7 @@ export default function Home() {
               id={roast._id}
               name={roast.name}
               roaster={roast.roaster}
-              score={roast.score}
+              score={roast.score.map((rating) => rating.rating)}
             />
           </StyLi>
         ))}

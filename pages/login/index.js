@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import Image from "next/image";
+import logo from "@/public/logo.svg";
 import styled from "styled-components";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
@@ -8,11 +11,6 @@ import Login from "@/components/LoginForms";
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);
   const router = useRouter();
-  const { status } = useSession();
-
-  if (status === "authenticated") {
-    router.push("/login/profile");
-  }
 
   async function onLogin(event) {
     event.preventDefault();
@@ -67,6 +65,14 @@ export default function Profile() {
     <>
       {!formSelect && (
         <StyDiv>
+          <StyImage
+            priority={true}
+            src={logo}
+            width={300}
+            height={200}
+            style={{ objectFit: "contain" }}
+            alt="Beanerd Logo"
+          ></StyImage>
           <Login onSubmit={onLogin} />
           <StySection>
             Bitte melde dich an, um auf dein Profil zuzugreifen!
@@ -78,6 +84,14 @@ export default function Profile() {
       )}
       {formSelect && (
         <StyDiv>
+          <StyImage
+            priority={true}
+            src={logo}
+            width={300}
+            height={200}
+            style={{ objectFit: "contain" }}
+            alt="Beanerd Logo"
+          ></StyImage>
           <CreateAccount onSubmit={createAccount} />
           <StySection>
             Hier kannst du dir dein Profil erstellen! Bitte merke dir deinen
@@ -92,8 +106,24 @@ export default function Profile() {
   );
 }
 
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+  if (session) {
+    return {
+      redirect: {
+        destination: "/login/profile",
+        permanent: false,
+      },
+    };
+  }
+  return { props: { session } };
+}
+
 export const StyDiv = styled.div`
   height: inherit;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 `;
 const StySection = styled.section`
   display: flex;
@@ -112,4 +142,8 @@ const StyButtonBorderless = styled.section`
   font-size: 12px;
   font-weight: 200;
   padding: 16px;
+`;
+
+const StyImage = styled(Image)`
+  margin-top: 32px;
 `;

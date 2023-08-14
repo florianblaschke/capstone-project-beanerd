@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import "./roast";
 import "./method";
+import "./score";
 
 const { Schema } = mongoose;
 
