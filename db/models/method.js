@@ -6,9 +6,9 @@ const { Schema } = mongoose;
 const methodSchema = new Schema({
   roastIdForMethod: { type: String, required: true },
   method: { type: String, required: true },
-  coffee: { type: Number, required: true },
-  water: { type: Number, required: true },
-  time: { type: Number, required: false },
+  coffee: { type: Number, required: true, min: 1 },
+  water: { type: Number, required: true, min: 1 },
+  time: { type: Number, required: false, min: 1 },
   grind: { type: String, required: false },
 });
 
