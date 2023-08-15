@@ -34,6 +34,7 @@ export default function Home() {
 
 export const StyUl = styled.ul`
   list-style: none;
+  padding: 0px 32px 0px 32px;
 `;
 
 export const StyLi = styled.li`

@@ -70,7 +70,6 @@ export const StyForm = styled.form`
   align-content: center;
   align-items: center;
   padding: 20px;
-  height: 100vh;
 `;
 
 export const StyLabel = styled.label`

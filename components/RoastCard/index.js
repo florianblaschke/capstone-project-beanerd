@@ -39,7 +39,7 @@ export const StyDiv = styled.div`
   display: flex;
   flex-flow: row no wrap;
   justify-content: center;
-  width: 280px;
+  /* width: 280px; */
   height: 160px;
   border-radius: 8px;
   border: 0.5px solid #000;

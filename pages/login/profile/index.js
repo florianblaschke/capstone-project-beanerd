@@ -1,6 +1,5 @@
 import { signOut, getSession } from "next-auth/react";
 import { StyUl, StyLi } from "../..";
-import styled from "styled-components";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
@@ -27,21 +26,19 @@ export default function ProfilePage() {
     <>
       <h2>You are now logged in {data.name}!</h2>
       <button onClick={() => signOut()}>Ausloggen</button>
-      <StyDiv>
-        <StyUlTwo>
-          {data.roasts.map((roast) => (
-            <StyLi key={roast._id}>
-              <RoastCardProfile
-                id={roast._id}
-                onDelete={() => handleDelete(roast._id)}
-                name={roast.name}
-                roaster={roast.roaster}
-                score={roast.score.map((rating) => rating.rating)}
-              />
-            </StyLi>
-          ))}
-        </StyUlTwo>
-      </StyDiv>
+      <StyUl>
+        {data.roasts.map((roast) => (
+          <StyLi key={roast._id}>
+            <RoastCardProfile
+              id={roast._id}
+              onDelete={() => handleDelete(roast._id)}
+              name={roast.name}
+              roaster={roast.roaster}
+              score={roast.score.map((rating) => rating.rating)}
+            />
+          </StyLi>
+        ))}
+      </StyUl>
     </>
   );
 }
@@ -58,11 +55,3 @@ export async function getServerSideProps({ req }) {
   }
   return { props: { session } };
 }
-
-const StyDiv = styled.div`
-  height: inherit;
-`;
-
-const StyUlTwo = styled(StyUl)`
-  height: 80vh;
-`;

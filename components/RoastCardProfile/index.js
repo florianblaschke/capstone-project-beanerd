@@ -63,5 +63,5 @@ const StyDelete = styled.button`
 
 const StyLinkProfile = styled(StyLink)`
   display: flex;
-  width: inherit;
+  width: -webkit-fill-available;
 `;

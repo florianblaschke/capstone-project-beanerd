@@ -14,7 +14,8 @@ export default function Navigation({ className, session }) {
 const StyFooter = styled.footer`
   display: flex;
   justify-content: space-evenly;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   bottom: 0px;
   height: 6vh;
   background-color: white;
