@@ -14,6 +14,7 @@ export default function Detail() {
 
   if (isLoading) return <h1>... is Loading</h1>;
 
+  console.log(data);
   async function handleEditRoast(event) {
     event.preventDefault();
 
@@ -75,7 +76,7 @@ export default function Detail() {
       robusta={data.robusta}
       level={data.level}
       provenance={data.provenance}
-      score={data.score}
+      score={data.score.map((rating) => rating.rating)}
       session={session}
     />
   );
