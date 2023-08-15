@@ -26,12 +26,12 @@ export default async function handler(req, res) {
     }
 
     if (req.method === "GET") {
-      const relatedMethods = await currentUser.methods.filter((relId) =>
-        relId.roastIdForMethod === id ? true : false
-      );
       const favoriteRoasts = await currentUser.roasts;
       const pickedRoast = await favoriteRoasts.find(
         (roast) => roast._id.toString() === id
+      );
+      const relatedMethods = await currentUser.methods.filter((relId) =>
+        relId.roastIdForMethod === id ? true : false
       );
       await pickedRoast.populate("score");
       const data = { relatedMethods, pickedRoast };

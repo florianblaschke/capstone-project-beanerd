@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { getSession } from "next-auth/react";
 import styled from "styled-components";
 import { StyLi } from "@/pages";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
@@ -17,6 +18,7 @@ export default function DetailProfile() {
   const { data, isLoading, mutate } = useSWR(`/api/user/${id}`, fetcher);
 
   if (isLoading) return <h1>Loading</h1>;
+  if (data === undefined) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -102,6 +104,19 @@ export default function DetailProfile() {
       )}
     </>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  return { props: { session } };
 }
 
 const StyUlMethod = styled.ul`
