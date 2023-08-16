@@ -13,7 +13,9 @@ export default function Detail() {
   const { data, isLoading, mutate } = useSWR(`api/roasts/${id}`, fetcher);
 
   if (isLoading) return <h1>... is Loading</h1>;
-  if (data === undefined) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
+
+  if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
+
   async function handleEditRoast(event) {
     event.preventDefault();
 
@@ -75,7 +77,7 @@ export default function Detail() {
       robusta={data.robusta}
       level={data.level}
       provenance={data.provenance}
-      score={data.score.map((rating) => rating.rating)}
+      score={data.score.map(({ rating }) => rating)}
       session={session}
     />
   );

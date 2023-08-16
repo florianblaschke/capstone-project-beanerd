@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { getSession } from "next-auth/react";
-import Image from "next/image";
+import {
+  StyledDivInheritVariant,
+  StyledSectionNoWidthVariant,
+  StyledButtonBorderless,
+  StyledImageMarginTop,
+} from "@/public/lib/styled-components";
 import logo from "@/public/logo.svg";
-import styled from "styled-components";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
 
@@ -64,43 +68,41 @@ export default function Profile() {
   return (
     <>
       {!formSelect && (
-        <StyDiv>
-          <StyImage
+        <StyledDivInheritVariant>
+          <StyledImageMarginTop
             priority={true}
             src={logo}
             width={300}
             height={200}
-            style={{ objectFit: "contain" }}
             alt="Beanerd Logo"
-          ></StyImage>
+          />
           <Login onSubmit={onLogin} />
-          <StySection>
+          <StyledSectionNoWidthVariant>
             Bitte melde dich an, um auf dein Profil zuzugreifen!
-            <StyButtonBorderless onClick={() => setFormSelect(!formSelect)}>
+            <StyledButtonBorderless onClick={() => setFormSelect(!formSelect)}>
               Noch kein Profil? Hier geht es zur Registrierung!
-            </StyButtonBorderless>
-          </StySection>
-        </StyDiv>
+            </StyledButtonBorderless>
+          </StyledSectionNoWidthVariant>
+        </StyledDivInheritVariant>
       )}
       {formSelect && (
-        <StyDiv>
-          <StyImage
+        <StyledDivInheritVariant>
+          <StyledImageMarginTop
             priority={false}
             src={logo}
             width={300}
             height={200}
-            style={{ objectFit: "contain" }}
             alt="Beanerd Logo"
-          ></StyImage>
+          />
           <CreateAccount onSubmit={createAccount} />
-          <StySection>
+          <StyledSectionNoWidthVariant>
             Hier kannst du dir dein Profil erstellen! Bitte merke dir deinen
             Benutzernamen und Passwort gut!
-            <StyButtonBorderless onClick={() => setFormSelect(!formSelect)}>
+            <StyledButtonBorderless onClick={() => setFormSelect(!formSelect)}>
               Du hast schon ein Profil? Hier gelangst du zur Anmeldung!
-            </StyButtonBorderless>
-          </StySection>
-        </StyDiv>
+            </StyledButtonBorderless>
+          </StyledSectionNoWidthVariant>
+        </StyledDivInheritVariant>
       )}
     </>
   );
@@ -118,31 +120,3 @@ export async function getServerSideProps({ req }) {
   }
   return { props: { session } };
 }
-
-export const StyDiv = styled.div`
-  height: inherit;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-`;
-const StySection = styled.section`
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 16px;
-`;
-
-const StyButtonBorderless = styled.section`
-  border: none;
-  background-color: white;
-  font-size: 12px;
-  font-weight: 200;
-  padding: 16px;
-`;
-
-const StyImage = styled(Image)`
-  margin-top: 32px;
-`;

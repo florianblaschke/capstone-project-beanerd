@@ -1,18 +1,16 @@
-import {
-  StyLabel,
-  StyInput,
-  StySliderLabel,
-  StySelect,
-  StyDiv,
-  StySlider,
-  StyInputTwo,
-  StyLabelTwo,
-  StyButton,
-} from "../Form";
-
 import { useState } from "react";
-import styled from "styled-components";
-
+import {
+  StyledForm,
+  StyledLabel,
+  StyledInput,
+  StyledSliderLabel,
+  StyledSlider,
+  StyledSelect,
+  StyledLabelVariant,
+  StyledInputVariant,
+  StyledButton,
+  StyledDivGridVariant,
+} from "@/public/lib/styled-components";
 export default function EditForm({
   onSubmit,
   name,
@@ -34,9 +32,9 @@ export default function EditForm({
   }
 
   return (
-    <StyForm onSubmit={onSubmit}>
-      <StyLabel htmlFor="name">Name:</StyLabel>
-      <StyInput
+    <StyledForm onSubmit={onSubmit}>
+      <StyledLabel htmlFor="name">Name:</StyledLabel>
+      <StyledInput
         pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
         type="text"
         id="name"
@@ -44,8 +42,8 @@ export default function EditForm({
         defaultValue={name}
         title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
-      <StyLabel htmlFor="roaster">Röster:</StyLabel>
-      <StyInput
+      <StyledLabel htmlFor="roaster">Röster:</StyledLabel>
+      <StyledInput
         pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
         type="text"
         id="roaster"
@@ -53,10 +51,10 @@ export default function EditForm({
         defaultValue={roaster}
         title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
-      <StySliderLabel htmlFor="arabica">
+      <StyledSliderLabel htmlFor="arabica">
         Arabica {arabicaRatio} / {robustaRatio} Robusta
-      </StySliderLabel>
-      <StySlider
+      </StyledSliderLabel>
+      <StyledSlider
         defaultValue={arabicaRatio}
         onChange={showRatio}
         type="range"
@@ -66,10 +64,10 @@ export default function EditForm({
         id="arabica"
         name="arabica"
       />
-      <StyDiv>
-        <StyLabelTwo htmlFor="provenance">Herkunft:</StyLabelTwo>
-        <StyLabel htmlFor="level">Röstgrad:</StyLabel>
-        <StyInputTwo
+      <StyledDivGridVariant>
+        <StyledLabelVariant htmlFor="provenance">Herkunft:</StyledLabelVariant>
+        <StyledLabel htmlFor="level">Röstgrad:</StyledLabel>
+        <StyledInputVariant
           pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
           type="text"
           id="provenance"
@@ -77,22 +75,13 @@ export default function EditForm({
           defaultValue={provenance}
           title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
         />
-        <StySelect defaultValue={level} id="level" name="level">
+        <StyledSelect defaultValue={level} id="level" name="level">
           <option value="light">light</option>
           <option value="medium">medium</option>
           <option value="dark">dark</option>
-        </StySelect>
-      </StyDiv>
-      <StyButton>Speichern</StyButton>
-    </StyForm>
+        </StyledSelect>
+      </StyledDivGridVariant>
+      <StyledButton>Speichern</StyledButton>
+    </StyledForm>
   );
 }
-
-const StyForm = styled.form`
-  display: flex;
-  flex-flow: column wrap;
-  align-content: center;
-  align-items: center;
-  padding: 20px;
-  height: auto;
-`;

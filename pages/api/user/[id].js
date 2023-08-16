@@ -30,8 +30,8 @@ export default async function handler(req, res) {
       const pickedRoast = await favoriteRoasts.find(
         (roast) => roast._id.toString() === id
       );
-      const relatedMethods = await currentUser.methods.filter((relId) =>
-        relId.roastIdForMethod === id ? true : false
+      const relatedMethods = await currentUser.methods.filter(
+        ({ roastIdForMethod }) => roastIdForMethod === id
       );
       await pickedRoast.populate("score");
       const data = { relatedMethods, pickedRoast };
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
         currentUser.methods.push(newMethod._id.toString());
         await currentUser.save();
       } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(418).json({ error: error.message });
       }
       return res.status(201).json({ message: "Success!" });
     }

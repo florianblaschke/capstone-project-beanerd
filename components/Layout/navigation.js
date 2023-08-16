@@ -1,35 +1,12 @@
-import Link from "next/link";
-import { styled } from "styled-components";
-
+import { StyledFooter, StyledLink } from "@/public/lib/styled-components";
 export default function Navigation({ className, session }) {
   return (
-    <StyFooter className={className}>
-      <StyLink href={"/"}>Startseite</StyLink>
-      <StyLink href={"/addroast"}>Kaffee hinzufügen</StyLink>
-      <StyLink href={"/login"}>{session ? "Favoriten" : "Profil"}</StyLink>
-    </StyFooter>
+    <StyledFooter className={className}>
+      <StyledLink href={"/"}>Startseite</StyledLink>
+      <StyledLink href={"/addroast"}>Kaffee hinzufügen</StyledLink>
+      <StyledLink href={"/login"}>
+        {session ? "Favoriten" : "Profil"}
+      </StyledLink>
+    </StyledFooter>
   );
 }
-
-const StyFooter = styled.footer`
-  display: flex;
-  justify-content: space-evenly;
-  position: fixed;
-  width: 100%;
-  bottom: 0px;
-  height: 6vh;
-  background-color: white;
-`;
-
-const StyLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid black 0.5px;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-  font-weight: 400;
-  font-size: 12px;
-`;

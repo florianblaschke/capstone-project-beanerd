@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getSession } from "next-auth/react";
-import styled from "styled-components";
-import { StyLi } from "@/pages";
+import { StyledList, StyledItem } from "@/public/lib/styled-components";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
@@ -18,7 +17,8 @@ export default function DetailProfile() {
   const { data, isLoading, mutate } = useSWR(`/api/user/${id}`, fetcher);
 
   if (isLoading) return <h1>Loading</h1>;
-  if (data === undefined) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
+  if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
+
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -77,7 +77,7 @@ export default function DetailProfile() {
         robusta={data.pickedRoast.robusta}
         level={data.pickedRoast.level}
         provenance={data.pickedRoast.provenance}
-        score={data.pickedRoast.score.map((rating) => rating.rating)}
+        score={data.pickedRoast.score.map(({ rating }) => rating)}
         edit={edit}
         setEdit={() => setEdit(!edit)}
         rateEdit={rateEdit}
@@ -86,9 +86,9 @@ export default function DetailProfile() {
       />
       {edit && <BrewMethodsForm onSubmit={addBrewMethod} />}
       {data.relatedMethods.length > 0 ? (
-        <StyUlMethod>
+        <StyledList>
           {data.relatedMethods.map((method) => (
-            <StyLi key={method._id}>
+            <StyledItem key={method._id}>
               <BrewMethod
                 method={method.method}
                 coffee={method.coffee}
@@ -96,9 +96,9 @@ export default function DetailProfile() {
                 time={method.time}
                 grind={method.grind}
               />
-            </StyLi>
+            </StyledItem>
           ))}
-        </StyUlMethod>
+        </StyledList>
       ) : (
         "Du hast noch keine Brühmethode für diesen Kaffee!"
       )}
@@ -118,9 +118,3 @@ export async function getServerSideProps({ req }) {
   }
   return { props: { session } };
 }
-
-const StyUlMethod = styled.ul`
-  list-style: none;
-  padding: 12px;
-  margin: 0px;
-`;

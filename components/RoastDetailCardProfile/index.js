@@ -1,18 +1,18 @@
 import defaultPic from "@/public/default.jpg";
-import styled from "styled-components";
 import { useState } from "react";
 import {
-  StyDiv,
-  StyImage,
-  StyDivText,
-  StyHTwo,
-  StyP,
-  StyRating,
-  StyNumberRating,
-  StyButtonDiv,
-  StyButton,
-} from "../RoastDetailCard";
-import { StyLabel } from "../Form";
+  StyledDiv,
+  StyledImageDetailVariant,
+  StyledSectionVariant,
+  StyledHeading,
+  StyledParagraph,
+  StyledRating,
+  StyledNumberRating,
+  StyledDivButtonVariant,
+  StyledButton,
+  StyledInputRating,
+  StyledLabel,
+} from "@/public/lib/styled-components";
 
 export default function RoastDetailCardProfile({
   name,
@@ -31,32 +31,31 @@ export default function RoastDetailCardProfile({
   const [rating, setRating] = useState(50);
 
   function showRating(event) {
-    let value = event.target.value;
-    setRating(value);
+    setRating(event.target.value);
   }
   return (
-    <StyDiv>
-      <StyImage
+    <StyledDiv>
+      <StyledImageDetailVariant
         priority={true}
         src={defaultPic}
         width={""}
         height={""}
         alt="Coffee-Package"
-      ></StyImage>
-      <StyDivText>
-        <StyHTwo>{name}</StyHTwo>
-        <StyP>{roaster}</StyP>
-        <StyHTwo>Arabica / Robusta</StyHTwo>
-        <StyP>
+      />
+      <StyledSectionVariant>
+        <StyledHeading>{name}</StyledHeading>
+        <StyledParagraph>{roaster}</StyledParagraph>
+        <StyledHeading>Arabica / Robusta</StyledHeading>
+        <StyledParagraph>
           {arabica} / {robusta}
-        </StyP>
-        <StyHTwo>Röstgrad</StyHTwo>
-        <StyP>{level}</StyP>
-        <StyHTwo>Herkunft</StyHTwo>
-        <StyP>{provenance}</StyP>
+        </StyledParagraph>
+        <StyledHeading>Röstgrad</StyledHeading>
+        <StyledParagraph>{level}</StyledParagraph>
+        <StyledHeading>Herkunft</StyledHeading>
+        <StyledParagraph>{provenance}</StyledParagraph>
         {!rateEdit && (
           <>
-            <StyRating>
+            <StyledRating>
               Bewertung:{" "}
               {score.length > 0
                 ? Math.floor(
@@ -64,17 +63,19 @@ export default function RoastDetailCardProfile({
                   )
                 : 0}
               /100
-            </StyRating>
-            <StyNumberRating>
+            </StyledRating>
+            <StyledNumberRating>
               {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-            </StyNumberRating>
+            </StyledNumberRating>
           </>
         )}
         {rateEdit && (
           <>
             <form onSubmit={submitRating}>
-              <StyLabel htmlFor="rating">Deine Bewertung: {rating}</StyLabel>
-              <StyInputRating
+              <StyledLabel htmlFor="rating">
+                Deine Bewertung: {rating}
+              </StyledLabel>
+              <StyledInputRating
                 onChange={showRating}
                 type="range"
                 min="0"
@@ -82,25 +83,19 @@ export default function RoastDetailCardProfile({
                 id="rating"
                 name="rating"
               />
-              <StyButton>Abgeben</StyButton>
+              <StyledButton>Abgeben</StyledButton>
             </form>
           </>
         )}
-      </StyDivText>
-      <StyButtonDiv>
-        <StyButton onClick={setEdit}>
+      </StyledSectionVariant>
+      <StyledDivButtonVariant>
+        <StyledButton onClick={setEdit}>
           {edit ? "Abbrechen" : "Brührezept hinzufügen"}
-        </StyButton>
-        <StyButton onClick={setRateEdit}>
+        </StyledButton>
+        <StyledButton onClick={setRateEdit}>
           {rateEdit ? "Abbrechen" : "Bewertung abgeben"}
-        </StyButton>
-      </StyButtonDiv>
-    </StyDiv>
+        </StyledButton>
+      </StyledDivButtonVariant>
+    </StyledDiv>
   );
 }
-
-const StyInputRating = styled.input`
-  font-size: 12px;
-  margin: 40px 0px 5px 0px;
-  text-align: center;
-`;

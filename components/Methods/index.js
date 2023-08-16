@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import { StyledTable } from "@/public/lib/styled-components";
 
 export default function BrewMethod({ method, coffee, water, time, grind }) {
   return (
-    <StyTable>
+    <StyledTable>
       <thead>
         <tr>
           <th>Methode</th>
@@ -28,16 +28,6 @@ export default function BrewMethod({ method, coffee, water, time, grind }) {
           <td>{grind}</td>
         </tr>
       </tbody>
-    </StyTable>
+    </StyledTable>
   );
 }
-
-const StyTable = styled.table`
-  text-align: center;
-  border-radius: 8px;
-  line-height: 16px;
-  border: solid black 0.5px;
-  box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
-  font-size: 0.75rem;
-  width: 100%;
-`;

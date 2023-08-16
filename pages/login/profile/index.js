@@ -1,5 +1,5 @@
 import { signOut, getSession } from "next-auth/react";
-import { StyUl, StyLi } from "../..";
+import { StyledList, StyledItem } from "@/public/lib/styled-components";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
@@ -26,19 +26,19 @@ export default function ProfilePage() {
     <>
       <h2>You are now logged in {data.name}!</h2>
       <button onClick={() => signOut()}>Ausloggen</button>
-      <StyUl>
+      <StyledList>
         {data.roasts.map((roast) => (
-          <StyLi key={roast._id}>
+          <StyledItem key={roast._id}>
             <RoastCardProfile
               id={roast._id}
               onDelete={() => handleDelete(roast._id)}
               name={roast.name}
               roaster={roast.roaster}
-              score={roast.score.map((rating) => rating.rating)}
+              score={roast.score.map(({ rating }) => rating)}
             />
-          </StyLi>
+          </StyledItem>
         ))}
-      </StyUl>
+      </StyledList>
     </>
   );
 }

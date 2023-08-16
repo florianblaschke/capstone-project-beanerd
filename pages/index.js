@@ -1,6 +1,6 @@
 import Head from "next/head";
-import styled from "styled-components";
 import RoastCard from "@/components/RoastCard";
+import { StyledList, StyledItem } from "@/public/lib/styled-components";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -16,27 +16,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <StyUl>
+      <StyledList>
         {data.map((roast) => (
-          <StyLi key={roast._id}>
+          <StyledItem key={roast._id}>
             <RoastCard
               id={roast._id}
               name={roast.name}
               roaster={roast.roaster}
-              score={roast.score.map((rating) => rating.rating)}
+              score={roast.score.map(({ rating }) => rating)}
             />
-          </StyLi>
+          </StyledItem>
         ))}
-      </StyUl>
+      </StyledList>
     </>
   );
 }
-
-export const StyUl = styled.ul`
-  list-style: none;
-  padding: 0px 32px 0px 32px;
-`;
-
-export const StyLi = styled.li`
-  margin: 12px 0px 12px 0px;
-`;

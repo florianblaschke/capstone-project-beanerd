@@ -1,15 +1,15 @@
 import defaultPic from "@/public/default.jpg";
-import styled from "styled-components";
 import {
-  StyDiv,
-  StyImage,
-  StyDivText,
-  StyHTwo,
-  StyP,
-  StyRating,
-  StyNumberRating,
-  StyLink,
-} from "../RoastCard";
+  StyledDivCardVariant,
+  StyledLinkProfile,
+  StyledImage,
+  StyledSectionVariant,
+  StyledHeading,
+  StyledParagraph,
+  StyledRating,
+  StyledNumberRating,
+  StyledDelete,
+} from "@/public/lib/styled-components";
 
 export default function RoastCardProfile({
   name,
@@ -19,19 +19,19 @@ export default function RoastCardProfile({
   id,
 }) {
   return (
-    <StyDiv>
-      <StyLinkProfile href={`/login/profile/${id}`}>
-        <StyImage
+    <StyledDivCardVariant>
+      <StyledLinkProfile href={`/login/profile/${id}`}>
+        <StyledImage
           priority={false}
           src={defaultPic}
           width={100}
           height={""}
           alt="Coffee-Package"
-        ></StyImage>
-        <StyDivText>
-          <StyHTwo>{name}</StyHTwo>
-          <StyP>{roaster}</StyP>
-          <StyRating>
+        />
+        <StyledSectionVariant>
+          <StyledHeading>{name}</StyledHeading>
+          <StyledParagraph>{roaster}</StyledParagraph>
+          <StyledRating>
             Bewertung:{" "}
             {score.length > 0
               ? Math.floor(
@@ -39,29 +39,15 @@ export default function RoastCardProfile({
                 )
               : 0}
             /100
-          </StyRating>
-          <StyNumberRating>
+          </StyledRating>
+          <StyledNumberRating>
             {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-          </StyNumberRating>
-        </StyDivText>
-      </StyLinkProfile>
-      <StyDelete onClick={onDelete}>Löschen</StyDelete>
-    </StyDiv>
+          </StyledNumberRating>
+        </StyledSectionVariant>
+      </StyledLinkProfile>
+      <StyledDelete type="button" onClick={onDelete}>
+        Löschen
+      </StyledDelete>
+    </StyledDivCardVariant>
   );
 }
-
-const StyDelete = styled.button`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: white;
-  border: none;
-  height: 8%;
-  font-weight: 400;
-  font-size: 10px;
-`;
-
-const StyLinkProfile = styled(StyLink)`
-  display: flex;
-  width: 100%;
-`;
