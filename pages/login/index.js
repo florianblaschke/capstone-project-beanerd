@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { getSession } from "next-auth/react";
-import {
-  StyledDivInheritVariant,
-  StyledSectionNoWidthVariant,
-  StyledButtonBorderless,
-  StyledImageMarginTop,
-} from "@/public/lib/styled-components";
 import logo from "@/public/logo.svg";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
+import {
+  StyledDivInheritVariant,
+  StyledImageMarginTop,
+  StyledSectionNoWidthVariant,
+  StyledButtonBorderless,
+} from "@/public/lib/styled-components";
 
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);

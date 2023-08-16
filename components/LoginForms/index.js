@@ -1,5 +1,5 @@
 import {
-  StyledButton,
+  StyledButtonCenterVariant,
   StyledLabel,
   StyledInput,
   StyledForm,
@@ -12,7 +12,7 @@ export default function Login({ onSubmit }) {
       <StyledInput id="name" name="name" required />
       <StyledLabel htmlFor="password">Passwort:</StyledLabel>
       <StyledInput id="password" name="password" type="password" />
-      <StyledButton>Anmelden</StyledButton>
+      <StyledButtonCenterVariant>Anmelden</StyledButtonCenterVariant>
     </StyledForm>
   );
 }

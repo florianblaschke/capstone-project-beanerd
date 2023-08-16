@@ -137,7 +137,7 @@ export const StyledImageDetailVariant = styled(Image)`
   object-position: 80% 80%;
 `;
 
-const StyledImageMarginTop = styled(Image)`
+export const StyledImageMarginTop = styled(Image)`
   margin-top: 32px;
 `;
 
@@ -238,13 +238,6 @@ export const StyledHeading = styled.h2`
   text-align: center;
 `;
 
-/* export const StyledHTwo = styled.h2`
-  font-size: 12px;
-  font-weight: 400;
-  margin: 24px 0px -10px 0px;
-  text-align: center;
-`; */
-
 // Styled  Paragraphs
 
 export const StyledParagraph = styled.p`
@@ -282,7 +275,7 @@ export const StyledSectionVariant = styled(StyledSection)`
   width: 100%;
 `;
 
-const StyledSectionNoWidthVariant = styled.section`
+export const StyledSectionNoWidthVariant = styled.section`
   display: flex;
   flex-flow: column wrap;
   align-items: center;

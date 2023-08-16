@@ -1,5 +1,5 @@
 import {
-  StyledButton,
+  StyledButtonCenterVariant,
   StyledInput,
   StyledLabel,
   StyledForm,
@@ -14,7 +14,7 @@ export default function CreateAccount({ onSubmit }) {
       <StyledInput id="password" name="password" type="password" />
       <StyledLabel htmlFor="confirm">Passwort bestätigen:</StyledLabel>
       <StyledInput id="confirm" name="confirm" type="password" />
-      <StyledButton>Profil erstellen</StyledButton>
+      <StyledButtonCenterVariant>Profil erstellen</StyledButtonCenterVariant>
     </StyledForm>
   );
 }
