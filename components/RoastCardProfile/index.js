@@ -24,7 +24,7 @@ export default function RoastCardProfile({
         <StyImage
           priority={false}
           src={defaultPic}
-          width={""}
+          width={100}
           height={""}
           alt="Coffee-Package"
         ></StyImage>
@@ -63,5 +63,5 @@ const StyDelete = styled.button`
 
 const StyLinkProfile = styled(StyLink)`
   display: flex;
-  width: -webkit-fill-available;
+  width: 100%;
 `;
