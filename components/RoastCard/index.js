@@ -38,7 +38,6 @@ export const StyDiv = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
-  /* width: 280px; */
   height: 160px;
   border-radius: 8px;
   border: 0.5px solid #000;
