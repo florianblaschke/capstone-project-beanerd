@@ -315,6 +315,7 @@ export const StyledTable = styled.table`
 export const StyledList = styled.ul`
   list-style: none;
   padding: 0px 32px 0px 32px;
+  margin-bottom: 48px;
 `;
 
 export const StyledItem = styled.li`
