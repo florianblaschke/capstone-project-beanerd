@@ -10,7 +10,7 @@ import {
   StyledInputVariant,
   StyledSelect,
   StyledButtonCenterVariant,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 
 export default function Form({ onSubmit }) {
   const [arabica, setArabica] = useState(50);

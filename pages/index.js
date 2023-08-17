@@ -1,6 +1,6 @@
 import Head from "next/head";
 import RoastCard from "@/components/RoastCard";
-import { StyledList, StyledItem } from "@/public/lib/styled-components";
+import { StyledList, StyledItem } from "@/lib/styled-components";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());

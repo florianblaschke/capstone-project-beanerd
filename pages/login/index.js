@@ -10,7 +10,7 @@ import {
   StyledImageMarginTop,
   StyledSectionNoWidthVariant,
   StyledButtonBorderless,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);

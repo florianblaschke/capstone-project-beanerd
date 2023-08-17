@@ -10,7 +10,7 @@ import {
   StyledInputVariant,
   StyledButton,
   StyledDivGridVariant,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 export default function EditForm({
   onSubmit,
   name,

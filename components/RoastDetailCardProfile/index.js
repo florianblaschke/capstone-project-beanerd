@@ -12,7 +12,7 @@ import {
   StyledButton,
   StyledInputRating,
   StyledLabel,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 
 export default function RoastDetailCardProfile({
   name,

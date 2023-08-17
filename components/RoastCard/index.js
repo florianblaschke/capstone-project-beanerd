@@ -8,7 +8,7 @@ import {
   StyledParagraph,
   StyledRating,
   StyledNumberRating,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 
 export default function RoastCard({ name, roaster, score, id }) {
   return (

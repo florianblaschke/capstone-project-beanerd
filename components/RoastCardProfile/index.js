@@ -9,7 +9,7 @@ import {
   StyledRating,
   StyledNumberRating,
   StyledDelete,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 
 export default function RoastCardProfile({
   name,

@@ -1,4 +1,4 @@
-import { StyledFooter, StyledLink } from "@/public/lib/styled-components";
+import { StyledFooter, StyledLink } from "@/lib/styled-components";
 export default function Navigation({ className, session }) {
   return (
     <StyledFooter className={className}>

@@ -3,7 +3,7 @@ import {
   StyledLabel,
   StyledInput,
   StyledForm,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 
 export default function Login({ onSubmit }) {
   return (

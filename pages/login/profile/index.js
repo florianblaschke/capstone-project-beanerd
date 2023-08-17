@@ -1,5 +1,5 @@
 import { signOut, getSession } from "next-auth/react";
-import { StyledList, StyledItem } from "@/public/lib/styled-components";
+import { StyledList, StyledItem } from "@/lib/styled-components";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 

@@ -1,4 +1,4 @@
-import { StyledTable } from "@/public/lib/styled-components";
+import { StyledTable } from "@/lib/styled-components";
 
 export default function BrewMethod({ method, coffee, water, time, grind }) {
   return (

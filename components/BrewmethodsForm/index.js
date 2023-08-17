@@ -6,16 +6,16 @@ import {
   StyledLabelVariant,
   StyledGridButton,
   StyledDivGridVariant,
-} from "@/public/lib/styled-components";
+} from "@/lib/styled-components";
 
 export default function BrewMethodsForm({ onSubmit }) {
   return (
     <StyledGridForm onSubmit={onSubmit}>
       <StyledLabel htmlFor="method">Brühmethode</StyledLabel>
       <StyledSelect id="method" name="method">
-        <option value="Filter">Filter</option>
-        <option value="Herdkännchen">Herdkännchen</option>
-        <option value="Espresso">Siebträger</option>
+        <option value="filter">Filter</option>
+        <option value="bialetti">Herdkännchen</option>
+        <option value="espresso">Siebträger</option>
       </StyledSelect>
       <StyledLabel>Brühverhältnis</StyledLabel>
       <StyledDivGridVariant>
@@ -38,12 +38,12 @@ export default function BrewMethodsForm({ onSubmit }) {
       <StyledInputGridVariant placeholder="Sekunden" id="time" name="time" />
       <StyledLabel htmlFor="grind">Mahlgrad</StyledLabel>
       <StyledSelect id="grind" name="grind">
-        <option value="grob">grob</option>
-        <option value="mittel-grob">mittel-grob</option>
-        <option value="mittel">mittel</option>
-        <option value="mittel-fein">mittel-fein</option>
-        <option value="fein">fein</option>
-        <option value="super-fein">super-fein</option>
+        <option value="coarse">coarse</option>
+        <option value="coarse-medium">coarse-medium</option>
+        <option value="medium">medium</option>
+        <option value="medium-fine">medium-fine</option>
+        <option value="fine">fine</option>
+        <option value="super-fine">super-fine</option>
       </StyledSelect>
       <StyledGridButton type="submit">Hinzufügen</StyledGridButton>
     </StyledGridForm>

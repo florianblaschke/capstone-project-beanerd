@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getSession } from "next-auth/react";
-import { StyledList, StyledItem } from "@/public/lib/styled-components";
+import { StyledList, StyledItem } from "@/lib/styled-components";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
