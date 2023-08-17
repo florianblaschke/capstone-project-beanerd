@@ -8,7 +8,7 @@ import {
   StyledParagraph,
   StyledRating,
   StyledNumberRating,
-  StyledDivButtonVariant,
+  StyledDivButtonWrapper,
   StyledButton,
   StyledInputRating,
   StyledLabel,
@@ -88,14 +88,14 @@ export default function RoastDetailCardProfile({
           </>
         )}
       </StyledSectionVariant>
-      <StyledDivButtonVariant>
+      <StyledDivButtonWrapper>
         <StyledButton onClick={setEdit}>
           {edit ? "Abbrechen" : "Brührezept hinzufügen"}
         </StyledButton>
         <StyledButton onClick={setRateEdit}>
           {rateEdit ? "Abbrechen" : "Bewertung abgeben"}
         </StyledButton>
-      </StyledDivButtonVariant>
+      </StyledDivButtonWrapper>
     </StyledDiv>
   );
 }

@@ -9,7 +9,7 @@ import {
   StyledParagraph,
   StyledRating,
   StyledNumberRating,
-  StyledDivButtonVariant,
+  StyledDivButtonWrapper,
   StyledButton,
 } from "@/public/lib/styled-components";
 
@@ -75,7 +75,7 @@ export default function RoastDetailCard({
           level={level}
         />
       )}
-      <StyledDivButtonVariant>
+      <StyledDivButtonWrapper>
         <StyledButton onClick={() => router.push("/")}>Zurück</StyledButton>
         {session && (
           <StyledButton onClick={onFavorite}>Favorisieren</StyledButton>
@@ -83,7 +83,7 @@ export default function RoastDetailCard({
         <StyledButton onClick={() => setEdit(!edit)}>
           {edit ? "Abbrechen" : "Bearbeiten"}
         </StyledButton>
-      </StyledDivButtonVariant>
+      </StyledDivButtonWrapper>
     </StyledDiv>
   );
 }

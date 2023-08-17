@@ -5,6 +5,7 @@ import {
   StyledInputGridVariant,
   StyledLabelVariant,
   StyledGridButton,
+  StyledDivGridVariant,
 } from "@/public/lib/styled-components";
 
 export default function BrewMethodsForm({ onSubmit }) {
@@ -17,20 +18,22 @@ export default function BrewMethodsForm({ onSubmit }) {
         <option value="Espresso">Siebträger</option>
       </StyledSelect>
       <StyledLabel>Brühverhältnis</StyledLabel>
-      <div>
+      <StyledDivGridVariant>
+        <StyledLabelVariant htmlFor="coffee">Kaffee</StyledLabelVariant>
         <StyledInputGridVariant
           placeholder="Kaffee in g"
           id="coffee"
           name="coffee"
           type="number"
         />
+        <StyledLabelVariant htmlFor="water">Wasser</StyledLabelVariant>
         <StyledInputGridVariant
           placeholder="Wasser in g"
           id="water"
           name="water"
           type="number"
         />
-      </div>
+      </StyledDivGridVariant>
       <StyledLabelVariant htmlFor="time">Brühzeit</StyledLabelVariant>
       <StyledInputGridVariant placeholder="Sekunden" id="time" name="time" />
       <StyledLabel htmlFor="grind">Mahlgrad</StyledLabel>

@@ -71,6 +71,7 @@ export const StyledDivGridVariant = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.2fr 0.2fr;
   justify-items: center;
+  align-items: center;
 `;
 
 export const StyledDivCardVariant = styled.div`
@@ -83,7 +84,7 @@ export const StyledDivCardVariant = styled.div`
   box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
 `;
 
-export const StyledDivButtonVariant = styled.div`
+export const StyledDivButtonWrapper = styled.div`
   display: flex;
   flex-flow: row no-wrap;
   justify-content: space-between;
@@ -159,7 +160,7 @@ export const StyledInputVariant = styled(StyledInput)`
 `;
 
 export const StyledInputGridVariant = styled(StyledInput)`
-  width: 24vw;
+  width: 20vw;
 `;
 
 export const StyledSlider = styled.input`
