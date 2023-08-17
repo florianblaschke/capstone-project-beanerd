@@ -1,6 +1,5 @@
 import { signOut, getSession } from "next-auth/react";
-import { StyUl, StyLi } from "..";
-import { StyDiv } from ".";
+import { StyledList, StyledItem } from "@/lib/styled-components";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
@@ -10,7 +9,6 @@ export default function ProfilePage() {
   const { data, isLoading, mutate } = useSWR("/api/user", fetcher);
 
   if (isLoading) return <h1>Loading</h1>;
-
   async function handleDelete(id) {
     const res = await fetch("/api/user", {
       method: "PATCH",
@@ -28,21 +26,19 @@ export default function ProfilePage() {
     <>
       <h2>You are now logged in {data.name}!</h2>
       <button onClick={() => signOut()}>Ausloggen</button>
-      <StyDiv>
-        <StyUl>
-          {data.roasts.map((roast) => (
-            <StyLi key={roast._id}>
-              <RoastCardProfile
-                id={roast._id}
-                onDelete={() => handleDelete(roast._id)}
-                name={roast.name}
-                roaster={roast.roaster}
-                score={roast.score}
-              />
-            </StyLi>
-          ))}
-        </StyUl>
-      </StyDiv>
+      <StyledList>
+        {data.roasts.map((roast) => (
+          <StyledItem key={roast._id}>
+            <RoastCardProfile
+              id={roast._id}
+              onDelete={() => handleDelete(roast._id)}
+              name={roast.name}
+              roaster={roast.roaster}
+              score={roast.score.map(({ rating }) => rating)}
+            />
+          </StyledItem>
+        ))}
+      </StyledList>
     </>
   );
 }

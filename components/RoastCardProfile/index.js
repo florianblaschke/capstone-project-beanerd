@@ -1,53 +1,53 @@
 import defaultPic from "@/public/default.jpg";
-import styled from "styled-components";
 import {
-  StyDiv,
-  StyImage,
-  StyDivText,
-  StyHTwo,
-  StyP,
-  StyRating,
-  StyNumberRating,
-} from "../RoastCard";
+  StyledDivCardVariant,
+  StyledLinkProfile,
+  StyledImage,
+  StyledSectionVariant,
+  StyledHeading,
+  StyledParagraph,
+  StyledRating,
+  StyledNumberRating,
+  StyledDelete,
+} from "@/lib/styled-components";
 
-export default function RoastCardProfile({ name, roaster, score, onDelete }) {
+export default function RoastCardProfile({
+  name,
+  roaster,
+  score,
+  onDelete,
+  id,
+}) {
   return (
-    <StyDiv>
-      <StyImage
-        priority={true}
-        src={defaultPic}
-        width={""}
-        height={""}
-        alt="Coffee-Package"
-      ></StyImage>
-      <StyDivText>
-        <StyHTwo>{name}</StyHTwo>
-        <StyP>{roaster}</StyP>
-        <StyRating>
-          Bewertung:{" "}
-          {score.length > 0
-            ? Math.floor(
-                score.reduce((acc, curr) => acc + curr, 0) / score.length
-              )
-            : 0}
-          /100
-        </StyRating>
-        <StyNumberRating>
-          {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-        </StyNumberRating>
-      </StyDivText>
-      <StyDelete onClick={onDelete}>Löschen</StyDelete>
-    </StyDiv>
+    <StyledDivCardVariant>
+      <StyledLinkProfile href={`/login/profile/${id}`}>
+        <StyledImage
+          priority={false}
+          src={defaultPic}
+          width={100}
+          height={""}
+          alt="Coffee-Package"
+        />
+        <StyledSectionVariant>
+          <StyledHeading>{name}</StyledHeading>
+          <StyledParagraph>{roaster}</StyledParagraph>
+          <StyledRating>
+            Bewertung:{" "}
+            {score.length > 0
+              ? Math.floor(
+                  score.reduce((acc, curr) => acc + curr, 0) / score.length
+                )
+              : 0}
+            /100
+          </StyledRating>
+          <StyledNumberRating>
+            {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+          </StyledNumberRating>
+        </StyledSectionVariant>
+      </StyledLinkProfile>
+      <StyledDelete type="button" onClick={onDelete}>
+        Löschen
+      </StyledDelete>
+    </StyledDivCardVariant>
   );
 }
-
-const StyDelete = styled.button`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: white;
-  border: none;
-  height: 8%;
-  font-weight: 400;
-  font-size: 10px;
-`;

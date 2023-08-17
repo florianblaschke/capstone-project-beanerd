@@ -1,16 +1,20 @@
-import { StyButton, StyLabel, StyInput } from "../Form";
-import { StyFormLogin } from ".";
+import {
+  StyledButtonCenterVariant,
+  StyledInput,
+  StyledLabel,
+  StyledForm,
+} from "@/lib/styled-components";
 
 export default function CreateAccount({ onSubmit }) {
   return (
-    <StyFormLogin onSubmit={onSubmit}>
-      <StyLabel htmlFor="name">Name:</StyLabel>
-      <StyInput id="name" name="name" required />
-      <StyLabel htmlFor="password">Passwort:</StyLabel>
-      <StyInput id="password" name="password" type="password" />
-      <StyLabel htmlFor="confirm">Passwort bestätigen:</StyLabel>
-      <StyInput id="confirm" name="confirm" type="password" />
-      <StyButton>Profil erstellen</StyButton>
-    </StyFormLogin>
+    <StyledForm onSubmit={onSubmit}>
+      <StyledLabel htmlFor="name">Name:</StyledLabel>
+      <StyledInput id="name" name="name" required />
+      <StyledLabel htmlFor="password">Passwort:</StyledLabel>
+      <StyledInput id="password" name="password" type="password" />
+      <StyledLabel htmlFor="confirm">Passwort bestätigen:</StyledLabel>
+      <StyledInput id="confirm" name="confirm" type="password" />
+      <StyledButtonCenterVariant>Profil erstellen</StyledButtonCenterVariant>
+    </StyledForm>
   );
 }

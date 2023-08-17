@@ -1,8 +1,17 @@
 import defaultPic from "@/public/default.jpg";
-import styled from "styled-components";
-import Image from "next/image";
 import EditForm from "../EditForm";
 import { useRouter } from "next/router";
+import {
+  StyledDiv,
+  StyledSectionVariant,
+  StyledImageDetailVariant,
+  StyledHeading,
+  StyledParagraph,
+  StyledRating,
+  StyledNumberRating,
+  StyledDivButtonWrapper,
+  StyledButton,
+} from "@/lib/styled-components";
 
 export default function RoastDetailCard({
   onSubmit,
@@ -21,27 +30,27 @@ export default function RoastDetailCard({
   const router = useRouter();
 
   return (
-    <StyDiv>
-      <StyImage
+    <StyledDiv>
+      <StyledImageDetailVariant
         priority={true}
         src={defaultPic}
         width={""}
         height={""}
         alt="Coffee-Package"
-      ></StyImage>
+      />
       {!edit && (
-        <StyDivText>
-          <StyHTwo>{name}</StyHTwo>
-          <StyP>{roaster}</StyP>
-          <StyHTwo>Arabica / Robusta</StyHTwo>
-          <StyP>
+        <StyledSectionVariant>
+          <StyledHeading>{name}</StyledHeading>
+          <StyledParagraph>{roaster}</StyledParagraph>
+          <StyledHeading>Arabica / Robusta</StyledHeading>
+          <StyledParagraph>
             {arabica} / {robusta}
-          </StyP>
-          <StyHTwo>Röstgrad</StyHTwo>
-          <StyP>{level}</StyP>
-          <StyHTwo>Herkunft</StyHTwo>
-          <StyP>{provenance}</StyP>
-          <StyRating>
+          </StyledParagraph>
+          <StyledHeading>Röstgrad</StyledHeading>
+          <StyledParagraph>{level}</StyledParagraph>
+          <StyledHeading>Herkunft</StyledHeading>
+          <StyledParagraph>{provenance}</StyledParagraph>
+          <StyledRating>
             Bewertung:{" "}
             {score.length > 0
               ? Math.floor(
@@ -49,11 +58,11 @@ export default function RoastDetailCard({
                 )
               : 0}
             /100
-          </StyRating>
-          <StyNumberRating>
+          </StyledRating>
+          <StyledNumberRating>
             {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-          </StyNumberRating>
-        </StyDivText>
+          </StyledNumberRating>
+        </StyledSectionVariant>
       )}
       {edit && (
         <EditForm
@@ -66,81 +75,15 @@ export default function RoastDetailCard({
           level={level}
         />
       )}
-      <StyButtonDiv>
-        <StyButton onClick={() => router.push("/")}>Zurück</StyButton>
-        {session && <StyButton onClick={onFavorite}>Favorisieren</StyButton>}
-        <StyButton onClick={() => setEdit(!edit)}>
+      <StyledDivButtonWrapper>
+        <StyledButton onClick={() => router.push("/")}>Zurück</StyledButton>
+        {session && (
+          <StyledButton onClick={onFavorite}>Favorisieren</StyledButton>
+        )}
+        <StyledButton onClick={() => setEdit(!edit)}>
           {edit ? "Abbrechen" : "Bearbeiten"}
-        </StyButton>
-      </StyButtonDiv>
-    </StyDiv>
+        </StyledButton>
+      </StyledDivButtonWrapper>
+    </StyledDiv>
   );
 }
-
-const StyDiv = styled.div`
-  padding: 2px;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  width: 100%;
-  border-radius: 8px;
-`;
-
-const StyButtonDiv = styled.div`
-  display: flex;
-  flex-flow: row no-wrap;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 24px;
-`;
-const StyDivText = styled.section`
-  padding: 12px;
-  display: flex;
-  width: 100%;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  font-weight: 300;
-`;
-
-const StyHTwo = styled.h2`
-  font-size: 12px;
-  font-weight: 400;
-  margin: 24px 0px -10px 0px;
-  text-align: center;
-`;
-const StyP = styled.p`
-  font-size: 12px;
-  font-weight: 200;
-  text-align: center;
-`;
-
-const StyRating = styled.p`
-  font-size: 12px;
-  font-size: 100;
-  margin: 40px 0px 5px 0px;
-  text-align: center;
-`;
-
-const StyNumberRating = styled.p`
-  font-size: 8px;
-  font-size: 100;
-  margin: 0px 0px 24px 0px;
-`;
-
-const StyImage = styled(Image)`
-  border-radius: 8px 8px 0px 0px;
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  object-position: 80% 80%;
-`;
-
-export const StyButton = styled.button`
-  width: 33%;
-  border-radius: 4px;
-  background-color: white;
-  border: solid black 0.5px;
-  box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-`;

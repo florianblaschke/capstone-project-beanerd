@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { signIn, useSession } from "next-auth/react";
-import styled from "styled-components";
+import { signIn } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import logo from "@/public/logo.svg";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
+import {
+  StyledDivInheritVariant,
+  StyledImageMarginTop,
+  StyledSectionNoWidthVariant,
+  StyledButtonBorderless,
+} from "@/lib/styled-components";
 
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);
   const router = useRouter();
-  const { status } = useSession();
-
-  if (status === "authenticated") {
-    router.push("/login/profile");
-  }
 
   async function onLogin(event) {
     event.preventDefault();
@@ -66,49 +68,55 @@ export default function Profile() {
   return (
     <>
       {!formSelect && (
-        <StyDiv>
+        <StyledDivInheritVariant>
+          <StyledImageMarginTop
+            priority={true}
+            src={logo}
+            width={300}
+            height={200}
+            alt="Beanerd Logo"
+          />
           <Login onSubmit={onLogin} />
-          <StySection>
+          <StyledSectionNoWidthVariant>
             Bitte melde dich an, um auf dein Profil zuzugreifen!
-            <StyButtonBorderless onClick={() => setFormSelect(!formSelect)}>
+            <StyledButtonBorderless onClick={() => setFormSelect(!formSelect)}>
               Noch kein Profil? Hier geht es zur Registrierung!
-            </StyButtonBorderless>
-          </StySection>
-        </StyDiv>
+            </StyledButtonBorderless>
+          </StyledSectionNoWidthVariant>
+        </StyledDivInheritVariant>
       )}
       {formSelect && (
-        <StyDiv>
+        <StyledDivInheritVariant>
+          <StyledImageMarginTop
+            priority={false}
+            src={logo}
+            width={300}
+            height={200}
+            alt="Beanerd Logo"
+          />
           <CreateAccount onSubmit={createAccount} />
-          <StySection>
+          <StyledSectionNoWidthVariant>
             Hier kannst du dir dein Profil erstellen! Bitte merke dir deinen
             Benutzernamen und Passwort gut!
-            <StyButtonBorderless onClick={() => setFormSelect(!formSelect)}>
+            <StyledButtonBorderless onClick={() => setFormSelect(!formSelect)}>
               Du hast schon ein Profil? Hier gelangst du zur Anmeldung!
-            </StyButtonBorderless>
-          </StySection>
-        </StyDiv>
+            </StyledButtonBorderless>
+          </StyledSectionNoWidthVariant>
+        </StyledDivInheritVariant>
       )}
     </>
   );
 }
 
-export const StyDiv = styled.div`
-  height: 100vh;
-`;
-const StySection = styled.section`
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 16px;
-`;
-
-const StyButtonBorderless = styled.section`
-  border: none;
-  background-color: white;
-  font-size: 12px;
-  font-weight: 200;
-  padding: 16px;
-`;
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+  if (session) {
+    return {
+      redirect: {
+        destination: "/login/profile",
+        permanent: false,
+      },
+    };
+  }
+  return { props: { session } };
+}

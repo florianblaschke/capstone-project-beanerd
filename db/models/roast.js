@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import "./score";
 const { Schema } = mongoose;
 
 const roastSchema = new Schema({
@@ -9,7 +9,7 @@ const roastSchema = new Schema({
   robusta: { type: Number, required: true },
   level: { type: String, required: true },
   provenance: { type: String, required: true },
-  score: [{ type: Number, required: false }],
+  score: { type: [Schema.Types.ObjectId], ref: "Score" },
 });
 
 const Roast = mongoose.models.Roast || mongoose.model("Roast", roastSchema);
