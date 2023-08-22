@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useEffect, useRef } from "react";
-import { useToast } from "./ToastContext";
+import { useToast } from "./toastContext";
 
 const types = {
   success: {

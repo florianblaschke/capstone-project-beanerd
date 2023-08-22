@@ -5,7 +5,7 @@ import { getSession } from "next-auth/react";
 import logo from "@/public/logo.svg";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
-import { useToast } from "@/components/Modals/Toast/ToastContext";
+import { useToast } from "@/components/Modals/Toast/toastContext";
 import {
   StyledDivInheritVariant,
   StyledImageMarginTop,

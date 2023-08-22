@@ -31,7 +31,7 @@ export default function ToastContextProvider({ children }) {
 
   return (
     <ToastContext.Provider value={value}>
-      {/* <ToastWrapper toasts={toasts} /> */}
+      <ToastWrapper toasts={toasts} />
       {children}
     </ToastContext.Provider>
   );

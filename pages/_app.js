@@ -3,7 +3,7 @@ import Head from "next/head";
 import Layout from "@/components/Layout";
 import { SessionProvider } from "next-auth/react";
 import { Roboto } from "next/font/google";
-import ToastContextProvider from "@/components/Modals/Toast/ToastContext";
+import ToastContextProvider from "@/components/Modals/Toast/toastContext";
 
 const roboto = Roboto({
   subsets: ["latin"],

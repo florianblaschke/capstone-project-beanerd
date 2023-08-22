@@ -1,6 +1,6 @@
 import { signOut, getSession } from "next-auth/react";
 import { StyledList, StyledItem } from "@/lib/styled-components";
-import { useToast } from "@/components/Modals/Toast/ToastContext";
+import { useToast } from "@/components/Modals/Toast/toastContext";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
