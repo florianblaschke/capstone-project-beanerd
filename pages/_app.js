@@ -21,13 +21,13 @@ export default function App({
       <Head>
         <title>Beanerd</title>
       </Head>
-      <SessionProvider session={session}>
-        <ToastContextProvider>
+      <ToastContextProvider>
+        <SessionProvider session={session}>
           <Layout className={roboto.className}>
             <Component {...pageProps} />
           </Layout>
-        </ToastContextProvider>
-      </SessionProvider>
+        </SessionProvider>
+      </ToastContextProvider>
     </>
   );
 }
