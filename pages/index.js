@@ -4,6 +4,7 @@ import { StyledList, StyledItem } from "@/lib/styled-components";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
+console.log(test);
 
 export default function Home() {
   const { data, isLoading } = useSWR("api/roasts", fetcher);
