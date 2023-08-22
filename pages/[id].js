@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useToast } from "@/components/Modals/Toast/toastContext";
+import { useToast } from "@/components/Modals/Toast/toastProvider";
 import useSWR from "swr";
 import RoastDetailCard from "@/components/RoastDetailCard";
 

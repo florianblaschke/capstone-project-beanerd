@@ -1,6 +1,6 @@
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
-import { useToast } from "@/components/Modals/Toast/toastContext";
+import { useToast } from "@/components/Modals/Toast/toastProvider";
 
 export default function AddRoast() {
   const router = useRouter();
