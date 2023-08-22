@@ -24,5 +24,5 @@ const ToastContainer = styled.div`
   width: 100%;
   align-items: center;
   font-size: 1.2rem;
-  z-index: 9999;
+  z-index: 1;
 `;

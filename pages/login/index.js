@@ -56,7 +56,7 @@ export default function Profile() {
     });
 
     if (res.status === 418) {
-      return toast.errorToast("Sry, dieser Name ist leider schon vergeben!");
+      return toast.errorToast("Sorry, dieser Name ist leider schon vergeben!");
     }
     if (res.status === 400) {
       return toast.errorToast(

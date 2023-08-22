@@ -23,7 +23,7 @@ export default function AddRoast() {
       toast.errorToast("Diesen Kaffee kennen wir bereits!");
     }
     if (res.status === 418) {
-      toast.errorToast("Sry – leere Felder und/oder nur Zahlen gehen nicht!");
+      toast.errorToast("Sorry – leere Felder und/oder nur Zahlen gehen nicht!");
     }
     if (res.ok) {
       toast.successToast("Kaffee erfolgreich erstellt!");
