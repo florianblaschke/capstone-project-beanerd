@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import { uid } from "uid";
-import ToastWrapper from "./ToastWrapper";
+import ToastWrapper from "./toastWrapper";
 
 const ToastContext = createContext();
 export function useToast() {
