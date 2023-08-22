@@ -1,5 +1,6 @@
 import { signOut, getSession } from "next-auth/react";
 import { StyledList, StyledItem } from "@/lib/styled-components";
+import { useToast } from "@/components/Modals/Toast/toastProvider";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
@@ -7,6 +8,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function ProfilePage() {
   const { data, isLoading, mutate } = useSWR("/api/user", fetcher);
+  const toast = useToast();
 
   if (isLoading) return <h1>Loading</h1>;
   async function handleDelete(id) {
@@ -17,8 +19,11 @@ export default function ProfilePage() {
     });
 
     if (!res.ok) {
-      return alert("Da ist was schiefgelaufen!");
+      return toast.errorToast("Da ist was schiefgelaufen!");
     }
+    toast.successToast(
+      "Der Kaffee wurde erfolgreich aus deiner Liste gelöscht!"
+    );
     mutate();
   }
 

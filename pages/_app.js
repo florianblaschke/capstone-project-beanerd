@@ -3,6 +3,7 @@ import Head from "next/head";
 import Layout from "@/components/Layout";
 import { SessionProvider } from "next-auth/react";
 import { Roboto } from "next/font/google";
+import ToastContextProvider from "@/components/Modals/Toast/toastProvider";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -20,11 +21,13 @@ export default function App({
       <Head>
         <title>Beanerd</title>
       </Head>
-      <SessionProvider session={session}>
-        <Layout className={roboto.className}>
-          <Component {...pageProps} />
-        </Layout>
-      </SessionProvider>
+      <ToastContextProvider>
+        <SessionProvider session={session}>
+          <Layout className={roboto.className}>
+            <Component {...pageProps} />
+          </Layout>
+        </SessionProvider>
+      </ToastContextProvider>
     </>
   );
 }

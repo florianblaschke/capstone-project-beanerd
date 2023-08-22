@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { getSession } from "next-auth/react";
 import { StyledList, StyledItem } from "@/lib/styled-components";
+import { useToast } from "@/components/Modals/Toast/toastProvider";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
@@ -14,6 +15,7 @@ export default function DetailProfile() {
   const [rateEdit, setRateEdit] = useState(false);
   const router = useRouter();
   const { id } = router.query;
+  const toast = useToast();
   const { data, isLoading, mutate } = useSWR(`/api/user/${id}`, fetcher);
 
   if (isLoading) return <h1>Loading</h1>;
@@ -32,12 +34,12 @@ export default function DetailProfile() {
     });
 
     if (res.status === 418) {
-      return alert("I am watching you, Ernst!");
+      return toast.errorToast("I am watching you, Ernst!");
     }
     if (!res.ok) {
-      return alert("Mist! Kaffee über die Füße gekippt!");
+      return toast.errorToast("Mist! Kaffee über die Füße gekippt!");
     }
-
+    toast.successToast("Brühmethode erfolgreich gespeichert!");
     mutate();
     setEdit(!edit);
   }
@@ -55,17 +57,19 @@ export default function DetailProfile() {
     });
 
     if (!res.ok) {
-      return alert("Dein Rating passt uns nicht! Eine Zahl von 0 - 100!");
+      return toast.errorToast(
+        "Dein Rating passt uns nicht! Eine Zahl von 0 - 100!"
+      );
     }
     if (res.status === 202) {
       setRateEdit(!rateEdit);
       mutate();
-      return alert("Dein Rating wurde erfolgreich angepasst!");
+      return toast.successToast("Dein Rating wurde erfolgreich angepasst!");
     }
     if (res.status === 201) {
       setRateEdit(!rateEdit);
       mutate();
-      return;
+      return toast.successToast("Dein Rating wurde erfolgreich gespeichert!");
     }
   }
   return (

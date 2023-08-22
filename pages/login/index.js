@@ -5,6 +5,7 @@ import { getSession } from "next-auth/react";
 import logo from "@/public/logo.svg";
 import CreateAccount from "@/components/LoginForms/createAccountForm";
 import Login from "@/components/LoginForms";
+import { useToast } from "@/components/Modals/Toast/toastProvider";
 import {
   StyledDivInheritVariant,
   StyledImageMarginTop,
@@ -14,6 +15,7 @@ import {
 
 export default function Profile() {
   const [formSelect, setFormSelect] = useState(false);
+  const toast = useToast();
   const router = useRouter();
 
   async function onLogin(event) {
@@ -30,7 +32,7 @@ export default function Profile() {
     });
 
     if (!res.ok) {
-      return alert("Benutzername oder Passwort falsch!");
+      return toast.errorToast("Benutzername oder Passwort falsch!");
     }
 
     router.push(res.url);
@@ -44,7 +46,7 @@ export default function Profile() {
 
     const { password, confirm } = data;
     if (password !== confirm) {
-      return alert("Passwörter stimmen nicht überein!");
+      return toast.errorToast("Passwörter stimmen nicht überein!");
     }
 
     const res = await fetch("api/auth/submit", {
@@ -54,14 +56,16 @@ export default function Profile() {
     });
 
     if (res.status === 418) {
-      return alert("Sry, dieser Name ist leider schon vergeben!");
+      return toast.errorToast("Sry, dieser Name ist leider schon vergeben!");
     }
     if (res.status === 400) {
-      return alert("Huups, da ist uns wohl der Tamper auf den Fuß gefallen...");
+      return toast.errorToast(
+        "Huups, da ist uns wohl der Tamper auf den Fuß gefallen..."
+      );
     }
     if (res.ok) {
       setFormSelect(!formSelect);
-      alert("Benutzer erfolgreich angelegt!");
+      toast.successToast("Benutzer erfolgreich angelegt!");
     }
   }
 
