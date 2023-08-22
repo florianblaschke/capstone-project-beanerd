@@ -1,8 +1,10 @@
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
+import { useToast } from "@/components/Modals/Toast/ToastContext";
 
 export default function AddRoast() {
   const router = useRouter();
+  const toast = useToast();
 
   async function addRoast(event) {
     event.preventDefault();
@@ -18,14 +20,19 @@ export default function AddRoast() {
       body: JSON.stringify(data),
     });
     if (res.status === 400) {
-      alert("This coffee already exists");
+      toast.errorToast("Diesen Kaffee kennen wir bereits!");
     }
     if (res.status === 418) {
-      alert("You can't submit empty fields and/or just numbers.");
+      toast.errorToast("Sry – leere Felder und/oder nur Zahlen gehen nicht!");
     }
     if (res.ok) {
+      toast.successToast("Kaffee erfolgreich erstellt!");
       router.push("/");
     }
   }
-  return <Form onSubmit={addRoast} />;
+  return (
+    <>
+      <Form onSubmit={addRoast} />
+    </>
+  );
 }

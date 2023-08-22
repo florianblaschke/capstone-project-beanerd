@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { useToast } from "@/components/Modals/Toast/ToastContext";
 import useSWR from "swr";
 import RoastDetailCard from "@/components/RoastDetailCard";
 
@@ -8,8 +9,9 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Detail() {
   const { data: session } = useSession();
   const router = useRouter();
-  const [edit, setEdit] = useState(false);
   const { id } = router.query;
+  const [edit, setEdit] = useState(false);
+  const toast = useToast();
   const { data, isLoading, mutate } = useSWR(`api/roasts/${id}`, fetcher);
 
   if (isLoading) return <h1>... is Loading</h1>;
@@ -31,13 +33,14 @@ export default function Detail() {
     });
 
     if (res.status === 400) {
-      alert("This roast already exists");
+      toast.errorToast("Diesen Kaffee gibt es bereits!");
     }
     if (res.status === 401) {
-      alert("Something went wrong – please try again");
+      toast.errorToast("Da ist was schief gelaufen! Probiere es nochmal!");
     }
 
     if (res.ok) {
+      toast.successToast("Änderungen gespeichert!");
       mutate();
       setEdit(!edit);
     }
@@ -51,17 +54,17 @@ export default function Detail() {
     });
 
     if (res.status === 418) {
-      return alert("Dieser Roast ist schon in deinen Favoriten!");
+      return toast.errorToast("Dieser Roast ist schon in deinen Favoriten!");
     }
 
     if (res.status === 500) {
-      return alert(
+      return toast.errorToast(
         "Aua! Da haben wir uns an der Dampflanze die Finger verbrannt und konnten deine Anfrage daher nicht bearbeiten!"
       );
     }
 
     if (res.ok) {
-      return alert("Zu Favoriten hinzugefügt!");
+      return toast.successToast("Zu Favoriten hinzugefügt!");
     }
   }
 
