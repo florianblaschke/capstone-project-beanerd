@@ -88,7 +88,6 @@ export default function DetailProfile() {
     const data = Object.fromEntries(formData);
 
     const body = { ...data, id: pickedRecipe._id };
-    console.log(body);
     const res = await fetch(`/api/user/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
