@@ -6,6 +6,7 @@ import { useToast } from "@/components/Modals/Toast/toastProvider";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
+import EditBrewMethodForm from "@/components/BrewmethodsForm/edit";
 import Window from "@/components/Modals/Window/window";
 import useSWR from "swr";
 
@@ -74,6 +75,10 @@ export default function DetailProfile() {
       return toast.successToast("Dein Rating wurde erfolgreich gespeichert!");
     }
   }
+
+  async function onChangeEntries() {
+    console.log("yeah");
+  }
   return (
     <>
       <RoastDetailCardProfile
@@ -96,6 +101,7 @@ export default function DetailProfile() {
           {data.relatedMethods.map((method) => (
             <StyledItem key={method._id}>
               <BrewMethod
+                showModal={() => setShowModal(!showModal)}
                 method={method.method}
                 coffee={method.coffee}
                 water={method.water}
@@ -108,15 +114,9 @@ export default function DetailProfile() {
       ) : (
         "Du hast noch keine Brühmethode für diesen Kaffee!"
       )}
-      <button
-        onClick={() => setShowModal(!showModal)}
-        style={{ "margin-bottom": "20px" }}
-      >
-        Click me
-      </button>
       {showModal && (
-        <Window onClose={() => setShowModal(!showModal)}>
-          Hellasdl naskfasoidnalksj nlaisuhd nluia bsdl kajn sfl iubso
+        <Window onClose={() => console.log("not working")}>
+          <EditBrewMethodForm onSubmit={onChangeEntries} />
         </Window>
       )}
     </>
