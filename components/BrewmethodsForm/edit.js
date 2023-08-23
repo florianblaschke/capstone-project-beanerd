@@ -9,11 +9,19 @@ import {
   StyledGridButton,
 } from "@/lib/styled-components";
 
-export default function EditBrewMethodForm({ onSubmit }) {
+export default function EditBrewMethodForm({
+  onSubmit,
+  onClose,
+  method,
+  coffee,
+  water,
+  time,
+  grind,
+}) {
   return (
     <StyledGridFormEdit onSubmit={onSubmit}>
       <StyledLabelEdit htmlFor="method">Brühmethode</StyledLabelEdit>
-      <StyledSelectEdit id="method" name="method">
+      <StyledSelectEdit id="method" name="method" defaultValue={method}>
         <option value="filter">Filter</option>
         <option value="bialetti">Herdkännchen</option>
         <option value="espresso">Siebträger</option>
@@ -21,21 +29,26 @@ export default function EditBrewMethodForm({ onSubmit }) {
       <StyledLabelVariant htmlFor="coffee">Kaffee</StyledLabelVariant>
       <StyledLabelVariant htmlFor="water">Wasser</StyledLabelVariant>
       <StyledInputGridVariant
-        placeholder="Kaffee in g"
+        defaultValue={coffee}
         id="coffee"
         name="coffee"
         type="number"
       />
       <StyledInputGridVariant
-        placeholder="Wasser in g"
+        defaultValue={water}
         id="water"
         name="water"
         type="number"
       />
       <StyledLabelVariant htmlFor="time">Brühzeit</StyledLabelVariant>
       <StyledLabel htmlFor="grind">Mahlgrad</StyledLabel>
-      <StyledInputGridVariant placeholder="Sekunden" id="time" name="time" />
-      <StyledSelect id="grind" name="grind">
+      <StyledInputGridVariant
+        placeholder="Sekunden"
+        id="time"
+        name="time"
+        defaultValue={time}
+      />
+      <StyledSelect id="grind" name="grind" defaultValue={grind}>
         <option value="coarse">coarse</option>
         <option value="coarse-medium">coarse-medium</option>
         <option value="medium">medium</option>
@@ -44,7 +57,9 @@ export default function EditBrewMethodForm({ onSubmit }) {
         <option value="super-fine">super-fine</option>
       </StyledSelect>
       <StyledGridButton>Speichern</StyledGridButton>
-      <StyledGridButton>Abbrechen</StyledGridButton>
+      <StyledGridButton type="button" onClick={onClose}>
+        Abbrechen
+      </StyledGridButton>
     </StyledGridFormEdit>
   );
 }

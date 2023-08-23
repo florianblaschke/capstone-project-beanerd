@@ -16,6 +16,7 @@ export default function DetailProfile() {
   const [edit, setEdit] = useState(false);
   const [rateEdit, setRateEdit] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [pickedRecipe, setPickedRecipe] = useState();
   const router = useRouter();
   const { id } = router.query;
   const toast = useToast();
@@ -24,6 +25,10 @@ export default function DetailProfile() {
   if (isLoading) return <h1>Loading</h1>;
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
 
+  function showClickedRecipe(id) {
+    setShowModal(!showModal);
+    setPickedRecipe(...data.relatedMethods.filter(({ _id }) => _id === id));
+  }
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -76,7 +81,8 @@ export default function DetailProfile() {
     }
   }
 
-  async function onChangeEntries() {
+  async function onChangeEntries(event) {
+    event.preventDefault();
     console.log("yeah");
   }
   return (
@@ -101,7 +107,8 @@ export default function DetailProfile() {
           {data.relatedMethods.map((method) => (
             <StyledItem key={method._id}>
               <BrewMethod
-                showModal={() => setShowModal(!showModal)}
+                showModal={() => showClickedRecipe(method._id)}
+                id={method._id}
                 method={method.method}
                 coffee={method.coffee}
                 water={method.water}
@@ -115,8 +122,16 @@ export default function DetailProfile() {
         "Du hast noch keine Brühmethode für diesen Kaffee!"
       )}
       {showModal && (
-        <Window onClose={() => console.log("not working")}>
-          <EditBrewMethodForm onSubmit={onChangeEntries} />
+        <Window>
+          <EditBrewMethodForm
+            onSubmit={onChangeEntries}
+            onClose={() => setShowModal(!showModal)}
+            method={pickedRecipe.method}
+            coffee={pickedRecipe.coffee}
+            water={pickedRecipe.water}
+            time={pickedRecipe.time}
+            grind={pickedRecipe.grind}
+          />
         </Window>
       )}
     </>
