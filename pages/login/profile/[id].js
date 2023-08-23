@@ -6,6 +6,7 @@ import { useToast } from "@/components/Modals/Toast/toastProvider";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
+import Window from "@/components/Modals/Window/window";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -13,6 +14,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function DetailProfile() {
   const [edit, setEdit] = useState(false);
   const [rateEdit, setRateEdit] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   const toast = useToast();
@@ -105,6 +107,17 @@ export default function DetailProfile() {
         </StyledList>
       ) : (
         "Du hast noch keine Brühmethode für diesen Kaffee!"
+      )}
+      <button
+        onClick={() => setShowModal(!showModal)}
+        style={{ "margin-bottom": "20px" }}
+      >
+        Click me
+      </button>
+      {showModal && (
+        <Window onClose={() => setShowModal(!showModal)}>
+          Hellasdl naskfasoidnalksj nlaisuhd nluia bsdl kajn sfl iubso
+        </Window>
       )}
     </>
   );
