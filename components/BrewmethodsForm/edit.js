@@ -56,7 +56,7 @@ export default function EditBrewMethodForm({
         <option value="fine">fine</option>
         <option value="super-fine">super-fine</option>
       </StyledSelect>
-      <StyledGridButton>Speichern</StyledGridButton>
+      <StyledGridButton type="submit">Speichern</StyledGridButton>
       <StyledGridButton type="button" onClick={onClose}>
         Abbrechen
       </StyledGridButton>

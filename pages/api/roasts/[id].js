@@ -16,21 +16,4 @@ export default async function handler(req, res) {
 
     return res.status(200).json(singleRoast);
   }
-
-  if (req.method === "PUT") {
-    const existingRoast = await Roast.findOne(req.body);
-    if (existingRoast) {
-      return res.status(400).json({ error: "Roast already exists" });
-    }
-
-    const updateRoast = await Roast.findByIdAndUpdate(id, { $set: req.body });
-
-    if (!updateRoast) {
-      return res
-        .status(404)
-        .json({ error: "We did not find the coffee you wanted to update …" });
-    }
-
-    return res.status(201).json({ message: "Update successfull!" });
-  }
 }

@@ -1,5 +1,4 @@
 import defaultPic from "@/public/default.jpg";
-import EditForm from "../EditForm";
 import { useRouter } from "next/router";
 import {
   StyledDiv,
@@ -14,7 +13,6 @@ import {
 } from "@/lib/styled-components";
 
 export default function RoastDetailCard({
-  onSubmit,
   name,
   roaster,
   arabica,
@@ -22,8 +20,6 @@ export default function RoastDetailCard({
   level,
   provenance,
   score,
-  edit,
-  setEdit,
   session,
   onFavorite,
 }) {
@@ -38,51 +34,35 @@ export default function RoastDetailCard({
         height={""}
         alt="Coffee-Package"
       />
-      {!edit && (
-        <StyledSectionVariant>
-          <StyledHeading>{name}</StyledHeading>
-          <StyledParagraph>{roaster}</StyledParagraph>
-          <StyledHeading>Arabica / Robusta</StyledHeading>
-          <StyledParagraph>
-            {arabica} / {robusta}
-          </StyledParagraph>
-          <StyledHeading>Röstgrad</StyledHeading>
-          <StyledParagraph>{level}</StyledParagraph>
-          <StyledHeading>Herkunft</StyledHeading>
-          <StyledParagraph>{provenance}</StyledParagraph>
-          <StyledRating>
-            Bewertung:{" "}
-            {score.length > 0
-              ? Math.floor(
-                  score.reduce((acc, curr) => acc + curr, 0) / score.length
-                )
-              : 0}
-            /100
-          </StyledRating>
-          <StyledNumberRating>
-            {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-          </StyledNumberRating>
-        </StyledSectionVariant>
-      )}
-      {edit && (
-        <EditForm
-          onSubmit={onSubmit}
-          name={name}
-          roaster={roaster}
-          provenance={provenance}
-          arabica={arabica}
-          robusta={robusta}
-          level={level}
-        />
-      )}
+      <StyledSectionVariant>
+        <StyledHeading>{name}</StyledHeading>
+        <StyledParagraph>{roaster}</StyledParagraph>
+        <StyledHeading>Arabica / Robusta</StyledHeading>
+        <StyledParagraph>
+          {arabica} / {robusta}
+        </StyledParagraph>
+        <StyledHeading>Röstgrad</StyledHeading>
+        <StyledParagraph>{level}</StyledParagraph>
+        <StyledHeading>Herkunft</StyledHeading>
+        <StyledParagraph>{provenance}</StyledParagraph>
+        <StyledRating>
+          Bewertung:{" "}
+          {score.length > 0
+            ? Math.floor(
+                score.reduce((acc, curr) => acc + curr, 0) / score.length
+              )
+            : 0}
+          /100
+        </StyledRating>
+        <StyledNumberRating>
+          {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+        </StyledNumberRating>
+      </StyledSectionVariant>
       <StyledDivButtonWrapper>
         <StyledButton onClick={() => router.push("/")}>Zurück</StyledButton>
         {session && (
           <StyledButton onClick={onFavorite}>Favorisieren</StyledButton>
         )}
-        <StyledButton onClick={() => setEdit(!edit)}>
-          {edit ? "Abbrechen" : "Bearbeiten"}
-        </StyledButton>
       </StyledDivButtonWrapper>
     </StyledDiv>
   );

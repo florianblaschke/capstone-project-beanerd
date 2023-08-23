@@ -83,7 +83,27 @@ export default function DetailProfile() {
 
   async function onChangeEntries(event) {
     event.preventDefault();
-    console.log("yeah");
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    const body = { ...data, id: pickedRecipe._id };
+    console.log(body);
+    const res = await fetch(`/api/user/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      return toast.errorToast("Da ist was schiefgelaufen!");
+    }
+
+    if (res.ok) {
+      setShowModal(!showModal);
+      mutate();
+      return toast.successToast("Deine Änderungen wurden gespeichert!");
+    }
   }
   return (
     <>

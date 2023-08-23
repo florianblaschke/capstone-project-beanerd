@@ -76,6 +76,18 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: error.message });
       }
     }
+
+    if (req.method === "PUT") {
+      const { id } = req.body;
+      try {
+        await Method.findByIdAndUpdate(id, {
+          $set: req.body,
+        });
+        return res.status(201).json({ message: "Success!" });
+      } catch (error) {
+        return res.status(400).json({ error: error.message });
+      }
+    }
   } else {
     return res.status(401).json({ message: "You are not authorized!" });
   }
