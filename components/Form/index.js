@@ -28,7 +28,7 @@ export default function Form({ onSubmit }) {
     <StyledForm onSubmit={onSubmit}>
       <StyledLabel htmlFor="name">Name:</StyledLabel>
       <StyledInput
-        pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
+        pattern="^(?=.*[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ])[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ\d\s]+$"
         type="text"
         id="name"
         name="name"
@@ -36,7 +36,7 @@ export default function Form({ onSubmit }) {
       />
       <StyledLabel htmlFor="roaster">Röster:</StyledLabel>
       <StyledInput
-        pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
+        pattern="^(?=.*[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ])[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ\d\s]+$"
         type="text"
         id="roaster"
         name="roaster"
@@ -58,7 +58,7 @@ export default function Form({ onSubmit }) {
         <StyledLabelVariant htmlFor="provenance">Herkunft:</StyledLabelVariant>
         <StyledLabel htmlFor="level">Röstgrad:</StyledLabel>
         <StyledInputVariant
-          pattern="^(?=.*[a-zA-ZäöüÄÖÜß])[a-zA-ZäöüÄÖÜß\d\s]+$"
+          pattern="^(?=.*[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ])[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ\d\s]+$"
           type="text"
           id="provenance"
           name="provenance"
