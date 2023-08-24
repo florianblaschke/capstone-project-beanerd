@@ -27,9 +27,9 @@ export default function DetailProfile() {
 
   function showClickedRecipe(id) {
     setShowModal(true);
-    setPickedRecipe(...data.relatedMethods.filter(({ _id }) => _id === id));
+    setPickedRecipe(data.relatedMethods.find(({ _id }) => _id === id));
   }
-
+  console.log(pickedRecipe);
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -89,7 +89,7 @@ export default function DetailProfile() {
     const data = Object.fromEntries(formData);
 
     const body = { ...data, id: pickedRecipe._id };
-    const res = await fetch(`/api/user/${id}`, {
+    const res = await fetch(`/api/methods`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
