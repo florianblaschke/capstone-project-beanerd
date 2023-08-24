@@ -6,6 +6,8 @@ import { useToast } from "@/components/Modals/Toast/toastProvider";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
+import EditBrewMethodForm from "@/components/BrewmethodsForm/edit";
+import Window from "@/components/Modals/Window/window";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -13,6 +15,8 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function DetailProfile() {
   const [edit, setEdit] = useState(false);
   const [rateEdit, setRateEdit] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [pickedRecipe, setPickedRecipe] = useState();
   const router = useRouter();
   const { id } = router.query;
   const toast = useToast();
@@ -21,6 +25,11 @@ export default function DetailProfile() {
   if (isLoading) return <h1>Loading</h1>;
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
 
+  function showClickedRecipe(id) {
+    setShowModal(true);
+    setPickedRecipe(data.relatedMethods.find(({ _id }) => _id === id));
+  }
+  console.log(pickedRecipe);
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -72,6 +81,30 @@ export default function DetailProfile() {
       return toast.successToast("Dein Rating wurde erfolgreich gespeichert!");
     }
   }
+
+  async function onChangeEntries(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    const body = { ...data, id: pickedRecipe._id };
+    const res = await fetch(`/api/methods`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      return toast.errorToast("Da ist was schiefgelaufen!");
+    }
+
+    if (res.ok) {
+      setShowModal(!showModal);
+      mutate();
+      return toast.successToast("Deine Änderungen wurden gespeichert!");
+    }
+  }
   return (
     <>
       <RoastDetailCardProfile
@@ -94,6 +127,8 @@ export default function DetailProfile() {
           {data.relatedMethods.map((method) => (
             <StyledItem key={method._id}>
               <BrewMethod
+                showModal={() => showClickedRecipe(method._id)}
+                id={method._id}
                 method={method.method}
                 coffee={method.coffee}
                 water={method.water}
@@ -105,6 +140,19 @@ export default function DetailProfile() {
         </StyledList>
       ) : (
         "Du hast noch keine Brühmethode für diesen Kaffee!"
+      )}
+      {showModal && (
+        <Window onClose={() => setShowModal(false)}>
+          <EditBrewMethodForm
+            onSubmit={onChangeEntries}
+            onClose={() => setShowModal(false)}
+            method={pickedRecipe.method}
+            coffee={pickedRecipe.coffee}
+            water={pickedRecipe.water}
+            time={pickedRecipe.time}
+            grind={pickedRecipe.grind}
+          />
+        </Window>
       )}
     </>
   );

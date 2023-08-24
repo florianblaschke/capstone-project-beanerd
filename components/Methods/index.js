@@ -1,8 +1,15 @@
 import { StyledTable } from "@/lib/styled-components";
 
-export default function BrewMethod({ method, coffee, water, time, grind }) {
+export default function BrewMethod({
+  showModal,
+  method,
+  coffee,
+  water,
+  time,
+  grind,
+}) {
   return (
-    <StyledTable>
+    <StyledTable onClick={showModal}>
       <thead>
         <tr>
           <th>Methode</th>
