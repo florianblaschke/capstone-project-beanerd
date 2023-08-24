@@ -1,14 +1,15 @@
-import { useCallback, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 export default function Window({ children, onClose }) {
   const modalWindow = useRef();
-  const backDropHandler = useCallback((event) => {
+
+  function backDropHandler(event) {
     if (!modalWindow.current.contains(event.target)) {
       onClose();
     }
-  }, []);
+  }
 
   useEffect(() => {
     setTimeout(() => {
