@@ -26,9 +26,10 @@ export default function DetailProfile() {
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
 
   function showClickedRecipe(id) {
-    setShowModal(!showModal);
+    setShowModal(true);
     setPickedRecipe(...data.relatedMethods.filter(({ _id }) => _id === id));
   }
+
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -141,10 +142,10 @@ export default function DetailProfile() {
         "Du hast noch keine Brühmethode für diesen Kaffee!"
       )}
       {showModal && (
-        <Window>
+        <Window onClose={() => setShowModal(false)}>
           <EditBrewMethodForm
             onSubmit={onChangeEntries}
-            onClose={() => setShowModal(!showModal)}
+            onClose={() => setShowModal(false)}
             method={pickedRecipe.method}
             coffee={pickedRecipe.coffee}
             water={pickedRecipe.water}

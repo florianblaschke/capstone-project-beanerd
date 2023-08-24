@@ -44,6 +44,7 @@ export default function EditBrewMethodForm({
       <StyledLabel htmlFor="grind">Mahlgrad</StyledLabel>
       <StyledInputGridVariant
         placeholder="Sekunden"
+        type="number"
         id="time"
         name="time"
         defaultValue={time}

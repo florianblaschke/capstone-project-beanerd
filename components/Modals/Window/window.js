@@ -1,10 +1,25 @@
+import { useCallback, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 export default function Window({ children, onClose }) {
+  const modalWindow = useRef();
+  const backDropHandler = useCallback((event) => {
+    if (!modalWindow.current.contains(event.target)) {
+      onClose();
+    }
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.addEventListener("click", backDropHandler);
+    });
+    return () => window.removeEventListener("click", backDropHandler);
+  }, []);
+
   const Modal = (
-    <StyledModalWrapper onClick={onClose}>
-      <StyledModalBox>{children}</StyledModalBox>
+    <StyledModalWrapper>
+      <StyledModalBox ref={modalWindow}>{children}</StyledModalBox>
     </StyledModalWrapper>
   );
 
