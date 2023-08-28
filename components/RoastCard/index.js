@@ -8,8 +8,8 @@ import {
   StyledParagraph,
   StyledRating,
   StyledNumberRating,
+  StyledFavDiv,
 } from "@/lib/styled-components";
-import styled from "styled-components";
 
 export default function RoastCard({ name, roaster, score, id, isFavorite }) {
   return (
@@ -39,17 +39,7 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
           </StyledNumberRating>
         </StyledSection>
       </StyledDivCardVariant>
-      {isFavorite && <StyledP>🖤</StyledP>}
+      {isFavorite && <StyledFavDiv>🖤</StyledFavDiv>}
     </StyledLinkVariant>
   );
 }
-
-const StyledP = styled.p`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  height: 8%;
-  font-weight: 400;
-  font-size: 10px;
-  margin: 0px;
-`;
