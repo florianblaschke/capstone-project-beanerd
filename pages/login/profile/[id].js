@@ -29,7 +29,6 @@ export default function DetailProfile() {
     setShowModal(true);
     setPickedRecipe(data.relatedMethods.find(({ _id }) => _id === id));
   }
-  console.log(pickedRecipe);
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);

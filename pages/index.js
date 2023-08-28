@@ -10,7 +10,7 @@ export default function Home() {
   const { data: session } = useSession();
   const { data, isLoading } = useSWR("api/roasts", fetcher);
   const { data: favorites, isLoading: favoritesLoading } = useSWR(
-    () => (session ? "api/user" : null),
+    session ? "api/user" : null,
     fetcher
   );
   if (isLoading || favoritesLoading) return <h1>... is Loading</h1>;
