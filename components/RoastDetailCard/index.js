@@ -62,7 +62,7 @@ export default function RoastDetailCard({
         <StyledButton onClick={() => router.push("/")}>Zurück</StyledButton>
         {session && (
           <StyledButton onClick={onFavorite}>
-            {isFavorite ? "Love this" : "Favorisieren"}
+            {isFavorite ? "Ist Favorit" : "Favorisieren"}
           </StyledButton>
         )}
       </StyledDivButtonWrapper>
