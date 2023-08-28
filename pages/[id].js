@@ -11,10 +11,19 @@ export default function Detail() {
   const { id } = router.query;
   const toast = useToast();
   const { data, isLoading } = useSWR(`api/roasts/${id}`, fetcher);
-
-  if (isLoading) return <h1>... is Loading</h1>;
-
+  const { data: favorites, isLoading: favoritesLoading } = useSWR(
+    () => (session ? "api/user" : null),
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+  if (isLoading || favoritesLoading) return <h1>... is Loading</h1>;
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
+
+  function isFavorite(id) {
+    if (session) {
+      return favorites.roasts.some((roast) => roast._id === id);
+    } else return false;
+  }
 
   async function addToFavorites() {
     const res = await fetch("/api/user", {
@@ -39,16 +48,19 @@ export default function Detail() {
   }
 
   return (
-    <RoastDetailCard
-      onFavorite={addToFavorites}
-      name={data.name}
-      roaster={data.roaster}
-      arabica={data.arabica}
-      robusta={data.robusta}
-      level={data.level}
-      provenance={data.provenance}
-      score={data.score.map(({ rating }) => rating)}
-      session={session}
-    />
+    <>
+      <RoastDetailCard
+        onFavorite={addToFavorites}
+        name={data.name}
+        roaster={data.roaster}
+        arabica={data.arabica}
+        robusta={data.robusta}
+        level={data.level}
+        provenance={data.provenance}
+        score={data.score.map(({ rating }) => rating)}
+        session={session}
+        isFavorite={isFavorite(id)}
+      />
+    </>
   );
 }

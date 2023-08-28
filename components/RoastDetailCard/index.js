@@ -22,9 +22,9 @@ export default function RoastDetailCard({
   score,
   session,
   onFavorite,
+  isFavorite,
 }) {
   const router = useRouter();
-
   return (
     <StyledDiv>
       <StyledImageDetailVariant
@@ -61,7 +61,9 @@ export default function RoastDetailCard({
       <StyledDivButtonWrapper>
         <StyledButton onClick={() => router.push("/")}>Zurück</StyledButton>
         {session && (
-          <StyledButton onClick={onFavorite}>Favorisieren</StyledButton>
+          <StyledButton onClick={onFavorite}>
+            {isFavorite ? "Love this" : "Favorisieren"}
+          </StyledButton>
         )}
       </StyledDivButtonWrapper>
     </StyledDiv>
