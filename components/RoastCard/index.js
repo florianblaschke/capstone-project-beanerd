@@ -8,9 +8,10 @@ import {
   StyledParagraph,
   StyledRating,
   StyledNumberRating,
+  StyledFavDiv,
 } from "@/lib/styled-components";
 
-export default function RoastCard({ name, roaster, score, id }) {
+export default function RoastCard({ name, roaster, score, id, isFavorite }) {
   return (
     <StyledLinkVariant href={`/${id}`}>
       <StyledDivCardVariant>
@@ -38,6 +39,7 @@ export default function RoastCard({ name, roaster, score, id }) {
           </StyledNumberRating>
         </StyledSection>
       </StyledDivCardVariant>
+      {isFavorite && <StyledFavDiv>🖤</StyledFavDiv>}
     </StyledLinkVariant>
   );
 }
