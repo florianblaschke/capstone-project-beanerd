@@ -15,12 +15,6 @@ export default function Home() {
   );
   if (isLoading || favoritesLoading) return <h1>... is Loading</h1>;
 
-  function isFavorite(id) {
-    if (session) {
-      return favorites.roasts.some((roast) => roast._id === id);
-    } else return false;
-  }
-
   return (
     <>
       <Head>
@@ -34,7 +28,12 @@ export default function Home() {
           <StyledItem key={roast._id}>
             <RoastCard
               id={roast._id}
-              isFavorite={isFavorite(roast._id)}
+              isFavorite={
+                session &&
+                favorites.roasts.some(
+                  (roastEntry) => roastEntry._id === roast.id
+                )
+              }
               name={roast.name}
               roaster={roast.roaster}
               score={roast.score.map(({ rating }) => rating)}
