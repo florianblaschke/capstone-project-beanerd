@@ -29,6 +29,7 @@ export default function DetailProfile() {
     setShowModal(true);
     setPickedRecipe(data.relatedMethods.find(({ _id }) => _id === id));
   }
+
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -104,6 +105,22 @@ export default function DetailProfile() {
       return toast.successToast("Deine Änderungen wurden gespeichert!");
     }
   }
+
+  async function deleteBrewRecipe(id) {
+    const res = await fetch(`/api/methods/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!res.ok) {
+      return toast.errorToast("Da ist was schiefgelaufen ...");
+    }
+
+    if (res.ok) {
+      toast.successToast("Das Brührezept wurde gelöscht!");
+      setShowModal(false);
+      mutate();
+    }
+  }
   return (
     <>
       <RoastDetailCardProfile
@@ -150,6 +167,7 @@ export default function DetailProfile() {
             water={pickedRecipe.water}
             time={pickedRecipe.time}
             grind={pickedRecipe.grind}
+            onDelete={() => deleteBrewRecipe(pickedRecipe._id)}
           />
         </Window>
       )}

@@ -7,6 +7,7 @@ import {
   StyledLabelVariant,
   StyledInputGridVariant,
   StyledGridButton,
+  StyledGridButtonSpan,
 } from "@/lib/styled-components";
 
 export default function EditBrewMethodForm({
@@ -17,6 +18,7 @@ export default function EditBrewMethodForm({
   water,
   time,
   grind,
+  onDelete,
 }) {
   return (
     <StyledGridFormEdit onSubmit={onSubmit}>
@@ -61,6 +63,9 @@ export default function EditBrewMethodForm({
       <StyledGridButton type="button" onClick={onClose}>
         Abbrechen
       </StyledGridButton>
+      <StyledGridButtonSpan type="button" onClick={onDelete}>
+        Löschen
+      </StyledGridButtonSpan>
     </StyledGridFormEdit>
   );
 }

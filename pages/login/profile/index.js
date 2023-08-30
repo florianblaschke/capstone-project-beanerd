@@ -1,4 +1,4 @@
-import { signOut, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import { StyledList, StyledItem } from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
 import useSWR from "swr";
