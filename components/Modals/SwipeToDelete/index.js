@@ -33,7 +33,7 @@ export default function SwipeToDelete({ children, onDelete }) {
     ref.current.style.transition = "transform 1s";
     ref.current.style.transform = "translate(0px)";
     setTimeout(() => {
-      ref.current.style.transition = "";
+      if (ref.current) ref.current.style.transition = "";
     }, 1000);
   }
 
