@@ -143,15 +143,16 @@ export default function DetailProfile() {
         <StyledList>
           {data.relatedMethods.map((method) => (
             <StyledItem key={method._id}>
-              <BrewMethod
-                showModal={() => showClickedRecipe(method._id)}
-                id={method._id}
-                method={method.method}
-                coffee={method.coffee}
-                water={method.water}
-                time={method.time}
-                grind={method.grind}
-              />
+              <SwipeToDelete onDelete={() => deleteBrewRecipe(method._id)}>
+                <BrewMethod
+                  showModal={() => showClickedRecipe(method._id)}
+                  method={method.method}
+                  coffee={method.coffee}
+                  water={method.water}
+                  time={method.time}
+                  grind={method.grind}
+                />
+              </SwipeToDelete>
             </StyledItem>
           ))}
         </StyledList>
