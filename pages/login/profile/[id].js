@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getSession } from "next-auth/react";
-import { StyledList, StyledItem } from "@/lib/styled-components";
+import {
+  StyledList,
+  StyledItem,
+  StyledSimpleDiv,
+} from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
 import SwipeToDelete from "@/components/Modals/SwipeToDelete";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
@@ -157,7 +161,9 @@ export default function DetailProfile() {
           ))}
         </StyledList>
       ) : (
-        "Du hast noch keine Brühmethode für diesen Kaffee!"
+        <StyledSimpleDiv>
+          Du hast noch keine Brühmethode für diesen Kaffee!
+        </StyledSimpleDiv>
       )}
       {showModal && (
         <Window onClose={() => setShowModal(false)}>

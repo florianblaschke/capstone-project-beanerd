@@ -17,7 +17,9 @@ export default function SwipeToDelete({ children, onDelete }) {
         ref.current.removeEventListener("pointermove", horizontalMovement);
         ref.current.style.transform = `translate(-${window.innerWidth}px)`;
         ref.current.style.transition = `transform 0.5s`;
-        onDelete();
+        setTimeout(() => {
+          onDelete();
+        }, 500);
       }
     }
   }
@@ -77,6 +79,6 @@ const Visible = styled.div`
 const Invisible = styled.button`
   border: none;
   background-color: red;
-  flex: 1 0 100%;
+  flex: 1 0 200%;
   text-align: left;
 `;
