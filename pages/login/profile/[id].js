@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getSession } from "next-auth/react";
 import { StyledList, StyledItem } from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
+import SwipeToDelete from "@/components/Modals/SwipeToDelete";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
