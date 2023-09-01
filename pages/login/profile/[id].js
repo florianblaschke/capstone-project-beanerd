@@ -1,8 +1,13 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getSession } from "next-auth/react";
-import { StyledList, StyledItem } from "@/lib/styled-components";
+import {
+  StyledList,
+  StyledItem,
+  StyledSimpleDiv,
+} from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
+import SwipeToDelete from "@/components/Modals/SwipeToDelete";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
 import RoastDetailCardProfile from "@/components/RoastDetailCardProfile";
 import BrewMethod from "@/components/Methods";
@@ -29,6 +34,7 @@ export default function DetailProfile() {
     setShowModal(true);
     setPickedRecipe(data.relatedMethods.find(({ _id }) => _id === id));
   }
+
   async function addBrewMethod(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -104,6 +110,22 @@ export default function DetailProfile() {
       return toast.successToast("Deine Änderungen wurden gespeichert!");
     }
   }
+
+  async function deleteBrewRecipe(id) {
+    const res = await fetch(`/api/methods/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!res.ok) {
+      return toast.errorToast("Da ist was schiefgelaufen ...");
+    }
+
+    if (res.ok) {
+      toast.successToast("Das Brührezept wurde gelöscht!");
+      setShowModal(false);
+      mutate();
+    }
+  }
   return (
     <>
       <RoastDetailCardProfile
@@ -125,20 +147,23 @@ export default function DetailProfile() {
         <StyledList>
           {data.relatedMethods.map((method) => (
             <StyledItem key={method._id}>
-              <BrewMethod
-                showModal={() => showClickedRecipe(method._id)}
-                id={method._id}
-                method={method.method}
-                coffee={method.coffee}
-                water={method.water}
-                time={method.time}
-                grind={method.grind}
-              />
+              <SwipeToDelete onDelete={() => deleteBrewRecipe(method._id)}>
+                <BrewMethod
+                  showModal={() => showClickedRecipe(method._id)}
+                  method={method.method}
+                  coffee={method.coffee}
+                  water={method.water}
+                  time={method.time}
+                  grind={method.grind}
+                />
+              </SwipeToDelete>
             </StyledItem>
           ))}
         </StyledList>
       ) : (
-        "Du hast noch keine Brühmethode für diesen Kaffee!"
+        <StyledSimpleDiv>
+          Du hast noch keine Brühmethode für diesen Kaffee!
+        </StyledSimpleDiv>
       )}
       {showModal && (
         <Window onClose={() => setShowModal(false)}>
@@ -150,6 +175,7 @@ export default function DetailProfile() {
             water={pickedRecipe.water}
             time={pickedRecipe.time}
             grind={pickedRecipe.grind}
+            onDelete={() => deleteBrewRecipe(pickedRecipe._id)}
           />
         </Window>
       )}

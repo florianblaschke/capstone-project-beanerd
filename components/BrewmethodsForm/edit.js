@@ -7,6 +7,7 @@ import {
   StyledLabelVariant,
   StyledInputGridVariant,
   StyledGridButton,
+  StyledGridButtonSpan,
 } from "@/lib/styled-components";
 
 export default function EditBrewMethodForm({
@@ -17,6 +18,7 @@ export default function EditBrewMethodForm({
   water,
   time,
   grind,
+  onDelete,
 }) {
   return (
     <StyledGridFormEdit onSubmit={onSubmit}>
@@ -33,12 +35,16 @@ export default function EditBrewMethodForm({
         id="coffee"
         name="coffee"
         type="number"
+        min="1"
+        required
       />
       <StyledInputGridVariant
         defaultValue={water}
         id="water"
         name="water"
         type="number"
+        min="1"
+        required
       />
       <StyledLabelVariant htmlFor="time">Brühzeit</StyledLabelVariant>
       <StyledLabel htmlFor="grind">Mahlgrad</StyledLabel>
@@ -47,7 +53,9 @@ export default function EditBrewMethodForm({
         type="number"
         id="time"
         name="time"
+        min="1"
         defaultValue={time}
+        required
       />
       <StyledSelect id="grind" name="grind" defaultValue={grind}>
         <option value="coarse">coarse</option>
@@ -61,6 +69,9 @@ export default function EditBrewMethodForm({
       <StyledGridButton type="button" onClick={onClose}>
         Abbrechen
       </StyledGridButton>
+      <StyledGridButtonSpan type="button" onClick={onDelete}>
+        Löschen
+      </StyledGridButtonSpan>
     </StyledGridFormEdit>
   );
 }

@@ -15,7 +15,7 @@ export default function Detail() {
     data: favorites,
     isLoading: favoritesLoading,
     mutate,
-  } = useSWR(() => (session ? "api/user" : null), fetcher);
+  } = useSWR(session ? "api/user" : null, fetcher);
   if (isLoading || favoritesLoading) return <h1>... is Loading</h1>;
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
 
