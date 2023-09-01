@@ -4,23 +4,13 @@ import { useRef } from "react";
 export default function SwipeToDelete({ children, onDelete }) {
   const ref = useRef();
   let initialX;
-  let deleteIntention = false;
+  let movementX = 0;
 
   function horizontalMovement(event) {
     const mouseX = event.clientX;
-    const movementX = initialX - mouseX;
+    movementX = initialX - mouseX;
     if (movementX > 5) {
       ref.current.style.transform = `translate(-${movementX}px)`;
-
-      if (movementX > window.innerWidth / 2) {
-        deleteIntention = true;
-        ref.current.removeEventListener("pointermove", horizontalMovement);
-        ref.current.style.transform = `translate(-${window.innerWidth}px)`;
-        ref.current.style.transition = `transform 0.5s`;
-        setTimeout(() => {
-          onDelete();
-        }, 500);
-      }
     }
   }
 
@@ -30,13 +20,20 @@ export default function SwipeToDelete({ children, onDelete }) {
   }
 
   function cancel() {
-    if (deleteIntention) return;
-    ref.current.removeEventListener("pointermove", horizontalMovement);
-    ref.current.style.transition = "transform 1s";
-    ref.current.style.transform = "translate(0px)";
-    setTimeout(() => {
-      if (ref.current) ref.current.style.transition = "";
-    }, 1000);
+    if (movementX >= 255) {
+      ref.current.style.transform = `translate(-${window.innerWidth}px)`;
+      ref.current.style.transition = `transform 0.5s`;
+      setTimeout(() => {
+        onDelete();
+      }, 500);
+    } else {
+      ref.current.removeEventListener("pointermove", horizontalMovement);
+      ref.current.style.transition = "transform 1s";
+      ref.current.style.transform = "translate(0px)";
+      setTimeout(() => {
+        if (ref.current) ref.current.style.transition = "";
+      }, 1000);
+    }
   }
 
   const Wrapper = ({ children }) => {
@@ -47,7 +44,7 @@ export default function SwipeToDelete({ children, onDelete }) {
         onPointerOut={() => cancel()}
       >
         <Visible>{children}</Visible>
-        <Invisible>Löschen</Invisible>
+        <Invisible type="button">Löschen</Invisible>
       </WrapperBox>
     );
   };
@@ -61,15 +58,12 @@ export default function SwipeToDelete({ children, onDelete }) {
 
 const Box = styled.div`
   width: 80vw;
-  border: 0px;
   overflow: hidden;
   touch-action: none;
-  border-radius: 8px;
 `;
 
 const WrapperBox = styled.div`
   display: flex;
-  flex-flow: row nowrap;
 `;
 
 const Visible = styled.div`

@@ -31,7 +31,7 @@ export default function Home() {
               isFavorite={
                 session &&
                 favorites.roasts.some(
-                  (roastEntry) => roastEntry._id === roast.id
+                  (roastEntry) => roastEntry._id === roast._id
                 )
               }
               name={roast.name}
