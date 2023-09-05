@@ -21,6 +21,7 @@ export default function Sections({
   return (
     <>
       <StyledDivButtonWrapperVariant>
+        Willkommen bei Beanerd! Suchst du etwas Bestimmtes?
         <StyledLinkSmooth href={"#topRated"}>Top bewertet</StyledLinkSmooth>
         <StyledLinkSmooth href={"#newIn"}>Neu</StyledLinkSmooth>
         <StyledLinkSmooth href={"#arabica"}>100% Arabica</StyledLinkSmooth>
