@@ -22,10 +22,18 @@ export default function Sections({
     <>
       <StyledDivButtonWrapperVariant>
         Willkommen bei Beanerd! Suchst du etwas Bestimmtes?
-        <StyledLinkSmooth href={"#topRated"}>Top bewertet</StyledLinkSmooth>
-        <StyledLinkSmooth href={"#newIn"}>Neu</StyledLinkSmooth>
-        <StyledLinkSmooth href={"#arabica"}>100% Arabica</StyledLinkSmooth>
-        <StyledLinkSmooth href={"#robusta"}>100% Robusta</StyledLinkSmooth>
+        <StyledLinkSmooth href={"#topRated"} scroll={false}>
+          Top bewertet
+        </StyledLinkSmooth>
+        <StyledLinkSmooth href={"#newIn"} scroll={false}>
+          Neu
+        </StyledLinkSmooth>
+        <StyledLinkSmooth href={"#arabica"} scroll={false}>
+          100% Arabica
+        </StyledLinkSmooth>
+        <StyledLinkSmooth href={"#robusta"} scroll={false}>
+          100% Robusta
+        </StyledLinkSmooth>
       </StyledDivButtonWrapperVariant>
       <StyledSectionWrapper>
         <StyledSectionUnder>
