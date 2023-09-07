@@ -1,3 +1,4 @@
+import Link from "next/link";
 import RoastCard from "../RoastCard";
 import {
   StyledList,
@@ -38,7 +39,9 @@ export default function Sections({
       <StyledSectionWrapper>
         <StyledSectionUnder>
           <StyledHeadingSection id="topRated">
-            Top bewertet
+            <Link href={{ pathname: "/search", query: { name: "topRated" } }}>
+              Top bewertet
+            </Link>
           </StyledHeadingSection>
           <StyledList>
             {topRated.map((roast, i) =>
@@ -63,7 +66,11 @@ export default function Sections({
         </StyledSectionUnder>
       </StyledSectionWrapper>
       <StyledSectionOver>
-        <StyledHeadingSection id="newIn">Neu hinzugefügt</StyledHeadingSection>
+        <StyledHeadingSection id="newIn">
+          <Link href={{ pathname: "/search", query: { name: "newIn" } }}>
+            Neu hinzugefügt
+          </Link>
+        </StyledHeadingSection>
         <StyledList>
           {newIn.map((roast, i) =>
             i >= 3 ? null : (
@@ -87,7 +94,11 @@ export default function Sections({
       </StyledSectionOver>
       <StyledSectionWrapper>
         <StyledSectionUnder>
-          <StyledHeadingSection id="arabica">100% Arabica</StyledHeadingSection>
+          <StyledHeadingSection id="arabica">
+            <Link href={{ pathname: "/search", query: { name: "arabica" } }}>
+              100% Arabica
+            </Link>
+          </StyledHeadingSection>
           <StyledList>
             {arabica.map((roast, i) =>
               i >= 3 ? null : (
@@ -111,7 +122,11 @@ export default function Sections({
         </StyledSectionUnder>
       </StyledSectionWrapper>
       <StyledSectionOver>
-        <StyledHeadingSection id="robusta">100% Robusta</StyledHeadingSection>
+        <StyledHeadingSection id="robusta">
+          <Link href={{ pathname: "/search", query: { name: "robusta" } }}>
+            100% Robusta
+          </Link>
+        </StyledHeadingSection>
         <StyledList>
           {robusta.map((roast, i) =>
             i >= 3 ? null : (
