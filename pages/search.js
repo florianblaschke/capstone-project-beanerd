@@ -1,10 +1,11 @@
-import { useRouter } from "next/router";
+import RoastCard from "@/components/RoastCard";
 import styled from "styled-components";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { StyledList, StyledItem } from "@/lib/styled-components";
-import RoastCard from "@/components/RoastCard";
 import { useState } from "react";
+import { roastsWithReducedScore, sortedForRating } from "@/lib/functions";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -18,6 +19,7 @@ export default function Search() {
   const router = useRouter();
   const searchQueryLink = router.query;
   const [query, setQuery] = useState("");
+  const [showAll, setShowAll] = useState(false);
 
   if (isLoading || favoritesLoading) return <h1>Loading...</h1>;
 
@@ -34,17 +36,8 @@ export default function Search() {
         result.push(...robusta);
       }
       if (value === "topRated") {
-        const roastsWithReducedScore = data.map((roast) => {
-          if (roast.score.length === 0) return { ...roast, reducedScore: 0 };
-          const reducedScore =
-            roast.score
-              .map(({ rating }) => rating)
-              .reduce((acc, curr) => acc + curr, 0) / roast.score.length;
-          return { ...roast, reducedScore: reducedScore };
-        });
-        const topRated = roastsWithReducedScore.sort(
-          (a, b) => b.reducedScore - a.reducedScore
-        );
+        const roastScore = roastsWithReducedScore(data);
+        const topRated = sortedForRating(roastScore);
         result.push(...topRated);
       }
       if (value === "newIn") {
@@ -69,18 +62,23 @@ export default function Search() {
       return result;
     }
   }
+
   const filtered = search(searchQueryLink);
 
   return (
     <>
       <StyledDiv>
+        <p>Für deine Suche gibt es {filtered.length} Ergebnisse!</p>
         <label htmlFor="search">Was suchst du?</label>
         <input
           onChange={(event) => setQuery(event.target.value)}
           id="search"
           name="search"
         />
-        <label>Nach Bohnenverhältnis suchen</label>
+        <label>
+          Search for Ratio:{" "}
+          {typeof query === "number" ? `${query}/${100 - query}` : ""}
+        </label>
         <input
           type="range"
           min={0}
@@ -88,6 +86,9 @@ export default function Search() {
           step={10}
           onChange={(event) => setQuery(Number(event.target.value))}
         />
+        <button onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Weniger" : "Zeig mir alle!"}
+        </button>
       </StyledDiv>
       <StyledList>
         {filtered.map((roast) => (
