@@ -39,7 +39,12 @@ export default function Sections({
       <StyledSectionWrapper>
         <StyledSectionUnder>
           <StyledHeadingSection id="topRated">
-            <Link href={{ pathname: "/search", query: { name: "topRated" } }}>
+            <Link
+              href={{
+                pathname: "/search",
+                query: { value: "topRated" },
+              }}
+            >
               Top bewertet
             </Link>
           </StyledHeadingSection>
@@ -67,7 +72,7 @@ export default function Sections({
       </StyledSectionWrapper>
       <StyledSectionOver>
         <StyledHeadingSection id="newIn">
-          <Link href={{ pathname: "/search", query: { name: "newIn" } }}>
+          <Link href={{ pathname: "/search", query: { value: "newIn" } }}>
             Neu hinzugefügt
           </Link>
         </StyledHeadingSection>
@@ -95,7 +100,7 @@ export default function Sections({
       <StyledSectionWrapper>
         <StyledSectionUnder>
           <StyledHeadingSection id="arabica">
-            <Link href={{ pathname: "/search", query: { name: "arabica" } }}>
+            <Link href={{ pathname: "/search", query: { value: 100 } }}>
               100% Arabica
             </Link>
           </StyledHeadingSection>
@@ -123,7 +128,7 @@ export default function Sections({
       </StyledSectionWrapper>
       <StyledSectionOver>
         <StyledHeadingSection id="robusta">
-          <Link href={{ pathname: "/search", query: { name: "robusta" } }}>
+          <Link href={{ pathname: "/search", query: { value: 0 } }}>
             100% Robusta
           </Link>
         </StyledHeadingSection>
