@@ -3,7 +3,16 @@ import styled from "styled-components";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { StyledList, StyledItem } from "@/lib/styled-components";
+import {
+  StyledList,
+  StyledItem,
+  StyledInput,
+  StyledLabel,
+  StyledSlider,
+  StyledSliderLabel,
+  StyledButton,
+  StyledParagraph,
+} from "@/lib/styled-components";
 import { useState } from "react";
 import { roastsWithReducedScore, sortedForRating } from "@/lib/functions";
 
@@ -26,7 +35,7 @@ export default function Search() {
   function search(queryLink) {
     let result = [];
     let value = queryLink.value;
-    if (value && query === "") {
+    if (value && query === "" && !showAll) {
       if (value === "100") {
         const arabica = data.filter(({ arabica }) => arabica === 100);
         result.push(...arabica);
@@ -46,12 +55,12 @@ export default function Search() {
       }
       return result;
     }
-    if (typeof query === "number") {
+    if (typeof query === "number" && !showAll) {
       const search = data.filter((roast) => roast.arabica === query);
       result.push(...search);
       return result;
     }
-    if (typeof query === "string") {
+    if (typeof query === "string" && !showAll) {
       const search = data.filter(
         (roast) =>
           roast.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -61,6 +70,8 @@ export default function Search() {
       result.push(...search);
       return result;
     }
+    result.push(...data);
+    return result;
   }
 
   const filtered = search(searchQueryLink);
@@ -68,27 +79,37 @@ export default function Search() {
   return (
     <>
       <StyledDiv>
-        <p>Für deine Suche gibt es {filtered.length} Ergebnisse!</p>
-        <label htmlFor="search">Was suchst du?</label>
-        <input
-          onChange={(event) => setQuery(event.target.value)}
-          id="search"
-          name="search"
-        />
-        <label>
-          Search for Ratio:{" "}
-          {typeof query === "number" ? `${query}/${100 - query}` : ""}
-        </label>
-        <input
-          type="range"
-          min={0}
-          max={100}
-          step={10}
-          onChange={(event) => setQuery(Number(event.target.value))}
-        />
-        <button onClick={() => setShowAll(!showAll)}>
-          {showAll ? "Weniger" : "Zeig mir alle!"}
-        </button>
+        {!showAll && (
+          <>
+            <StyledLabel htmlFor="search">Suche:</StyledLabel>
+            <StyledInput
+              onChange={(event) => setQuery(event.target.value)}
+              id="search"
+              name="search"
+              placeholder="Suche nach Name, Rösterei oder Herkunft!"
+            />
+            <StyledSliderLabel>
+              Search for Ratio:{" "}
+              {typeof query === "number"
+                ? `${query}/${100 - query}`
+                : "50 / 50"}
+            </StyledSliderLabel>
+            <StyledSlider
+              type="range"
+              min={0}
+              max={100}
+              step={10}
+              defaultValue={50}
+              onChange={(event) => setQuery(Number(event.target.value))}
+            />
+          </>
+        )}
+        <StyledButton onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Filtern" : "Zeig mir alle!"}
+        </StyledButton>
+        <StyledParagraph>
+          Für deine Suche gibt es {filtered.length} Ergebnisse!
+        </StyledParagraph>
       </StyledDiv>
       <StyledList>
         {filtered.map((roast) => (
