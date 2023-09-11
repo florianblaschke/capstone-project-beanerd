@@ -1,3 +1,4 @@
+import Link from "next/link";
 import RoastCard from "../RoastCard";
 import {
   StyledList,
@@ -8,6 +9,8 @@ import {
   StyledHeadingSection,
   StyledLinkSmooth,
   StyledDivButtonWrapperVariant,
+  StyledLinkVariant,
+  StyledParagraph,
 } from "@/lib/styled-components";
 
 export default function Sections({
@@ -38,7 +41,15 @@ export default function Sections({
       <StyledSectionWrapper>
         <StyledSectionUnder>
           <StyledHeadingSection id="topRated">
-            Top bewertet
+            <StyledLinkVariant
+              href={{
+                pathname: "/search",
+                query: { value: "topRated" },
+              }}
+            >
+              Top bewertet
+              <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+            </StyledLinkVariant>
           </StyledHeadingSection>
           <StyledList>
             {topRated.map((roast, i) =>
@@ -63,7 +74,14 @@ export default function Sections({
         </StyledSectionUnder>
       </StyledSectionWrapper>
       <StyledSectionOver>
-        <StyledHeadingSection id="newIn">Neu hinzugefügt</StyledHeadingSection>
+        <StyledHeadingSection id="newIn">
+          <StyledLinkVariant
+            href={{ pathname: "/search", query: { value: "newIn" } }}
+          >
+            Neu hinzugefügt
+            <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+          </StyledLinkVariant>
+        </StyledHeadingSection>
         <StyledList>
           {newIn.map((roast, i) =>
             i >= 3 ? null : (
@@ -87,7 +105,14 @@ export default function Sections({
       </StyledSectionOver>
       <StyledSectionWrapper>
         <StyledSectionUnder>
-          <StyledHeadingSection id="arabica">100% Arabica</StyledHeadingSection>
+          <StyledHeadingSection id="arabica">
+            <StyledLinkVariant
+              href={{ pathname: "/search", query: { value: 100 } }}
+            >
+              100% Arabica
+              <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+            </StyledLinkVariant>
+          </StyledHeadingSection>
           <StyledList>
             {arabica.map((roast, i) =>
               i >= 3 ? null : (
@@ -111,7 +136,14 @@ export default function Sections({
         </StyledSectionUnder>
       </StyledSectionWrapper>
       <StyledSectionOver>
-        <StyledHeadingSection id="robusta">100% Robusta</StyledHeadingSection>
+        <StyledHeadingSection id="robusta">
+          <StyledLinkVariant
+            href={{ pathname: "/search", query: { value: 0 } }}
+          >
+            100% Robusta
+            <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+          </StyledLinkVariant>
+        </StyledHeadingSection>
         <StyledList>
           {robusta.map((roast, i) =>
             i >= 3 ? null : (
