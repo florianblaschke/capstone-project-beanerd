@@ -12,6 +12,7 @@ import {
   StyledSliderLabel,
   StyledButton,
   StyledParagraph,
+  StyledDivSearch,
 } from "@/lib/styled-components";
 import { useState } from "react";
 import { roastsWithReducedScore, sortedForRatingDesc } from "@/lib/functions";
@@ -78,7 +79,7 @@ export default function Search() {
 
   return (
     <>
-      <StyledDiv>
+      <StyledDivSearch>
         {!showAll && (
           <>
             <StyledLabel htmlFor="search">Suche:</StyledLabel>
@@ -110,7 +111,7 @@ export default function Search() {
         <StyledParagraph>
           Für deine Suche gibt es {filtered.length} Ergebnisse!
         </StyledParagraph>
-      </StyledDiv>
+      </StyledDivSearch>
       <StyledList>
         {filtered.map((roast) => (
           <StyledItem key={roast._id}>
@@ -132,11 +133,3 @@ export default function Search() {
     </>
   );
 }
-
-const StyledDiv = styled.div`
-  height: inherit;
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: center;
-`;
