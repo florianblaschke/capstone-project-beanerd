@@ -14,7 +14,7 @@ import {
   StyledParagraph,
 } from "@/lib/styled-components";
 import { useState } from "react";
-import { roastsWithReducedScore, sortedForRating } from "@/lib/functions";
+import { roastsWithReducedScore, sortedForRatingDesc } from "@/lib/functions";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -46,7 +46,7 @@ export default function Search() {
       }
       if (value === "topRated") {
         const roastScore = roastsWithReducedScore(data);
-        const topRated = sortedForRating(roastScore);
+        const topRated = sortedForRatingDesc(roastScore);
         result.push(...topRated);
       }
       if (value === "newIn") {

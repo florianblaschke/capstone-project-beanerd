@@ -5,7 +5,7 @@ import Sections from "@/components/Section";
 import {
   roastsWithReducedScore as scoreForRoast,
   shuffle,
-  sortedForRating,
+  sortedForRatingDesc,
 } from "@/lib/functions";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -22,7 +22,7 @@ export default function Home() {
   const roastsWithReducedScore = scoreForRoast(data);
   const arabica = data.filter(({ arabica }) => arabica === 100);
   const robusta = data.filter(({ robusta }) => robusta === 100);
-  const topRated = sortedForRating(roastsWithReducedScore);
+  const topRated = sortedForRatingDesc(roastsWithReducedScore);
   const newIn = data.toReversed();
 
   return (
