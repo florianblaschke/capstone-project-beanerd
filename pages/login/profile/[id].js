@@ -5,6 +5,7 @@ import {
   StyledList,
   StyledItem,
   StyledSimpleDiv,
+  StyledPlaceholder,
 } from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
 import SwipeToDelete from "@/components/Modals/SwipeToDelete";
@@ -148,22 +149,24 @@ export default function DetailProfile() {
         </Window>
       )}
       {data.relatedMethods.length > 0 ? (
-        <StyledList>
-          {data.relatedMethods.map((method) => (
-            <StyledItem key={method._id}>
-              <SwipeToDelete onDelete={() => deleteBrewRecipe(method._id)}>
-                <BrewMethod
-                  showModal={() => showClickedRecipe(method._id)}
-                  method={method.method}
-                  coffee={method.coffee}
-                  water={method.water}
-                  time={method.time}
-                  grind={method.grind}
-                />
-              </SwipeToDelete>
-            </StyledItem>
-          ))}
-        </StyledList>
+        <StyledPlaceholder>
+          <StyledList>
+            {data.relatedMethods.map((method) => (
+              <StyledItem key={method._id}>
+                <SwipeToDelete onDelete={() => deleteBrewRecipe(method._id)}>
+                  <BrewMethod
+                    showModal={() => showClickedRecipe(method._id)}
+                    method={method.method}
+                    coffee={method.coffee}
+                    water={method.water}
+                    time={method.time}
+                    grind={method.grind}
+                  />
+                </SwipeToDelete>
+              </StyledItem>
+            ))}
+          </StyledList>
+        </StyledPlaceholder>
       ) : (
         <StyledSimpleDiv>
           Du hast noch keine Brühmethode für diesen Kaffee!
