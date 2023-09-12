@@ -1,4 +1,5 @@
 import defaultPic from "@/public/default.jpg";
+import heart from "@/public/heart.svg";
 import {
   StyledLinkProfile,
   StyledDivCardVariant,
@@ -9,6 +10,7 @@ import {
   StyledRating,
   StyledNumberRating,
   StyledFavDiv,
+  StyledSVG,
 } from "@/lib/styled-components";
 
 export default function RoastCard({ name, roaster, score, id, isFavorite }) {
@@ -39,7 +41,11 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
           </StyledNumberRating>
         </StyledSection>
       </StyledLinkProfile>
-      {isFavorite && <StyledFavDiv>🖤</StyledFavDiv>}
+      {isFavorite && (
+        <StyledFavDiv>
+          <StyledSVG src={heart} width={""} height={""} />
+        </StyledFavDiv>
+      )}
     </StyledDivCardVariant>
   );
 }
