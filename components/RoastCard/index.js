@@ -1,6 +1,6 @@
 import defaultPic from "@/public/default.jpg";
 import {
-  StyledLinkVariant,
+  StyledLinkProfile,
   StyledDivCardVariant,
   StyledImage,
   StyledSection,
@@ -13,12 +13,12 @@ import {
 
 export default function RoastCard({ name, roaster, score, id, isFavorite }) {
   return (
-    <StyledLinkVariant href={`/${id}`}>
-      <StyledDivCardVariant>
+    <StyledDivCardVariant>
+      <StyledLinkProfile href={`/${id}`}>
         <StyledImage
           priority={true}
           src={defaultPic}
-          width={""}
+          width={100}
           height={""}
           alt="Coffee-Package"
         />
@@ -38,8 +38,8 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
             {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
           </StyledNumberRating>
         </StyledSection>
-      </StyledDivCardVariant>
+      </StyledLinkProfile>
       {isFavorite && <StyledFavDiv>🖤</StyledFavDiv>}
-    </StyledLinkVariant>
+    </StyledDivCardVariant>
   );
 }
