@@ -1,5 +1,4 @@
 import RoastCard from "@/components/RoastCard";
-import styled from "styled-components";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -13,6 +12,7 @@ import {
   StyledButton,
   StyledParagraph,
   StyledDivSearch,
+  StyledPlaceholder,
 } from "@/lib/styled-components";
 import { useState } from "react";
 import { roastsWithReducedScore, sortedForRatingDesc } from "@/lib/functions";
@@ -112,24 +112,26 @@ export default function Search() {
           Für deine Suche gibt es {filtered.length} Ergebnisse!
         </StyledParagraph>
       </StyledDivSearch>
-      <StyledList>
-        {filtered.map((roast) => (
-          <StyledItem key={roast._id}>
-            <RoastCard
-              id={roast._id}
-              isFavorite={
-                session &&
-                favorites.roasts.some(
-                  (roastEntry) => roastEntry._id === roast._id
-                )
-              }
-              name={roast.name}
-              roaster={roast.roaster}
-              score={roast.score.map(({ rating }) => rating)}
-            />
-          </StyledItem>
-        ))}
-      </StyledList>
+      <StyledPlaceholder>
+        <StyledList>
+          {filtered.map((roast) => (
+            <StyledItem key={roast._id}>
+              <RoastCard
+                id={roast._id}
+                isFavorite={
+                  session &&
+                  favorites.roasts.some(
+                    (roastEntry) => roastEntry._id === roast._id
+                  )
+                }
+                name={roast.name}
+                roaster={roast.roaster}
+                score={roast.score.map(({ rating }) => rating)}
+              />
+            </StyledItem>
+          ))}
+        </StyledList>
+      </StyledPlaceholder>
     </>
   );
 }

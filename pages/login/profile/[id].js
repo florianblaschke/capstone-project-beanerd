@@ -142,7 +142,11 @@ export default function DetailProfile() {
         setRateEdit={() => setRateEdit(!rateEdit)}
         submitRating={submitRating}
       />
-      {edit && <BrewMethodsForm onSubmit={addBrewMethod} />}
+      {edit && (
+        <Window onClose={() => setEdit(false)}>
+          <BrewMethodsForm onSubmit={addBrewMethod} />
+        </Window>
+      )}
       {data.relatedMethods.length > 0 ? (
         <StyledList>
           {data.relatedMethods.map((method) => (
