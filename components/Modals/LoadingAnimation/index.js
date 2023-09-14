@@ -127,6 +127,8 @@ const MovingDiv = styled.div`
   align-items: center;
   animation: ${translateToSide} 5s linear forwards;
   align-self: flex-start;
+  margin: 0px;
+  padding: 0px;
 `;
 
 const Bean = styled(Image)`
