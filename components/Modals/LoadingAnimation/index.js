@@ -110,7 +110,7 @@ const rotate = keyframes`
 `;
 
 const WrapperDiv = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
   height: 120vh;
