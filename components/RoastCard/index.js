@@ -43,7 +43,12 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
       </StyledLinkProfile>
       {isFavorite && (
         <StyledFavDiv>
-          <StyledSVG src={heart} width={""} height={""} />
+          <StyledSVG
+            src={heart}
+            width={""}
+            height={""}
+            alt={"heart of coffeebeans"}
+          />
         </StyledFavDiv>
       )}
     </StyledDivCardVariant>

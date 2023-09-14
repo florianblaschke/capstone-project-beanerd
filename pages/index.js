@@ -7,6 +7,7 @@ import {
   shuffle,
   sortedForRatingDesc,
 } from "@/lib/functions";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -17,8 +18,11 @@ export default function Home() {
     session ? "api/user" : null,
     fetcher
   );
-  if (isLoading || favoritesLoading) return <h1>... is Loading</h1>;
+  const { data: timer, isLoading: timerOff } = useSWR("api/timeout", fetcher);
 
+  if (isLoading || favoritesLoading || timerOff) return <LoadingAnimation />;
+
+  console.log(timer);
   const roastsWithReducedScore = scoreForRoast(data);
   const arabica = data.filter(({ arabica }) => arabica === 100);
   const robusta = data.filter(({ robusta }) => robusta === 100);

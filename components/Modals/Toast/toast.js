@@ -23,7 +23,6 @@ export default function ToastMessage({ id, message, type }) {
     timer.current = setTimeout(() => {
       autoDelete();
     }, 3000);
-
     return () => {
       clearTimeout(timer.current);
     };
