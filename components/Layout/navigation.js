@@ -55,8 +55,8 @@ const StyledNavLink = styled(Link)`
   height: 100%;
   text-decoration: none;
   color: black;
-  background-color: white;
+  background-color: rgba(96, 57, 47, 0.8);
   font-weight: 400;
   font-size: 12px;
-  filter: ${(props) => (props.$active ? "invert(1)" : "")};
+  filter: ${(props) => (props.$active ? "invert(0.2)" : "")};
 `;

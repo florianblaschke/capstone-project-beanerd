@@ -110,7 +110,10 @@ const rotate = keyframes`
 `;
 
 const WrapperDiv = styled.div`
-  height: 100vh;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 120vh;
   width: 100vw;
   display: flex;
   flex-flow: column;
@@ -128,7 +131,7 @@ const MovingDiv = styled.div`
   animation: ${translateToSide} 5s linear forwards;
   align-self: flex-start;
   margin: 0px;
-  padding: 0px;
+  padding: 0px;c1
 `;
 
 const Bean = styled(Image)`
