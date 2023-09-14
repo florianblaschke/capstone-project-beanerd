@@ -14,6 +14,7 @@ import {
   StyledDivSearch,
   StyledPlaceholder,
 } from "@/lib/styled-components";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import { useState } from "react";
 import { roastsWithReducedScore, sortedForRatingDesc } from "@/lib/functions";
 
@@ -31,7 +32,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
 
-  if (isLoading || favoritesLoading) return <h1>Loading...</h1>;
+  if (isLoading || favoritesLoading) return <LoadingAnimation />;
 
   function search(queryLink) {
     let result = [];

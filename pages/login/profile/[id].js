@@ -7,6 +7,7 @@ import {
   StyledSimpleDiv,
   StyledPlaceholder,
 } from "@/lib/styled-components";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
 import SwipeToDelete from "@/components/Modals/SwipeToDelete";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
@@ -28,7 +29,7 @@ export default function DetailProfile() {
   const toast = useToast();
   const { data, isLoading, mutate } = useSWR(`/api/user/${id}`, fetcher);
 
-  if (isLoading) return <h1>Loading</h1>;
+  if (isLoading) return <LoadingAnimation />;
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
 
   function showClickedRecipe(id) {

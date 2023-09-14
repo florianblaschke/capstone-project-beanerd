@@ -1,6 +1,7 @@
 import { getSession } from "next-auth/react";
 import { StyledList, StyledItem } from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
@@ -10,7 +11,7 @@ export default function ProfilePage() {
   const { data, isLoading, mutate } = useSWR("/api/user", fetcher);
   const toast = useToast();
 
-  if (isLoading) return <h1>Loading</h1>;
+  if (isLoading) return <LoadingAnimation />;
   async function handleDelete(id) {
     const res = await fetch("/api/user", {
       method: "PATCH",

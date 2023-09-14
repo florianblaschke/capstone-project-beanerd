@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import useSWR from "swr";
 import RoastDetailCard from "@/components/RoastDetailCard";
 
@@ -16,7 +17,7 @@ export default function Detail() {
     isLoading: favoritesLoading,
     mutate,
   } = useSWR(session ? "api/user" : null, fetcher);
-  if (isLoading || favoritesLoading) return <h1>... is Loading</h1>;
+  if (isLoading || favoritesLoading) return <LoadingAnimation />;
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
 
   const isFavorite =

@@ -21,10 +21,6 @@ export default function LoadingAnimation() {
   );
 }
 
-const StyledP = styled.p`
-  margin: -20px;
-  padding: 0px;
-`;
 const drop = keyframes`
 0% {
   transform: translateY(0px);
@@ -120,7 +116,9 @@ const WrapperDiv = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(96, 57, 47, 0.8);
 `;
+
 const MovingDiv = styled.div`
   height: 120px;
   width: 120px;
