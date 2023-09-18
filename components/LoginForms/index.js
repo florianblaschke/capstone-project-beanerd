@@ -10,9 +10,9 @@ export default function Login({ onSubmit }) {
     <StyledForm onSubmit={onSubmit}>
       <StyledLabel htmlFor="name">Name:</StyledLabel>
       <StyledInput id="name" name="name" required />
-      <StyledLabel htmlFor="password">Passwort:</StyledLabel>
+      <StyledLabel htmlFor="password">Password:</StyledLabel>
       <StyledInput id="password" name="password" type="password" />
-      <StyledButtonCenterVariant>Anmelden</StyledButtonCenterVariant>
+      <StyledButtonCenterVariant>Sign in</StyledButtonCenterVariant>
     </StyledForm>
   );
 }

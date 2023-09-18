@@ -6,10 +6,11 @@ import {
   StyledImageDetailVariant,
   StyledHeading,
   StyledParagraph,
-  StyledRating,
+  StyledRatingLessMargin,
   StyledNumberRating,
-  StyledDivButtonWrapper,
-  StyledButton,
+  StyledButtonFavorite,
+  StyledButtonBack,
+  StyledBackArrow,
 } from "@/lib/styled-components";
 
 export default function RoastDetailCard({
@@ -26,14 +27,7 @@ export default function RoastDetailCard({
 }) {
   const router = useRouter();
   return (
-    <StyledDiv>
-      <StyledImageDetailVariant
-        priority={true}
-        src={defaultPic}
-        width={""}
-        height={""}
-        alt="Coffee-Package"
-      />
+    <StyledDiv $session={session}>
       <StyledSectionVariant>
         <StyledHeading>{name}</StyledHeading>
         <StyledParagraph>{roaster}</StyledParagraph>
@@ -41,31 +35,38 @@ export default function RoastDetailCard({
         <StyledParagraph>
           {arabica} / {robusta}
         </StyledParagraph>
-        <StyledHeading>Röstgrad</StyledHeading>
+        <StyledHeading>Roast level</StyledHeading>
         <StyledParagraph>{level}</StyledParagraph>
-        <StyledHeading>Herkunft</StyledHeading>
+        <StyledHeading>Origin</StyledHeading>
         <StyledParagraph>{provenance}</StyledParagraph>
-        <StyledRating>
-          Bewertung:{" "}
+        <StyledRatingLessMargin>
+          Rating:{" "}
           {score.length > 0
             ? Math.floor(
                 score.reduce((acc, curr) => acc + curr, 0) / score.length
               )
             : 0}
           /100
-        </StyledRating>
+        </StyledRatingLessMargin>
         <StyledNumberRating>
-          {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+          {score.length} {score.length === 1 ? "Rating" : "Ratings"}
         </StyledNumberRating>
       </StyledSectionVariant>
-      <StyledDivButtonWrapper>
-        <StyledButton onClick={() => router.push("/")}>Zurück</StyledButton>
-        {session && (
-          <StyledButton onClick={onFavorite}>
-            {isFavorite ? "Ist Favorit" : "Favorisieren"}
-          </StyledButton>
-        )}
-      </StyledDivButtonWrapper>
+      <StyledButtonBack onClick={() => router.push("/")}>
+        <StyledBackArrow></StyledBackArrow> Back
+      </StyledButtonBack>
+      {session && (
+        <StyledButtonFavorite onClick={onFavorite}>
+          {isFavorite ? "Favorite" : "Mark favorite"}
+        </StyledButtonFavorite>
+      )}
+      <StyledImageDetailVariant
+        priority={true}
+        src={defaultPic}
+        width={""}
+        height={""}
+        alt="Coffee-Package"
+      />
     </StyledDiv>
   );
 }

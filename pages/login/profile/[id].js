@@ -53,9 +53,9 @@ export default function DetailProfile() {
       return toast.errorToast("I am watching you, Ernst!");
     }
     if (!res.ok) {
-      return toast.errorToast("Mist! Kaffee über die Füße gekippt!");
+      return toast.errorToast("Darn! Spilled coffee over my feet!");
     }
-    toast.successToast("Brühmethode erfolgreich gespeichert!");
+    toast.successToast("Recipe saved!");
     mutate();
     setEdit(!edit);
   }
@@ -73,19 +73,17 @@ export default function DetailProfile() {
     });
 
     if (!res.ok) {
-      return toast.errorToast(
-        "Dein Rating passt uns nicht! Eine Zahl von 0 - 100!"
-      );
+      return toast.errorToast("Commit your rating between 0 and 100!");
     }
     if (res.status === 202) {
       setRateEdit(!rateEdit);
       mutate();
-      return toast.successToast("Dein Rating wurde erfolgreich angepasst!");
+      return toast.successToast("Saved your adjusted rating!");
     }
     if (res.status === 201) {
       setRateEdit(!rateEdit);
       mutate();
-      return toast.successToast("Dein Rating wurde erfolgreich gespeichert!");
+      return toast.successToast("Saved your rating!");
     }
   }
 
@@ -103,13 +101,13 @@ export default function DetailProfile() {
     });
 
     if (!res.ok) {
-      return toast.errorToast("Da ist was schiefgelaufen!");
+      return toast.errorToast("Something went wrong!");
     }
 
     if (res.ok) {
       setShowModal(!showModal);
       mutate();
-      return toast.successToast("Deine Änderungen wurden gespeichert!");
+      return toast.successToast("We saved your adjustments!");
     }
   }
 
@@ -119,11 +117,11 @@ export default function DetailProfile() {
     });
 
     if (!res.ok) {
-      return toast.errorToast("Da ist was schiefgelaufen ...");
+      return toast.errorToast("Whoops! Try again...");
     }
 
     if (res.ok) {
-      toast.successToast("Das Brührezept wurde gelöscht!");
+      toast.successToast("Recipe deleted!");
       setShowModal(false);
       mutate();
     }
@@ -169,9 +167,7 @@ export default function DetailProfile() {
           </StyledList>
         </StyledPlaceholder>
       ) : (
-        <StyledSimpleDiv>
-          Du hast noch keine Brühmethode für diesen Kaffee!
-        </StyledSimpleDiv>
+        <StyledSimpleDiv>You have no recipes yet! Create one!</StyledSimpleDiv>
       )}
       {showModal && (
         <Window onClose={() => setShowModal(false)}>

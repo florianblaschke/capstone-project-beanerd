@@ -83,12 +83,12 @@ export default function Search() {
       <StyledDivSearch>
         {!showAll && (
           <>
-            <StyledLabel htmlFor="search">Suche:</StyledLabel>
+            <StyledLabel htmlFor="search">Search:</StyledLabel>
             <StyledInput
               onChange={(event) => setQuery(event.target.value)}
               id="search"
               name="search"
-              placeholder="Suche nach Name, Rösterei oder Herkunft!"
+              placeholder="Search for name, roaster or origin!"
             />
             <StyledSliderLabel>
               Search for Ratio:{" "}
@@ -107,10 +107,14 @@ export default function Search() {
           </>
         )}
         <StyledButton onClick={() => setShowAll(!showAll)}>
-          {showAll ? "Filtern" : "Zeig mir alle!"}
+          {showAll ? "Filter" : "Show all"}
         </StyledButton>
         <StyledParagraph>
-          Für deine Suche gibt es {filtered.length} Ergebnisse!
+          {filtered.length > 0
+            ? filtered.length === 1
+              ? `We found 1 roast that suits your needs!`
+              : `Your search has ${filtered.length} results!`
+            : `We found 0 beans...maybe you are nuts?`}
         </StyledParagraph>
       </StyledDivSearch>
       <StyledPlaceholder>

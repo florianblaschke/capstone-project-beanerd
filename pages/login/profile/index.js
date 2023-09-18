@@ -20,11 +20,9 @@ export default function ProfilePage() {
     });
 
     if (!res.ok) {
-      return toast.errorToast("Da ist was schiefgelaufen!");
+      return toast.errorToast("Something went wrong!");
     }
-    toast.successToast(
-      "Der Kaffee wurde erfolgreich aus deiner Liste gelöscht!"
-    );
+    toast.successToast("Roast removed from your list!");
     mutate();
   }
 

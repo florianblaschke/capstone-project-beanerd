@@ -11,6 +11,7 @@ import {
   StyledImageMarginTop,
   StyledSectionNoWidthVariant,
   StyledButtonBorderless,
+  StyledImageBackground,
 } from "@/lib/styled-components";
 
 export default function Profile() {
@@ -32,7 +33,7 @@ export default function Profile() {
     });
 
     if (!res.ok) {
-      return toast.errorToast("Benutzername oder Passwort falsch!");
+      return toast.errorToast("Username or Password is wrong!");
     }
 
     router.push(res.url);
@@ -46,7 +47,7 @@ export default function Profile() {
 
     const { password, confirm } = data;
     if (password !== confirm) {
-      return toast.errorToast("Passwörter stimmen nicht überein!");
+      return toast.errorToast("Passwords are not matching!");
     }
 
     const res = await fetch("api/auth/submit", {
@@ -56,16 +57,16 @@ export default function Profile() {
     });
 
     if (res.status === 418) {
-      return toast.errorToast("Sorry, dieser Name ist leider schon vergeben!");
+      return toast.errorToast("Sorry, this username is already taken!");
     }
     if (res.status === 400) {
       return toast.errorToast(
-        "Huups, da ist uns wohl der Tamper auf den Fuß gefallen..."
+        "Ouch! Tamper fell on my foot and I messed up..."
       );
     }
     if (res.ok) {
       setFormSelect(!formSelect);
-      toast.successToast("Benutzer erfolgreich angelegt!");
+      toast.successToast("User successfully registered!");
     }
   }
 
@@ -82,28 +83,28 @@ export default function Profile() {
           />
           <Login onSubmit={onLogin} />
           <StyledSectionNoWidthVariant>
-            Bitte melde dich an, um auf dein Profil zuzugreifen!
+            Sign in to see your profile!
             <StyledButtonBorderless onClick={() => setFormSelect(!formSelect)}>
-              Noch kein Profil? Hier geht es zur Registrierung!
+              You have no profile? Sign up here!
             </StyledButtonBorderless>
           </StyledSectionNoWidthVariant>
         </StyledDivInheritVariant>
       )}
       {formSelect && (
         <StyledDivInheritVariant>
-          <StyledImageMarginTop
+          <StyledImageBackground
             priority={false}
             src={logo}
             width={300}
-            height={200}
+            height={600}
             alt="Beanerd Logo"
           />
           <CreateAccount onSubmit={createAccount} />
           <StyledSectionNoWidthVariant>
-            Hier kannst du dir dein Profil erstellen! Bitte merke dir deinen
-            Benutzernamen und Passwort gut!
+            Create your profile, save your favorite roasts and create brew
+            recipes!
             <StyledButtonBorderless onClick={() => setFormSelect(!formSelect)}>
-              Du hast schon ein Profil? Hier gelangst du zur Anmeldung!
+              Already signed up? Log in here!
             </StyledButtonBorderless>
           </StyledSectionNoWidthVariant>
         </StyledDivInheritVariant>

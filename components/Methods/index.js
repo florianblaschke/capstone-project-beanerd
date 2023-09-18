@@ -12,10 +12,10 @@ export default function BrewMethod({
     <StyledTable onClick={showModal}>
       <thead>
         <tr>
-          <th>Methode</th>
-          <th>Kaffee / Wasser</th>
-          <th>Brühzeit</th>
-          <th>Mahlgrad</th>
+          <th>Method</th>
+          <th>Coffee / Water</th>
+          <th>Time</th>
+          <th>Grind</th>
         </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@ export default function BrewMethod({
           </td>
           <td>
             {time}
-            {" sek"}
+            {" sec"}
           </td>
           <td>{grind}</td>
         </tr>

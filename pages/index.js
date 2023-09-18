@@ -18,11 +18,11 @@ export default function Home() {
     session ? "api/user" : null,
     fetcher
   );
-  const { data: timer, isLoading: timerOff } = useSWR("api/timeout", fetcher);
+  /* const { data: timer, isLoading: timerOff } = useSWR("api/timeout", fetcher); */
 
-  if (isLoading || favoritesLoading || timerOff) return <LoadingAnimation />;
+  if (isLoading || favoritesLoading /* || timerOff */)
+    return <LoadingAnimation />;
 
-  console.log(timer);
   const roastsWithReducedScore = scoreForRoast(data);
   const arabica = data.filter(({ arabica }) => arabica === 100);
   const robusta = data.filter(({ robusta }) => robusta === 100);

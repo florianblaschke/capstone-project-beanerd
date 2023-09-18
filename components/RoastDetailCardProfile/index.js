@@ -12,6 +12,9 @@ import {
   StyledButton,
   StyledInputRating,
   StyledLabel,
+  StyledImageBackground,
+  StyledRatingLessMargin,
+  StyledFormRating,
 } from "@/lib/styled-components";
 
 export default function RoastDetailCardProfile({
@@ -35,11 +38,11 @@ export default function RoastDetailCardProfile({
   }
   return (
     <StyledDiv>
-      <StyledImageDetailVariant
+      <StyledImageBackground
         priority={true}
         src={defaultPic}
-        width={""}
-        height={""}
+        width={350}
+        height={600}
         alt="Coffee-Package"
       />
       <StyledSectionVariant>
@@ -49,32 +52,30 @@ export default function RoastDetailCardProfile({
         <StyledParagraph>
           {arabica} / {robusta}
         </StyledParagraph>
-        <StyledHeading>Röstgrad</StyledHeading>
+        <StyledHeading>Roast level</StyledHeading>
         <StyledParagraph>{level}</StyledParagraph>
-        <StyledHeading>Herkunft</StyledHeading>
+        <StyledHeading>Origin</StyledHeading>
         <StyledParagraph>{provenance}</StyledParagraph>
         {!rateEdit && (
           <>
-            <StyledRating>
-              Bewertung:{" "}
+            <StyledRatingLessMargin>
+              Rating:{" "}
               {score.length > 0
                 ? Math.floor(
                     score.reduce((acc, curr) => acc + curr, 0) / score.length
                   )
                 : 0}
               /100
-            </StyledRating>
+            </StyledRatingLessMargin>
             <StyledNumberRating>
-              {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+              {score.length} {score.length === 1 ? "Rating" : "Ratings"}
             </StyledNumberRating>
           </>
         )}
         {rateEdit && (
           <>
-            <form onSubmit={submitRating}>
-              <StyledLabel htmlFor="rating">
-                Deine Bewertung: {rating}
-              </StyledLabel>
+            <StyledFormRating onSubmit={submitRating}>
+              <StyledLabel htmlFor="rating">Your rating: {rating}</StyledLabel>
               <StyledInputRating
                 onChange={showRating}
                 type="range"
@@ -83,17 +84,17 @@ export default function RoastDetailCardProfile({
                 id="rating"
                 name="rating"
               />
-              <StyledButton>Abgeben</StyledButton>
-            </form>
+              <StyledButton>Submit rating</StyledButton>
+            </StyledFormRating>
           </>
         )}
       </StyledSectionVariant>
       <StyledDivButtonWrapper>
         <StyledButton onClick={setEdit}>
-          {edit ? "Abbrechen" : "Brührezept hinzufügen"}
+          {edit ? "Cancel" : "Add Brew recipe"}
         </StyledButton>
         <StyledButton onClick={setRateEdit}>
-          {rateEdit ? "Abbrechen" : "Bewertung abgeben"}
+          {rateEdit ? "Cancel" : "Rate this coffee"}
         </StyledButton>
       </StyledDivButtonWrapper>
     </StyledDiv>
