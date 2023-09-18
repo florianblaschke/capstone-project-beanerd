@@ -2,11 +2,8 @@ import defaultPic from "@/public/default.jpg";
 import { useState } from "react";
 import {
   StyledDiv,
-  StyledImageDetailVariant,
-  StyledSectionVariant,
   StyledHeading,
   StyledParagraph,
-  StyledRating,
   StyledNumberRating,
   StyledDivButtonWrapper,
   StyledButton,
@@ -15,6 +12,7 @@ import {
   StyledImageBackground,
   StyledRatingLessMargin,
   StyledFormRating,
+  StyledSection,
 } from "@/lib/styled-components";
 
 export default function RoastDetailCardProfile({
@@ -45,7 +43,7 @@ export default function RoastDetailCardProfile({
         height={600}
         alt="Coffee-Package"
       />
-      <StyledSectionVariant>
+      <StyledSection>
         <StyledHeading>{name}</StyledHeading>
         <StyledParagraph>{roaster}</StyledParagraph>
         <StyledHeading>Arabica / Robusta</StyledHeading>
@@ -88,7 +86,7 @@ export default function RoastDetailCardProfile({
             </StyledFormRating>
           </>
         )}
-      </StyledSectionVariant>
+      </StyledSection>
       <StyledDivButtonWrapper>
         <StyledButton onClick={setEdit}>
           {edit ? "Cancel" : "Add Brew recipe"}

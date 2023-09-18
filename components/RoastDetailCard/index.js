@@ -2,7 +2,7 @@ import defaultPic from "@/public/default.jpg";
 import { useRouter } from "next/router";
 import {
   StyledDiv,
-  StyledSectionVariant,
+  StyledSection,
   StyledImageDetailVariant,
   StyledHeading,
   StyledParagraph,
@@ -28,7 +28,7 @@ export default function RoastDetailCard({
   const router = useRouter();
   return (
     <StyledDiv $session={session}>
-      <StyledSectionVariant>
+      <StyledSection>
         <StyledHeading>{name}</StyledHeading>
         <StyledParagraph>{roaster}</StyledParagraph>
         <StyledHeading>Arabica / Robusta</StyledHeading>
@@ -51,7 +51,7 @@ export default function RoastDetailCard({
         <StyledNumberRating>
           {score.length} {score.length === 1 ? "Rating" : "Ratings"}
         </StyledNumberRating>
-      </StyledSectionVariant>
+      </StyledSection>
       <StyledButtonBack onClick={() => router.push("/")}>
         <StyledBackArrow></StyledBackArrow> Back
       </StyledButtonBack>
