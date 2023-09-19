@@ -128,7 +128,7 @@ const MovingDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${translateToSide} 3s linear infinite;
+  animation: ${translateToSide} 5s linear infinite;
   align-self: flex-start;
   margin: 0px;
   padding: 0px;
@@ -137,7 +137,7 @@ const MovingDiv = styled.div`
 const Bean = styled(Image)`
   height: 310px;
   width: 310px;
-  animation: ${rotate} 3s linear infinite;
+  animation: ${rotate} 5s linear infinite;
 `;
 
 const Letter = styled.span`
