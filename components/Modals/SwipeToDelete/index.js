@@ -20,7 +20,7 @@ export default function SwipeToDelete({ children, onDelete }) {
   }
 
   function cancel() {
-    if (movementX >= 255) {
+    if (movementX >= 200) {
       ref.current.style.transform = `translate(-${window.innerWidth}px)`;
       ref.current.style.transition = `transform 0.5s`;
       setTimeout(() => {

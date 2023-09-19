@@ -46,8 +46,8 @@ export default function BrewMethodsForm({ onSubmit }) {
           <option value="fine">fine</option>
           <option value="super-fine">super-fine</option>
         </StyledSelect>
+        <StyledButton type="submit">Add Recipe</StyledButton>
       </StyledGridForm>
-      <StyledButton type="submit">Add Recipe</StyledButton>
     </>
   );
 }
