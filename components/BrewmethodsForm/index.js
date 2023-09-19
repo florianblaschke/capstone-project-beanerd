@@ -1,12 +1,11 @@
 import {
   StyledGridForm,
-  StyledLabel,
   StyledSelect,
   StyledInputGridVariant,
   StyledLabelVariant,
-  StyledGridButton,
   StyledDivGridVariant,
   StyledLabelGrid,
+  StyledGridButtonSpan,
 } from "@/lib/styled-components";
 
 export default function BrewMethodsForm({ onSubmit }) {
@@ -46,7 +45,7 @@ export default function BrewMethodsForm({ onSubmit }) {
         <option value="fine">fine</option>
         <option value="super-fine">super-fine</option>
       </StyledSelect>
-      <StyledGridButton type="submit">Add</StyledGridButton>
+      <StyledGridButtonSpan type="submit">Add Recipe</StyledGridButtonSpan>
     </StyledGridForm>
   );
 }
