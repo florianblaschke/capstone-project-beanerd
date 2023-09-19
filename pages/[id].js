@@ -31,18 +31,18 @@ export default function Detail() {
     });
 
     if (res.status === 418) {
-      return toast.errorToast("Dieser Roast ist schon in deinen Favoriten!");
+      return toast.errorToast("This roast is already a favorite!");
     }
 
     if (res.status === 500) {
       return toast.errorToast(
-        "Aua! Da haben wir uns an der Dampflanze die Finger verbrannt und konnten deine Anfrage daher nicht bearbeiten!"
+        "Ouch! The steam wand went Expelliarmus on us! Need to try again!"
       );
     }
 
     if (res.ok) {
       mutate();
-      return toast.successToast("Zu Favoriten hinzugefügt!");
+      return toast.successToast("Added to favorites!");
     }
   }
 

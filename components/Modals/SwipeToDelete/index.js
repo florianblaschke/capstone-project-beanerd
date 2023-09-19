@@ -44,7 +44,7 @@ export default function SwipeToDelete({ children, onDelete }) {
         onPointerOut={() => cancel()}
       >
         <Visible>{children}</Visible>
-        <Invisible type="button">Löschen</Invisible>
+        <Invisible type="button">Delete</Invisible>
       </WrapperBox>
     );
   };
@@ -70,9 +70,10 @@ const Visible = styled.div`
   flex: 1 0 100%;
 `;
 
-const Invisible = styled.button`
+const Invisible = styled.div`
   border: none;
   background-color: red;
   flex: 1 0 200%;
-  text-align: left;
+  display: flex;
+  align-items: center;
 `;
