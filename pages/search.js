@@ -10,7 +10,7 @@ import {
   StyledSlider,
   StyledSliderLabel,
   StyledButton,
-  StyledParagraph,
+  StyledParagraphNoBorder,
   StyledDivSearch,
   StyledPlaceholder,
 } from "@/lib/styled-components";
@@ -109,13 +109,13 @@ export default function Search() {
         <StyledButton onClick={() => setShowAll(!showAll)}>
           {showAll ? "Filter" : "Show all"}
         </StyledButton>
-        <StyledParagraph>
+        <StyledParagraphNoBorder>
           {filtered.length > 0
             ? filtered.length === 1
               ? `We found 1 roast that suits your needs!`
               : `Your search has ${filtered.length} results!`
             : `We found 0 beans...maybe you are nuts?`}
-        </StyledParagraph>
+        </StyledParagraphNoBorder>
       </StyledDivSearch>
       <StyledPlaceholder>
         <StyledList>

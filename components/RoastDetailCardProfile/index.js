@@ -1,4 +1,5 @@
 import defaultPic from "@/public/default.jpg";
+import Window from "../Modals/Window/window";
 import { useState } from "react";
 import {
   StyledDiv,
@@ -13,6 +14,7 @@ import {
   StyledRatingLessMargin,
   StyledFormRating,
   StyledSection,
+  StyledSliderLabel,
 } from "@/lib/styled-components";
 
 export default function RoastDetailCardProfile({
@@ -54,26 +56,26 @@ export default function RoastDetailCardProfile({
         <StyledParagraph>{level}</StyledParagraph>
         <StyledHeading>Origin</StyledHeading>
         <StyledParagraph>{provenance}</StyledParagraph>
-        {!rateEdit && (
-          <>
-            <StyledRatingLessMargin>
-              Rating:{" "}
-              {score.length > 0
-                ? Math.floor(
-                    score.reduce((acc, curr) => acc + curr, 0) / score.length
-                  )
-                : 0}
-              /100
-            </StyledRatingLessMargin>
-            <StyledNumberRating>
-              {score.length} {score.length === 1 ? "Rating" : "Ratings"}
-            </StyledNumberRating>
-          </>
-        )}
+        <>
+          <StyledRatingLessMargin>
+            Rating:{" "}
+            {score.length > 0
+              ? Math.floor(
+                  score.reduce((acc, curr) => acc + curr, 0) / score.length
+                )
+              : 0}
+            /100
+          </StyledRatingLessMargin>
+          <StyledNumberRating>
+            {score.length} {score.length === 1 ? "Rating" : "Ratings"}
+          </StyledNumberRating>
+        </>
         {rateEdit && (
-          <>
+          <Window onClose={setRateEdit}>
             <StyledFormRating onSubmit={submitRating}>
-              <StyledLabel htmlFor="rating">Your rating: {rating}</StyledLabel>
+              <StyledSliderLabel htmlFor="rating">
+                Your rating: {rating}
+              </StyledSliderLabel>
               <StyledInputRating
                 onChange={showRating}
                 type="range"
@@ -84,7 +86,7 @@ export default function RoastDetailCardProfile({
               />
               <StyledButton>Submit rating</StyledButton>
             </StyledFormRating>
-          </>
+          </Window>
         )}
       </StyledSection>
       <StyledDivButtonWrapper>
