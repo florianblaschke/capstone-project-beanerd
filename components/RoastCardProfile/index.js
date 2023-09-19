@@ -32,7 +32,7 @@ export default function RoastCardProfile({
           <StyledHeading>{name}</StyledHeading>
           <StyledParagraph>{roaster}</StyledParagraph>
           <StyledRating>
-            Bewertung:{" "}
+            Rating:{" "}
             {score.length > 0
               ? Math.floor(
                   score.reduce((acc, curr) => acc + curr, 0) / score.length
@@ -41,12 +41,12 @@ export default function RoastCardProfile({
             /100
           </StyledRating>
           <StyledNumberRating>
-            {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+            {score.length} {score.length === 1 ? "Rating" : "Ratings"}
           </StyledNumberRating>
         </StyledSection>
       </StyledLinkProfile>
       <StyledDelete type="button" onClick={onDelete}>
-        Löschen
+        Delete
       </StyledDelete>
     </StyledDivCardVariant>
   );

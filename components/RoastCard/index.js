@@ -28,7 +28,7 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
           <StyledHeading>{name}</StyledHeading>
           <StyledParagraph>{roaster}</StyledParagraph>
           <StyledRating>
-            Bewertung:{" "}
+            Rating:{" "}
             {score.length > 0
               ? Math.floor(
                   score.reduce((acc, curr) => acc + curr, 0) / score.length
@@ -37,7 +37,7 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
             /100
           </StyledRating>
           <StyledNumberRating>
-            {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+            {score.length} {score.length === 1 ? "Rating" : "Ratings"}
           </StyledNumberRating>
         </StyledSection>
       </StyledLinkProfile>
@@ -47,7 +47,7 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
             src={heart}
             width={""}
             height={""}
-            alt={"heart of coffeebeans"}
+            alt={"heart out of coffeebeans"}
           />
         </StyledFavDiv>
       )}

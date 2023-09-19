@@ -1,5 +1,11 @@
 import { getSession } from "next-auth/react";
-import { StyledList, StyledItem } from "@/lib/styled-components";
+import {
+  StyledList,
+  StyledItem,
+  StyledHeadingProfile,
+  StyledHeadingSection,
+  StyledMinorHeadingProfile,
+} from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
 import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import useSWR from "swr";
@@ -28,6 +34,13 @@ export default function ProfilePage() {
 
   return (
     <>
+      <StyledHeadingProfile>
+        This is your personal bean cellar!
+        <StyledMinorHeadingProfile>
+          Here you will find your marked roasts and can create brew recipes for
+          them. If you are annoyed by one, just delete it!
+        </StyledMinorHeadingProfile>
+      </StyledHeadingProfile>
       <StyledList>
         {data.roasts.map((roast) => (
           <StyledItem key={roast._id}>

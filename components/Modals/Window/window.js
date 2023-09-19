@@ -41,6 +41,7 @@ const StyledModalWrapper = styled.div`
 
 const StyledModalBox = styled.div`
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   padding: 16px;
