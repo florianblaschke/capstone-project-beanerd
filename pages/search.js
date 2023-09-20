@@ -93,8 +93,8 @@ export default function Search() {
             <StyledSliderLabel>
               Search for Ratio:{" "}
               {typeof query === "number"
-                ? `${query}/${100 - query}`
-                : "50 / 50"}
+                ? `Arabica ${query}/${100 - query} Robusta`
+                : "Arabica 50 / 50 Robusta"}
             </StyledSliderLabel>
             <StyledSlider
               type="range"
