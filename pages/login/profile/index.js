@@ -38,7 +38,7 @@ export default function ProfilePage() {
           This is your personal bean cellar!
         </StyledHeadingProfile>
         <StyledMinorHeadingProfile>
-          Here you will find your marked roasts and can create brew recipes for
+          Here you will find your favored roasts and can create brew recipes for
           them. If you are annoyed by one, just delete it!
         </StyledMinorHeadingProfile>
       </StyledDivHeading>
@@ -57,7 +57,7 @@ export default function ProfilePage() {
       </StyledList>
       {data.roasts.length === 0 && (
         <StyledMinorHeadingProfile>
-          You have no roasts marked yet!
+          You have no favored roasts yet!
         </StyledMinorHeadingProfile>
       )}
     </>

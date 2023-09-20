@@ -10,21 +10,15 @@ export default function Navigation({ className }) {
   const router = useRouter();
   return (
     <StyledFooter className={className}>
-      <StyledNavLink $active={router.route === "/" ? true : false} href={"/"}>
+      <StyledNavLink $active={router.route === "/"} href={"/"}>
         <Image src={homeIcon} height={50} width={50} alt="home" />
         Home
       </StyledNavLink>
-      <StyledNavLink
-        $active={router.route === "/search" ? true : false}
-        href={"/search"}
-      >
+      <StyledNavLink $active={router.route === "/search"} href={"/search"}>
         <Image src={searchIcon} height={50} width={50} alt="search" />
         Search
       </StyledNavLink>
-      <StyledNavLink
-        $active={router.route === "/addroast" ? true : false}
-        href={"/addroast"}
-      >
+      <StyledNavLink $active={router.route === "/addroast"} href={"/addroast"}>
         <Image src={addRoastIcon} height={50} width={50} alt="add Roast" />
         Add
       </StyledNavLink>
