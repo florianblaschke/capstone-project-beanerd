@@ -9,7 +9,6 @@ import {
   StyledDivButtonWrapper,
   StyledButton,
   StyledInputRating,
-  StyledLabel,
   StyledImageBackground,
   StyledRatingLessMargin,
   StyledFormRating,

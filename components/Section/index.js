@@ -11,6 +11,7 @@ import {
   StyledLinkVariant,
   StyledSectionWriting,
   StyledHeadingHome,
+  StyledDivHeading,
 } from "@/lib/styled-components";
 
 export default function Sections({
@@ -23,12 +24,12 @@ export default function Sections({
 }) {
   return (
     <>
-      <StyledHeadingHome>
-        Welcome to Beanerd!
+      <StyledDivHeading>
+        <StyledHeadingHome>Welcome to Beanerd!</StyledHeadingHome>
         <StyledHeadingSection>
           May I fancy you a certain bean?
         </StyledHeadingSection>
-      </StyledHeadingHome>
+      </StyledDivHeading>
       <StyledDivButtonWrapperVariant>
         <StyledLinkSmooth href={"#topRated"} scroll={false}>
           Top rated

@@ -119,7 +119,7 @@ const WrapperDiv = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(235, 228, 218);
+  background-color: rgb(208, 201, 191);
 `;
 
 const MovingDiv = styled.div`

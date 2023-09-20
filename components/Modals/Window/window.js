@@ -47,8 +47,8 @@ const StyledModalBox = styled.div`
   padding: 16px;
   height: min-content;
   width: 90vw;
-  border-radius: 8px;
-  background: white;
+  border-radius: 2px;
+  background: rgb(208, 201, 191);
   border: 0.5px solid #000;
   box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
 `;

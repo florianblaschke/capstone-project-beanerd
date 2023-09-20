@@ -3,8 +3,8 @@ import {
   StyledList,
   StyledItem,
   StyledHeadingProfile,
-  StyledHeadingSection,
   StyledMinorHeadingProfile,
+  StyledDivHeading,
 } from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
 import LoadingAnimation from "@/components/Modals/LoadingAnimation";
@@ -31,16 +31,18 @@ export default function ProfilePage() {
     toast.successToast("Roast removed from your list!");
     mutate();
   }
-
+  console.log(data);
   return (
     <>
-      <StyledHeadingProfile>
-        This is your personal bean cellar!
+      <StyledDivHeading>
+        <StyledHeadingProfile>
+          This is your personal bean cellar!
+        </StyledHeadingProfile>
         <StyledMinorHeadingProfile>
           Here you will find your marked roasts and can create brew recipes for
           them. If you are annoyed by one, just delete it!
         </StyledMinorHeadingProfile>
-      </StyledHeadingProfile>
+      </StyledDivHeading>
       <StyledList>
         {data.roasts.map((roast) => (
           <StyledItem key={roast._id}>
@@ -54,6 +56,11 @@ export default function ProfilePage() {
           </StyledItem>
         ))}
       </StyledList>
+      {data.roasts.length === 0 && (
+        <StyledMinorHeadingProfile>
+          You have no roasts marked yet!
+        </StyledMinorHeadingProfile>
+      )}
     </>
   );
 }

@@ -1,5 +1,4 @@
 import User from "@/db/models/user";
-import Roast from "@/db/models/roast";
 import dbConnect from "@/db/connect";
 import { getServerSession } from "next-auth/next";
 
