@@ -31,7 +31,6 @@ export default function ProfilePage() {
     toast.successToast("Roast removed from your list!");
     mutate();
   }
-  console.log(data);
   return (
     <>
       <StyledDivHeading>
