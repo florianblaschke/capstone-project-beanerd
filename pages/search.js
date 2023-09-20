@@ -52,7 +52,8 @@ export default function Search() {
         result.push(...topRated);
       }
       if (value === "newIn") {
-        const newIn = data.toReversed();
+        const newIn = data.slice().reverse();
+        console.log(newIn);
         result.push(...newIn);
       }
       return result;

@@ -25,7 +25,7 @@ export default function Home() {
   const arabica = data.filter(({ arabica }) => arabica === 100);
   const robusta = data.filter(({ robusta }) => robusta === 100);
   const topRated = sortedForRatingDesc(roastsWithReducedScore);
-  const newIn = data.toReversed();
+  const newIn = data.slice().reverse();
 
   return (
     <>
