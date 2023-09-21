@@ -1,4 +1,3 @@
-import Link from "next/link";
 import RoastCard from "../RoastCard";
 import {
   StyledList,
@@ -10,7 +9,9 @@ import {
   StyledLinkSmooth,
   StyledDivButtonWrapperVariant,
   StyledLinkVariant,
-  StyledParagraph,
+  StyledSectionWriting,
+  StyledHeadingHome,
+  StyledDivHeading,
 } from "@/lib/styled-components";
 
 export default function Sections({
@@ -23,13 +24,18 @@ export default function Sections({
 }) {
   return (
     <>
+      <StyledDivHeading>
+        <StyledHeadingHome>Welcome to Beanerd!</StyledHeadingHome>
+        <StyledHeadingSection>
+          May I fancy you a certain bean?
+        </StyledHeadingSection>
+      </StyledDivHeading>
       <StyledDivButtonWrapperVariant>
-        Willkommen bei Beanerd! Suchst du etwas Bestimmtes?
         <StyledLinkSmooth href={"#topRated"} scroll={false}>
-          Top bewertet
+          Top rated
         </StyledLinkSmooth>
         <StyledLinkSmooth href={"#newIn"} scroll={false}>
-          Neu
+          New in
         </StyledLinkSmooth>
         <StyledLinkSmooth href={"#arabica"} scroll={false}>
           100% Arabica
@@ -47,13 +53,13 @@ export default function Sections({
                 query: { value: "topRated" },
               }}
             >
-              Top bewertet
-              <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+              Top rated
+              <StyledSectionWriting>Click to see more!</StyledSectionWriting>
             </StyledLinkVariant>
           </StyledHeadingSection>
           <StyledList>
             {topRated.map((roast, i) =>
-              i >= 3 ? null : (
+              i >= 2 ? null : (
                 <StyledItem key={roast._id}>
                   <RoastCard
                     id={roast._id}
@@ -78,8 +84,8 @@ export default function Sections({
           <StyledLinkVariant
             href={{ pathname: "/search", query: { value: "newIn" } }}
           >
-            Neu hinzugefügt
-            <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+            New in
+            <StyledSectionWriting>Click to see more!</StyledSectionWriting>
           </StyledLinkVariant>
         </StyledHeadingSection>
         <StyledList>
@@ -110,12 +116,12 @@ export default function Sections({
               href={{ pathname: "/search", query: { value: 100 } }}
             >
               100% Arabica
-              <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+              <StyledSectionWriting>Click to see more!</StyledSectionWriting>
             </StyledLinkVariant>
           </StyledHeadingSection>
           <StyledList>
             {arabica.map((roast, i) =>
-              i >= 3 ? null : (
+              i >= 2 ? null : (
                 <StyledItem key={roast._id}>
                   <RoastCard
                     id={roast._id}
@@ -141,7 +147,7 @@ export default function Sections({
             href={{ pathname: "/search", query: { value: 0 } }}
           >
             100% Robusta
-            <StyledParagraph>Klicken, um alle anzuzeigen</StyledParagraph>
+            <StyledSectionWriting>Click to see more!</StyledSectionWriting>
           </StyledLinkVariant>
         </StyledHeadingSection>
         <StyledList>

@@ -7,6 +7,7 @@ import {
   shuffle,
   sortedForRatingDesc,
 } from "@/lib/functions";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -17,13 +18,14 @@ export default function Home() {
     session ? "api/user" : null,
     fetcher
   );
-  if (isLoading || favoritesLoading) return <h1>... is Loading</h1>;
+
+  if (isLoading || favoritesLoading) return <LoadingAnimation />;
 
   const roastsWithReducedScore = scoreForRoast(data);
   const arabica = data.filter(({ arabica }) => arabica === 100);
   const robusta = data.filter(({ robusta }) => robusta === 100);
   const topRated = sortedForRatingDesc(roastsWithReducedScore);
-  const newIn = data.toReversed();
+  const newIn = data.slice().reverse();
 
   return (
     <>

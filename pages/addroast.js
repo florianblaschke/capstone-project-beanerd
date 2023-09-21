@@ -20,13 +20,13 @@ export default function AddRoast() {
       body: JSON.stringify(data),
     });
     if (res.status === 400) {
-      toast.errorToast("Diesen Kaffee kennen wir bereits!");
+      toast.errorToast("We know this roast already!");
     }
     if (res.status === 418) {
-      toast.errorToast("Sorry – leere Felder und/oder nur Zahlen gehen nicht!");
+      toast.errorToast("You can't submit empty spaces or just numbers!");
     }
     if (res.ok) {
-      toast.successToast("Kaffee erfolgreich erstellt!");
+      toast.successToast("Roast successfully added!");
       router.push("/");
     }
   }

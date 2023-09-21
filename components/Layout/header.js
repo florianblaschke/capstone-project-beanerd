@@ -8,7 +8,7 @@ export default function Header({ name, signOut }) {
   return (
     <StyledHeader>
       <StyledGreeting>Hi {name}!</StyledGreeting>
-      <StyledLogOutButton onClick={signOut}>Abmelden</StyledLogOutButton>
+      <StyledLogOutButton onClick={signOut}>Sign out</StyledLogOutButton>
     </StyledHeader>
   );
 }

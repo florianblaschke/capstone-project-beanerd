@@ -3,12 +3,12 @@ import {
   StyledDivCardVariant,
   StyledLinkProfile,
   StyledImage,
-  StyledSectionVariant,
   StyledHeading,
   StyledParagraph,
   StyledRating,
   StyledNumberRating,
   StyledDelete,
+  StyledSection,
 } from "@/lib/styled-components";
 
 export default function RoastCardProfile({
@@ -28,11 +28,11 @@ export default function RoastCardProfile({
           height={""}
           alt="Coffee-Package"
         />
-        <StyledSectionVariant>
+        <StyledSection>
           <StyledHeading>{name}</StyledHeading>
           <StyledParagraph>{roaster}</StyledParagraph>
           <StyledRating>
-            Bewertung:{" "}
+            Rating:{" "}
             {score.length > 0
               ? Math.floor(
                   score.reduce((acc, curr) => acc + curr, 0) / score.length
@@ -41,12 +41,12 @@ export default function RoastCardProfile({
             /100
           </StyledRating>
           <StyledNumberRating>
-            {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+            {score.length} {score.length === 1 ? "Rating" : "Ratings"}
           </StyledNumberRating>
-        </StyledSectionVariant>
+        </StyledSection>
       </StyledLinkProfile>
       <StyledDelete type="button" onClick={onDelete}>
-        Löschen
+        Delete
       </StyledDelete>
     </StyledDivCardVariant>
   );

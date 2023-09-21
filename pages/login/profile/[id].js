@@ -5,7 +5,9 @@ import {
   StyledList,
   StyledItem,
   StyledSimpleDiv,
+  StyledPlaceholder,
 } from "@/lib/styled-components";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
 import SwipeToDelete from "@/components/Modals/SwipeToDelete";
 import BrewMethodsForm from "@/components/BrewmethodsForm";
@@ -27,7 +29,7 @@ export default function DetailProfile() {
   const toast = useToast();
   const { data, isLoading, mutate } = useSWR(`/api/user/${id}`, fetcher);
 
-  if (isLoading) return <h1>Loading</h1>;
+  if (isLoading) return <LoadingAnimation />;
   if (!data) return <h1>Den Kaffee gibts wohl nicht ...</h1>;
 
   function showClickedRecipe(id) {
@@ -51,9 +53,9 @@ export default function DetailProfile() {
       return toast.errorToast("I am watching you, Ernst!");
     }
     if (!res.ok) {
-      return toast.errorToast("Mist! Kaffee über die Füße gekippt!");
+      return toast.errorToast("Darn! Spilled coffee over my feet!");
     }
-    toast.successToast("Brühmethode erfolgreich gespeichert!");
+    toast.successToast("Recipe saved!");
     mutate();
     setEdit(!edit);
   }
@@ -71,19 +73,17 @@ export default function DetailProfile() {
     });
 
     if (!res.ok) {
-      return toast.errorToast(
-        "Dein Rating passt uns nicht! Eine Zahl von 0 - 100!"
-      );
+      return toast.errorToast("Commit your rating between 0 and 100!");
     }
     if (res.status === 202) {
       setRateEdit(!rateEdit);
       mutate();
-      return toast.successToast("Dein Rating wurde erfolgreich angepasst!");
+      return toast.successToast("Saved your adjusted rating!");
     }
     if (res.status === 201) {
       setRateEdit(!rateEdit);
       mutate();
-      return toast.successToast("Dein Rating wurde erfolgreich gespeichert!");
+      return toast.successToast("Saved your rating!");
     }
   }
 
@@ -101,13 +101,13 @@ export default function DetailProfile() {
     });
 
     if (!res.ok) {
-      return toast.errorToast("Da ist was schiefgelaufen!");
+      return toast.errorToast("Something went wrong!");
     }
 
     if (res.ok) {
       setShowModal(!showModal);
       mutate();
-      return toast.successToast("Deine Änderungen wurden gespeichert!");
+      return toast.successToast("We saved your adjustments!");
     }
   }
 
@@ -117,11 +117,11 @@ export default function DetailProfile() {
     });
 
     if (!res.ok) {
-      return toast.errorToast("Da ist was schiefgelaufen ...");
+      return toast.errorToast("Whoops! Try again...");
     }
 
     if (res.ok) {
-      toast.successToast("Das Brührezept wurde gelöscht!");
+      toast.successToast("Recipe deleted!");
       setShowModal(false);
       mutate();
     }
@@ -142,28 +142,32 @@ export default function DetailProfile() {
         setRateEdit={() => setRateEdit(!rateEdit)}
         submitRating={submitRating}
       />
-      {edit && <BrewMethodsForm onSubmit={addBrewMethod} />}
+      {edit && (
+        <Window onClose={() => setEdit(false)}>
+          <BrewMethodsForm onSubmit={addBrewMethod} />
+        </Window>
+      )}
       {data.relatedMethods.length > 0 ? (
-        <StyledList>
-          {data.relatedMethods.map((method) => (
-            <StyledItem key={method._id}>
-              <SwipeToDelete onDelete={() => deleteBrewRecipe(method._id)}>
-                <BrewMethod
-                  showModal={() => showClickedRecipe(method._id)}
-                  method={method.method}
-                  coffee={method.coffee}
-                  water={method.water}
-                  time={method.time}
-                  grind={method.grind}
-                />
-              </SwipeToDelete>
-            </StyledItem>
-          ))}
-        </StyledList>
+        <StyledPlaceholder>
+          <StyledList>
+            {data.relatedMethods.map((method) => (
+              <StyledItem key={method._id}>
+                <SwipeToDelete onDelete={() => deleteBrewRecipe(method._id)}>
+                  <BrewMethod
+                    showModal={() => showClickedRecipe(method._id)}
+                    method={method.method}
+                    coffee={method.coffee}
+                    water={method.water}
+                    time={method.time}
+                    grind={method.grind}
+                  />
+                </SwipeToDelete>
+              </StyledItem>
+            ))}
+          </StyledList>
+        </StyledPlaceholder>
       ) : (
-        <StyledSimpleDiv>
-          Du hast noch keine Brühmethode für diesen Kaffee!
-        </StyledSimpleDiv>
+        <StyledSimpleDiv>You have no recipes yet! Create one!</StyledSimpleDiv>
       )}
       {showModal && (
         <Window onClose={() => setShowModal(false)}>

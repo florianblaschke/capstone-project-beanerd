@@ -2,14 +2,15 @@ import defaultPic from "@/public/default.jpg";
 import { useRouter } from "next/router";
 import {
   StyledDiv,
-  StyledSectionVariant,
+  StyledSection,
   StyledImageDetailVariant,
   StyledHeading,
   StyledParagraph,
-  StyledRating,
+  StyledRatingLessMargin,
   StyledNumberRating,
-  StyledDivButtonWrapper,
-  StyledButton,
+  StyledButtonFavorite,
+  StyledButtonBack,
+  StyledBackArrow,
 } from "@/lib/styled-components";
 
 export default function RoastDetailCard({
@@ -26,7 +27,39 @@ export default function RoastDetailCard({
 }) {
   const router = useRouter();
   return (
-    <StyledDiv>
+    <StyledDiv $session={session}>
+      <StyledSection>
+        <StyledHeading>{name}</StyledHeading>
+        <StyledParagraph>{roaster}</StyledParagraph>
+        <StyledHeading>Arabica / Robusta</StyledHeading>
+        <StyledParagraph>
+          {arabica} / {robusta}
+        </StyledParagraph>
+        <StyledHeading>Roast level</StyledHeading>
+        <StyledParagraph>{level}</StyledParagraph>
+        <StyledHeading>Origin</StyledHeading>
+        <StyledParagraph>{provenance}</StyledParagraph>
+        <StyledRatingLessMargin>
+          Rating:{" "}
+          {score.length > 0
+            ? Math.floor(
+                score.reduce((acc, curr) => acc + curr, 0) / score.length
+              )
+            : 0}
+          /100
+        </StyledRatingLessMargin>
+        <StyledNumberRating>
+          {score.length} {score.length === 1 ? "Rating" : "Ratings"}
+        </StyledNumberRating>
+      </StyledSection>
+      <StyledButtonBack onClick={() => router.push("/")}>
+        <StyledBackArrow></StyledBackArrow> Back
+      </StyledButtonBack>
+      {session && (
+        <StyledButtonFavorite onClick={onFavorite}>
+          {isFavorite ? "Favorite" : "Mark favorite"}
+        </StyledButtonFavorite>
+      )}
       <StyledImageDetailVariant
         priority={true}
         src={defaultPic}
@@ -34,38 +67,6 @@ export default function RoastDetailCard({
         height={""}
         alt="Coffee-Package"
       />
-      <StyledSectionVariant>
-        <StyledHeading>{name}</StyledHeading>
-        <StyledParagraph>{roaster}</StyledParagraph>
-        <StyledHeading>Arabica / Robusta</StyledHeading>
-        <StyledParagraph>
-          {arabica} / {robusta}
-        </StyledParagraph>
-        <StyledHeading>Röstgrad</StyledHeading>
-        <StyledParagraph>{level}</StyledParagraph>
-        <StyledHeading>Herkunft</StyledHeading>
-        <StyledParagraph>{provenance}</StyledParagraph>
-        <StyledRating>
-          Bewertung:{" "}
-          {score.length > 0
-            ? Math.floor(
-                score.reduce((acc, curr) => acc + curr, 0) / score.length
-              )
-            : 0}
-          /100
-        </StyledRating>
-        <StyledNumberRating>
-          {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
-        </StyledNumberRating>
-      </StyledSectionVariant>
-      <StyledDivButtonWrapper>
-        <StyledButton onClick={() => router.push("/")}>Zurück</StyledButton>
-        {session && (
-          <StyledButton onClick={onFavorite}>
-            {isFavorite ? "Ist Favorit" : "Favorisieren"}
-          </StyledButton>
-        )}
-      </StyledDivButtonWrapper>
     </StyledDiv>
   );
 }

@@ -34,7 +34,7 @@ export default function Form({ onSubmit }) {
         name="name"
         title="Sonderzeichen und alleinstehende Zahlen sind nicht erlaubt"
       />
-      <StyledLabel htmlFor="roaster">Röster:</StyledLabel>
+      <StyledLabel htmlFor="roaster">Roaster:</StyledLabel>
       <StyledInput
         pattern="^(?=.*[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ])[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ\d\s]+$"
         type="text"
@@ -55,8 +55,8 @@ export default function Form({ onSubmit }) {
         name="arabica"
       />
       <StyledDivGridVariant>
-        <StyledLabelVariant htmlFor="provenance">Herkunft:</StyledLabelVariant>
-        <StyledLabel htmlFor="level">Röstgrad:</StyledLabel>
+        <StyledLabelVariant htmlFor="provenance">Origin:</StyledLabelVariant>
+        <StyledLabel htmlFor="level">Roast level:</StyledLabel>
         <StyledInputVariant
           pattern="^(?=.*[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ])[a-zA-ZäöüÄÖÜßáéíóúñÁÉÍÓÚÑàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛçÇ\d\s]+$"
           type="text"
@@ -70,7 +70,7 @@ export default function Form({ onSubmit }) {
           <option value="dark">dark</option>
         </StyledSelect>
       </StyledDivGridVariant>
-      <StyledButtonCenterVariant>Speichern</StyledButtonCenterVariant>
+      <StyledButtonCenterVariant>Save</StyledButtonCenterVariant>
     </StyledForm>
   );
 }

@@ -1,6 +1,7 @@
 import defaultPic from "@/public/default.jpg";
+import heart from "@/public/heart.svg";
 import {
-  StyledLinkVariant,
+  StyledLinkProfile,
   StyledDivCardVariant,
   StyledImage,
   StyledSection,
@@ -9,16 +10,17 @@ import {
   StyledRating,
   StyledNumberRating,
   StyledFavDiv,
+  StyledSVG,
 } from "@/lib/styled-components";
 
 export default function RoastCard({ name, roaster, score, id, isFavorite }) {
   return (
-    <StyledLinkVariant href={`/${id}`}>
-      <StyledDivCardVariant>
+    <StyledDivCardVariant>
+      <StyledLinkProfile href={`/${id}`}>
         <StyledImage
           priority={true}
           src={defaultPic}
-          width={""}
+          width={100}
           height={""}
           alt="Coffee-Package"
         />
@@ -26,7 +28,7 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
           <StyledHeading>{name}</StyledHeading>
           <StyledParagraph>{roaster}</StyledParagraph>
           <StyledRating>
-            Bewertung:{" "}
+            Rating:{" "}
             {score.length > 0
               ? Math.floor(
                   score.reduce((acc, curr) => acc + curr, 0) / score.length
@@ -35,11 +37,20 @@ export default function RoastCard({ name, roaster, score, id, isFavorite }) {
             /100
           </StyledRating>
           <StyledNumberRating>
-            {score.length} {score.length === 1 ? "Bewertung" : "Bewertungen"}
+            {score.length} {score.length === 1 ? "Rating" : "Ratings"}
           </StyledNumberRating>
         </StyledSection>
-      </StyledDivCardVariant>
-      {isFavorite && <StyledFavDiv>🖤</StyledFavDiv>}
-    </StyledLinkVariant>
+      </StyledLinkProfile>
+      {isFavorite && (
+        <StyledFavDiv>
+          <StyledSVG
+            src={heart}
+            width={""}
+            height={""}
+            alt={"heart out of coffeebeans"}
+          />
+        </StyledFavDiv>
+      )}
+    </StyledDivCardVariant>
   );
 }

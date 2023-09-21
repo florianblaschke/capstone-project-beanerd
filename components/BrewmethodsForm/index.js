@@ -1,42 +1,42 @@
 import {
   StyledGridForm,
-  StyledLabel,
   StyledSelect,
   StyledInputGridVariant,
   StyledLabelVariant,
-  StyledGridButton,
   StyledDivGridVariant,
+  StyledLabelGrid,
+  StyledButton,
 } from "@/lib/styled-components";
 
 export default function BrewMethodsForm({ onSubmit }) {
   return (
     <StyledGridForm onSubmit={onSubmit}>
-      <StyledLabel htmlFor="method">Brühmethode</StyledLabel>
+      <StyledLabelGrid htmlFor="method">Method</StyledLabelGrid>
       <StyledSelect id="method" name="method">
-        <option value="filter">Filter</option>
-        <option value="bialetti">Herdkännchen</option>
-        <option value="espresso">Siebträger</option>
+        <option value="Filter">Filter</option>
+        <option value="Bialetti">Bialetti</option>
+        <option value="Espresso">Espresso</option>
       </StyledSelect>
-      <StyledLabel>Brühverhältnis</StyledLabel>
+      <StyledLabelGrid>Brew Ratio</StyledLabelGrid>
       <StyledDivGridVariant>
-        <StyledLabelVariant htmlFor="coffee">Kaffee</StyledLabelVariant>
+        <StyledLabelVariant htmlFor="coffee">Coffee</StyledLabelVariant>
         <StyledInputGridVariant
-          placeholder="Kaffee in g"
+          placeholder="Coffee in g"
           id="coffee"
           name="coffee"
           type="number"
         />
-        <StyledLabelVariant htmlFor="water">Wasser</StyledLabelVariant>
+        <StyledLabelVariant htmlFor="water">Water</StyledLabelVariant>
         <StyledInputGridVariant
-          placeholder="Wasser in g"
+          placeholder="Water in g"
           id="water"
           name="water"
           type="number"
         />
       </StyledDivGridVariant>
-      <StyledLabelVariant htmlFor="time">Brühzeit</StyledLabelVariant>
-      <StyledInputGridVariant placeholder="Sekunden" id="time" name="time" />
-      <StyledLabel htmlFor="grind">Mahlgrad</StyledLabel>
+      <StyledLabelVariant htmlFor="time">Time</StyledLabelVariant>
+      <StyledInputGridVariant placeholder="seconds" id="time" name="time" />
+      <StyledLabelGrid htmlFor="grind">Grind</StyledLabelGrid>
       <StyledSelect id="grind" name="grind">
         <option value="coarse">coarse</option>
         <option value="coarse-medium">coarse-medium</option>
@@ -45,7 +45,7 @@ export default function BrewMethodsForm({ onSubmit }) {
         <option value="fine">fine</option>
         <option value="super-fine">super-fine</option>
       </StyledSelect>
-      <StyledGridButton type="submit">Hinzufügen</StyledGridButton>
+      <StyledButton type="submit">Add Recipe</StyledButton>
     </StyledGridForm>
   );
 }

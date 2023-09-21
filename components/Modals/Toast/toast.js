@@ -23,7 +23,6 @@ export default function ToastMessage({ id, message, type }) {
     timer.current = setTimeout(() => {
       autoDelete();
     }, 3000);
-
     return () => {
       clearTimeout(timer.current);
     };
@@ -60,7 +59,7 @@ const ToastDiv = styled.div`
   justify-content: center;
   font-size: 12px;
   font-weight: 400;
-  border-radius: 8px;
+  border-radius: 2px;
   border: 0.5px solid #000;
   box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.1);
   background-color: white;

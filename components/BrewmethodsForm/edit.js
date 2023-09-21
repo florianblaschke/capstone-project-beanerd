@@ -22,14 +22,14 @@ export default function EditBrewMethodForm({
 }) {
   return (
     <StyledGridFormEdit onSubmit={onSubmit}>
-      <StyledLabelEdit htmlFor="method">Brühmethode</StyledLabelEdit>
+      <StyledLabelEdit htmlFor="method">Method</StyledLabelEdit>
       <StyledSelectEdit id="method" name="method" defaultValue={method}>
         <option value="filter">Filter</option>
-        <option value="bialetti">Herdkännchen</option>
-        <option value="espresso">Siebträger</option>
+        <option value="bialetti">Bialetti</option>
+        <option value="espresso">Espresso</option>
       </StyledSelectEdit>
-      <StyledLabelVariant htmlFor="coffee">Kaffee</StyledLabelVariant>
-      <StyledLabelVariant htmlFor="water">Wasser</StyledLabelVariant>
+      <StyledLabelVariant htmlFor="coffee">Coffee</StyledLabelVariant>
+      <StyledLabelVariant htmlFor="water">Water</StyledLabelVariant>
       <StyledInputGridVariant
         defaultValue={coffee}
         id="coffee"
@@ -46,8 +46,8 @@ export default function EditBrewMethodForm({
         min="1"
         required
       />
-      <StyledLabelVariant htmlFor="time">Brühzeit</StyledLabelVariant>
-      <StyledLabel htmlFor="grind">Mahlgrad</StyledLabel>
+      <StyledLabelVariant htmlFor="time">Time</StyledLabelVariant>
+      <StyledLabel htmlFor="grind">Grind</StyledLabel>
       <StyledInputGridVariant
         placeholder="Sekunden"
         type="number"
@@ -65,12 +65,12 @@ export default function EditBrewMethodForm({
         <option value="fine">fine</option>
         <option value="super-fine">super-fine</option>
       </StyledSelect>
-      <StyledGridButton type="submit">Speichern</StyledGridButton>
+      <StyledGridButton type="submit">Save</StyledGridButton>
       <StyledGridButton type="button" onClick={onClose}>
-        Abbrechen
+        Cancel
       </StyledGridButton>
       <StyledGridButtonSpan type="button" onClick={onDelete}>
-        Löschen
+        Delete
       </StyledGridButtonSpan>
     </StyledGridFormEdit>
   );

@@ -10,11 +10,11 @@ export default function CreateAccount({ onSubmit }) {
     <StyledForm onSubmit={onSubmit}>
       <StyledLabel htmlFor="name">Name:</StyledLabel>
       <StyledInput id="name" name="name" required />
-      <StyledLabel htmlFor="password">Passwort:</StyledLabel>
-      <StyledInput id="password" name="password" type="password" />
-      <StyledLabel htmlFor="confirm">Passwort bestätigen:</StyledLabel>
-      <StyledInput id="confirm" name="confirm" type="password" />
-      <StyledButtonCenterVariant>Profil erstellen</StyledButtonCenterVariant>
+      <StyledLabel htmlFor="password">Password:</StyledLabel>
+      <StyledInput id="password" name="password" type="password" required />
+      <StyledLabel htmlFor="confirm">Confirm password:</StyledLabel>
+      <StyledInput id="confirm" name="confirm" type="password" required />
+      <StyledButtonCenterVariant>Create profile</StyledButtonCenterVariant>
     </StyledForm>
   );
 }

@@ -1,6 +1,13 @@
 import { getSession } from "next-auth/react";
-import { StyledList, StyledItem } from "@/lib/styled-components";
+import {
+  StyledList,
+  StyledItem,
+  StyledHeadingProfile,
+  StyledMinorHeadingProfile,
+  StyledDivHeading,
+} from "@/lib/styled-components";
 import { useToast } from "@/components/Modals/Toast/toastProvider";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import useSWR from "swr";
 import RoastCardProfile from "@/components/RoastCardProfile";
 
@@ -10,7 +17,7 @@ export default function ProfilePage() {
   const { data, isLoading, mutate } = useSWR("/api/user", fetcher);
   const toast = useToast();
 
-  if (isLoading) return <h1>Loading</h1>;
+  if (isLoading) return <LoadingAnimation />;
   async function handleDelete(id) {
     const res = await fetch("/api/user", {
       method: "PATCH",
@@ -19,16 +26,22 @@ export default function ProfilePage() {
     });
 
     if (!res.ok) {
-      return toast.errorToast("Da ist was schiefgelaufen!");
+      return toast.errorToast("Something went wrong!");
     }
-    toast.successToast(
-      "Der Kaffee wurde erfolgreich aus deiner Liste gelöscht!"
-    );
+    toast.successToast("Roast removed from your list!");
     mutate();
   }
-
   return (
     <>
+      <StyledDivHeading>
+        <StyledHeadingProfile>
+          This is your personal bean cellar!
+        </StyledHeadingProfile>
+        <StyledMinorHeadingProfile>
+          Here you will find your favored roasts and can create brew recipes for
+          them. If you are annoyed by one, just delete it!
+        </StyledMinorHeadingProfile>
+      </StyledDivHeading>
       <StyledList>
         {data.roasts.map((roast) => (
           <StyledItem key={roast._id}>
@@ -42,6 +55,11 @@ export default function ProfilePage() {
           </StyledItem>
         ))}
       </StyledList>
+      {data.roasts.length === 0 && (
+        <StyledMinorHeadingProfile>
+          You have no favored roasts yet!
+        </StyledMinorHeadingProfile>
+      )}
     </>
   );
 }

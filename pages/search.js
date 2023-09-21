@@ -1,5 +1,4 @@
 import RoastCard from "@/components/RoastCard";
-import styled from "styled-components";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -11,9 +10,11 @@ import {
   StyledSlider,
   StyledSliderLabel,
   StyledButton,
-  StyledParagraph,
+  StyledParagraphNoBorder,
   StyledDivSearch,
+  StyledPlaceholder,
 } from "@/lib/styled-components";
+import LoadingAnimation from "@/components/Modals/LoadingAnimation";
 import { useState } from "react";
 import { roastsWithReducedScore, sortedForRatingDesc } from "@/lib/functions";
 
@@ -31,7 +32,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
 
-  if (isLoading || favoritesLoading) return <h1>Loading...</h1>;
+  if (isLoading || favoritesLoading) return <LoadingAnimation />;
 
   function search(queryLink) {
     let result = [];
@@ -51,7 +52,8 @@ export default function Search() {
         result.push(...topRated);
       }
       if (value === "newIn") {
-        const newIn = data.toReversed();
+        const newIn = data.slice().reverse();
+        console.log(newIn);
         result.push(...newIn);
       }
       return result;
@@ -82,18 +84,18 @@ export default function Search() {
       <StyledDivSearch>
         {!showAll && (
           <>
-            <StyledLabel htmlFor="search">Suche:</StyledLabel>
+            <StyledLabel htmlFor="search">Search:</StyledLabel>
             <StyledInput
               onChange={(event) => setQuery(event.target.value)}
               id="search"
               name="search"
-              placeholder="Suche nach Name, Rösterei oder Herkunft!"
+              placeholder="Search for name, roaster or origin!"
             />
             <StyledSliderLabel>
               Search for Ratio:{" "}
               {typeof query === "number"
-                ? `${query}/${100 - query}`
-                : "50 / 50"}
+                ? `Arabica ${query}/${100 - query} Robusta`
+                : "Arabica 50 / 50 Robusta"}
             </StyledSliderLabel>
             <StyledSlider
               type="range"
@@ -106,30 +108,36 @@ export default function Search() {
           </>
         )}
         <StyledButton onClick={() => setShowAll(!showAll)}>
-          {showAll ? "Filtern" : "Zeig mir alle!"}
+          {showAll ? "Filter" : "Show all"}
         </StyledButton>
-        <StyledParagraph>
-          Für deine Suche gibt es {filtered.length} Ergebnisse!
-        </StyledParagraph>
+        <StyledParagraphNoBorder>
+          {filtered.length > 0
+            ? filtered.length === 1
+              ? `We found 1 roast that suits your needs!`
+              : `Your search has ${filtered.length} results!`
+            : `We found 0 beans...maybe you are nuts?`}
+        </StyledParagraphNoBorder>
       </StyledDivSearch>
-      <StyledList>
-        {filtered.map((roast) => (
-          <StyledItem key={roast._id}>
-            <RoastCard
-              id={roast._id}
-              isFavorite={
-                session &&
-                favorites.roasts.some(
-                  (roastEntry) => roastEntry._id === roast._id
-                )
-              }
-              name={roast.name}
-              roaster={roast.roaster}
-              score={roast.score.map(({ rating }) => rating)}
-            />
-          </StyledItem>
-        ))}
-      </StyledList>
+      <StyledPlaceholder>
+        <StyledList>
+          {filtered.map((roast) => (
+            <StyledItem key={roast._id}>
+              <RoastCard
+                id={roast._id}
+                isFavorite={
+                  session &&
+                  favorites.roasts.some(
+                    (roastEntry) => roastEntry._id === roast._id
+                  )
+                }
+                name={roast.name}
+                roaster={roast.roaster}
+                score={roast.score.map(({ rating }) => rating)}
+              />
+            </StyledItem>
+          ))}
+        </StyledList>
+      </StyledPlaceholder>
     </>
   );
 }
