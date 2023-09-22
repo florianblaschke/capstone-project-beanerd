@@ -173,7 +173,6 @@ export default function DetailProfile() {
         <Window onClose={() => setShowModal(false)}>
           <EditBrewMethodForm
             onSubmit={onChangeEntries}
-            onClose={() => setShowModal(false)}
             method={pickedRecipe.method}
             coffee={pickedRecipe.coffee}
             water={pickedRecipe.water}

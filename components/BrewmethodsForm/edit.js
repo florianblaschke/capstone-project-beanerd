@@ -12,7 +12,6 @@ import {
 
 export default function EditBrewMethodForm({
   onSubmit,
-  onClose,
   method,
   coffee,
   water,
@@ -24,9 +23,9 @@ export default function EditBrewMethodForm({
     <StyledGridFormEdit onSubmit={onSubmit}>
       <StyledLabelEdit htmlFor="method">Method</StyledLabelEdit>
       <StyledSelectEdit id="method" name="method" defaultValue={method}>
-        <option value="filter">Filter</option>
-        <option value="bialetti">Bialetti</option>
-        <option value="espresso">Espresso</option>
+        <option value="Filter">Filter</option>
+        <option value="Bialetti">Bialetti</option>
+        <option value="Espresso">Espresso</option>
       </StyledSelectEdit>
       <StyledLabelVariant htmlFor="coffee">Coffee</StyledLabelVariant>
       <StyledLabelVariant htmlFor="water">Water</StyledLabelVariant>
@@ -66,9 +65,6 @@ export default function EditBrewMethodForm({
         <option value="super-fine">super-fine</option>
       </StyledSelect>
       <StyledGridButton type="submit">Save</StyledGridButton>
-      <StyledGridButton type="button" onClick={onClose}>
-        Cancel
-      </StyledGridButton>
       <StyledGridButtonSpan type="button" onClick={onDelete}>
         Delete
       </StyledGridButtonSpan>
